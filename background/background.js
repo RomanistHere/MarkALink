@@ -33,14 +33,14 @@ const subMenu = [
 		mode: 'mark'
 	},{
 		title: `Hide`,
-		mode: 'block'
+		mode: 'hide'
 	}
 ]
 
 const subMenuStore = {
 	show: null,
 	mark: null,
-	block: null,
+	hide: null,
 }
 
 const setContMenu = () => {

@@ -5,20 +5,10 @@ let state = {
 
 const optBtn = document.querySelector('.popup_opt')
 const notesBtn = document.querySelector('.popup_notes')
-const messBtn = document.querySelector('.popup_mess')
 
 const configNotes = (shouldWork) => {
     chrome.tabs.query({ active: true, currentWindow: true }, async (tabs) => {
         chrome.tabs.sendMessage(tabs[0].id, { notesShouldWork: shouldWork }, resp => {
-            // if (resp && resp.closePopup === true) {
-            // }
-        })
-    })
-}
-
-const configMessages = (shouldWork) => {
-    chrome.tabs.query({ active: true, currentWindow: true }, async (tabs) => {
-        chrome.tabs.sendMessage(tabs[0].id, { messagesShouldWork: shouldWork }, resp => {
             // if (resp && resp.closePopup === true) {
             // }
         })
@@ -76,17 +66,4 @@ notesBtn.addEventListener('click', e => {
     // viz
     setBtn(notesBtn, !state.notesOn)
     configNotes(state.notesOn)
-})
-
-messBtn.addEventListener('click', e => {
-    e.preventDefault()
-    // state
-    chrome.storage.local.set({ messOn: !state.messOn })
-    state = {
-        ...state,
-        messOn: !state.messOn,
-    }
-    // viz
-    setBtn(messBtn, !state.messOn)
-    configMessages(state.messOn)
 })
