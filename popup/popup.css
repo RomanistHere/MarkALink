@@ -1,0 +1,62 @@
+html,
+body {
+    --main-col: #1b283b;
+    --sec-bg-col: #d2f4ff;
+    --bg-col: #fff;
+    --new-col: #0b66c2;
+    --cross-col: #ca2424;
+
+    position: relative;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+
+    background-color: var(--sec-bg-col);
+
+    font-size: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    line-height: 1.59;
+}
+
+.popup {
+    width: 240px;
+    height: 236px;
+    padding: 10px;
+
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+
+    background-color: var(--sec-bg-col);
+}
+
+.popup__button {
+    display: block;
+
+    width: 100%;
+    padding: 12px 24px;
+    margin: 10px 10px 10px 0;
+    border-radius: 4px;
+
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transition: all ease .3s;
+    -o-transition: all ease .3s;
+    transition: all ease .3s;
+
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    color: #000;
+
+    border: 2px solid #000;
+    box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, .75);
+    background-color: var(--bg-col);
+    color: var(--main-col);
+}
+
+.popup__button:hover {
+    background-color: var(--sec-bg-col);
+    border-color: var(--bg-col);
+}
