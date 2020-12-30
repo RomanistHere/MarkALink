@@ -5,3 +5,11 @@
     --cross-col: #ca2424;
     --sec-bg-col: #d2f4ff;
 }
+
+.NotaWay__blocked {
+    opacity: 0 !important;
+}
+
+.NotaWay__blocked:hover {
+    opacity: 1 !important;
+}

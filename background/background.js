@@ -1,3 +1,8 @@
+import {
+	getData,
+	syncStore
+} from '../modules/helpers.js'
+
 chrome.runtime.onInstalled.addListener(async (details) => {
 	const { previousVersion, reason } = details
 
@@ -23,9 +28,10 @@ chrome.contextMenus.create({
 	title: 'MarkALink',
 	contexts: ['link'],
 	documentUrlPatterns: ["http://*/*", "https://*/*", "http://*/", "https://*/"],
-	onclick: (obj) => {
-		const linkUrl = obj.linkUrl
-		// console.log(obj)
-		console.log(linkUrl)
+	onclick: async ({ linkUrl }) => {
+		const data = await getData()
+		const newData = { ...data, [linkUrl]: 'block' }
+
+		syncStore('na', newData)
 	}
 })

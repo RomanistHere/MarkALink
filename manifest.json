@@ -14,7 +14,7 @@
 	],
 	"content_scripts": [
 		{
-			"js":         [ "content/content.js" ],
+			"js":         [ "content/helpers.js", "content/content.js" ],
 			"css":        [ "content/content.css" ],
 			"matches":    [ "<all_urls>" ],
 			"all_frames": true,
