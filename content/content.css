@@ -1,9 +1,5 @@
 :root {
-    --main-col: #0b66c2;
-    --bg-col2: #f9fafb;
-    --bg-col1: #fff;
-    --cross-col: #ca2424;
-    --sec-bg-col: #d2f4ff;
+
 }
 
 .NotaWay__blocked {
@@ -19,5 +15,5 @@
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     /* border: 1px dashed red; */
-    border-bottom: 2px dashed red;
+    border-bottom: 4px dashed yellow;
 }

@@ -1,5 +1,5 @@
 const loopThorugh = (links, data) => {
-    console.log(data)
+    // console.log(data)
     links.forEach(item => {
         const url = item.href
         if (url in data) {
