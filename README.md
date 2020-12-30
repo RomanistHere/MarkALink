@@ -1,1 +1,1 @@
-# Mark links :)
+# Mark a link :)

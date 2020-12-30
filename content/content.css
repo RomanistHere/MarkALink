@@ -13,3 +13,11 @@
 .NotaWay__blocked:hover {
     opacity: 1 !important;
 }
+
+.NotaWay__marked {
+    /* outline: 2px dashed blue; */
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    /* border: 1px dashed red; */
+    border-bottom: 2px dashed red;
+}

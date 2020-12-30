@@ -1,6 +1,6 @@
 {
-	"name": "NotaWay - A Notable Way",
-	"short_name": "NotaWay",
+	"name": "MarkALink - Mark a link",
+	"short_name": "MarkALink",
 	"version": "0.0.1",
 	"description": "Mark a link",
 	"permissions": [
@@ -30,7 +30,7 @@
 	},
 	"browser_action": {
 		"default_popup": "popup/popup.html",
-		"default_title": "NotaWay - Click to open"
+		"default_title": "MarkALink - Click to open"
 	},
 	"content_security_policy": "script-src 'self'; object-src 'self'",
 	"manifest_version": 2

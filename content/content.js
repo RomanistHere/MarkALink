@@ -3,7 +3,15 @@ const loopThorugh = (links, data) => {
     links.forEach(item => {
         const url = item.href
         if (url in data) {
-            item.classList.add('NotaWay__blocked')
+            if (data[url] === 'block') {
+                item.classList.remove('NotaWay__marked')
+                item.classList.add('NotaWay__blocked')
+            } else if (data[url] === 'mark') {
+                item.classList.remove('NotaWay__blocked')
+                item.classList.add('NotaWay__marked')
+            } else if (data[url] === 'show') {
+                item.classList.remove('NotaWay__marked', 'NotaWay__blocked')
+            }
         }
     })
 }
@@ -25,4 +33,17 @@ const domObserver = new MutationObserver(mutations => {
 domObserver.observe(document.documentElement, {
     childList: true,
     subtree: true
+})
+
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+	// from options
+	if (request === 'updated') {
+		debInit()
+	}
+	// // from popup
+	// if (request.notesShouldWork != null) {
+	// 	request.notesShouldWork ? startUpd() : removeAll()
+	// }
+
+	return true
 })

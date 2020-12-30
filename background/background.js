@@ -15,6 +15,7 @@ chrome.runtime.onInstalled.addListener(async (details) => {
             }
         })
     } else if (reason == 'update') {
+		// chrome.storage.sync.clear()
 		if (previousVersion === '0.0.1') {
 
 		} else {
@@ -23,15 +24,47 @@ chrome.runtime.onInstalled.addListener(async (details) => {
     }
 })
 
-chrome.contextMenus.removeAll()
-chrome.contextMenus.create({
-	title: 'MarkALink',
-	contexts: ['link'],
-	documentUrlPatterns: ["http://*/*", "https://*/*", "http://*/", "https://*/"],
-	onclick: async ({ linkUrl }) => {
-		const data = await getData()
-		const newData = { ...data, [linkUrl]: 'block' }
-
-		syncStore('na', newData)
+const subMenu = [
+	{
+		title: `Show`,
+		mode: 'show'
+	},{
+		title: `Mark`,
+		mode: 'mark'
+	},{
+		title: `Hide`,
+		mode: 'block'
 	}
-})
+]
+
+const subMenuStore = {
+	show: null,
+	mark: null,
+	block: null,
+}
+
+const setContMenu = () => {
+	chrome.contextMenus.removeAll()
+	subMenu.map((item, index) => {
+	 	subMenuStore[Object.keys(subMenuStore)[index]] = chrome.contextMenus.create({
+			title: item.title,
+			type: 'normal',
+			contexts: ['link'],
+			documentUrlPatterns: ["http://*/*", "https://*/*", "http://*/", "https://*/"],
+			onclick: async ({ linkUrl }) => {
+				const data = await getData()
+				const newData = { ...data, [linkUrl]: item.mode }
+
+				chrome.tabs.query({ url: null }, resp => {
+			        Object.values(resp).forEach(item => {
+			            chrome.tabs.sendMessage(item.id, 'updated')
+			        })
+			    })
+
+				syncStore('na', newData)
+			}
+		})
+	})
+}
+
+setContMenu()
