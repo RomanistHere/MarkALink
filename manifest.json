@@ -1,5 +1,5 @@
 {
-	"name": "MarkALink - Mark a link",
+	"name": "MarkALink",
 	"short_name": "MarkALink",
 	"version": "0.0.1",
 	"description": "Mark a link",
@@ -14,7 +14,7 @@
 	],
 	"content_scripts": [
 		{
-			"js":         [ "content/helpers.js", "content/content.js" ],
+			"js":         [ "content/helpers.js", "content/popup.js", "content/content.js" ],
 			"css":        [ "content/content.css" ],
 			"matches":    [ "<all_urls>" ],
 			"all_frames": true,

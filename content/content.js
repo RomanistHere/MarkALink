@@ -45,11 +45,15 @@ const startUpd = () => {
 startUpd()
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    // from bg
+    if (request.openPopUp === true) {
+        initPopUp(request.linkUrl)
+    }
 	// from options
 	if (request === 'updated') {
 		debInit()
 	}
-	// // from popup
+	// from popup
 	if (request.notesShouldWork != null) {
 		request.notesShouldWork ? startUpd() : removeAll()
 	}

@@ -24,46 +24,24 @@ chrome.runtime.onInstalled.addListener(async (details) => {
     }
 })
 
-const subMenu = [
-	{
-		title: `Show`,
-		mode: 'show'
-	},{
-		title: `Mark`,
-		mode: 'mark'
-	},{
-		title: `Hide`,
-		mode: 'hide'
-	}
-]
-
-const subMenuStore = {
-	show: null,
-	mark: null,
-	hide: null,
-}
-
 const setContMenu = () => {
 	chrome.contextMenus.removeAll()
-	subMenu.map((item, index) => {
-	 	subMenuStore[Object.keys(subMenuStore)[index]] = chrome.contextMenus.create({
-			title: item.title,
-			type: 'normal',
-			contexts: ['link'],
-			documentUrlPatterns: ["http://*/*", "https://*/*", "http://*/", "https://*/"],
-			onclick: async ({ linkUrl }) => {
-				const data = await getData()
-				const newData = { ...data, [linkUrl]: item.mode }
+	chrome.contextMenus.create({
+		title: 'MarkALink',
+		contexts: ['link'],
+		documentUrlPatterns: ["http://*/*", "https://*/*", "http://*/", "https://*/"],
+		onclick: async ({ linkUrl }, tabs) => {
+			// const data = await getData()
+			// const newData = { ...data, [linkUrl]: item.mode }
 
-				chrome.tabs.query({ url: null }, resp => {
-			        Object.values(resp).forEach(item => {
-			            chrome.tabs.sendMessage(item.id, 'updated')
-			        })
-			    })
+			const tabID = tabs.id
+			chrome.tabs.sendMessage(tabID, {
+				linkUrl: linkUrl,
+				openPopUp: true,
+			})
 
-				syncStore('na', newData)
-			}
-		})
+			// syncStore('na', newData)
+		}
 	})
 }
 
