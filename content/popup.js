@@ -114,6 +114,8 @@ const initPopUp = async (linkUrl) => {
     const addGrp = grp => {
         if (state.existingGroups.includes(grp)) {
             console.log('existing')
+            alert('Try different name!')
+            return
         }
 
         name.textContent = grp
@@ -149,7 +151,7 @@ const initPopUp = async (linkUrl) => {
     })
 
     newGrpInput.addEventListener('blur', e => {
-        addGrp(e.currentTarget.value)
+        addGrp(e.currentTarget.value.trim())
     })
 
     newGrpInput.addEventListener('keyup', e => {
