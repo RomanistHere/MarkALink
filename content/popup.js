@@ -9,7 +9,6 @@ const getPopupHTML = (linkUrl, groups, defGroup = 'Add new group') =>
             <span class="MarkALink_popup__label">Group: </span>
             <div class="MarkALink_popup__menu">
                 <span class="MarkALink_popup__menu_default">${defGroup}</span>
-                <input class="MarkALink_popup__menu_default MarkALink_popup__menu_default-input">
                 <div class="MarkALink_popup__submenu">
                     ${
                         groups.map(item => `<a href="#" id="${item}" class="MarkALink_popup__menu_item">${item}</a>`).join('')
@@ -17,6 +16,7 @@ const getPopupHTML = (linkUrl, groups, defGroup = 'Add new group') =>
                     <a href="#" class="MarkALink_popup__menu_item-add">Add new group</a>
                 </div>
             </div>
+            <input value="New group" class="MarkALink_popup__menu_default MarkALink_popup__menu_default-input MarkALink_popup__menu_default-hide">
         </div>
         <div class="MarkALink_popup__grp">
             <span class="MarkALink_popup__label">Type: </span>
@@ -82,7 +82,8 @@ const initPopUp = async (linkUrl) => {
         url: linkUrl,
         grp: grp,
         type: 'Mark',
-        mark: ''
+        mark: '',
+        existingGroups: [...arr]
     }
 
     const popup = document.createElement('div')
@@ -98,6 +99,7 @@ const initPopUp = async (linkUrl) => {
     })
 
     // groups
+    const name = popup.querySelector('.MarkALink_popup__menu_default')
     const groupBtns = popup.querySelectorAll('.MarkALink_popup__menu_item')
     groupBtns.forEach(item => item.addEventListener('click', e => {
         e.preventDefault()
@@ -105,15 +107,56 @@ const initPopUp = async (linkUrl) => {
         item.parentNode.classList.add('MarkALink_popup__submenu-hide')
         setTimeout(() => item.parentNode.classList.remove('MarkALink_popup__submenu-hide'), 400)
 
-        popup.querySelector('.MarkALink_popup__menu_default').textContent = item.id
+        name.textContent = item.id
         state = { ...state, grp: item.id }
     }))
 
+    const addGrp = grp => {
+        if (state.existingGroups.includes(grp)) {
+            console.log('existing')
+        }
+
+        name.textContent = grp
+        state = {
+            ...state,
+            grp: grp,
+            existingGroups: [...state.existingGroups, grp]
+        }
+
+        menu.classList.remove('MarkALink_popup__menu_default-hide')
+        newGrpInput.classList.add('MarkALink_popup__menu_default-hide')
+        name.classList.remove('MarkALink_popup__menu_default-hide')
+
+        submenu.insertAdjacentHTML('afterbegin', `<a href="#" id="${grp}" class="MarkALink_popup__menu_item">${grp}</a>`)
+    }
+
+    const newGrpInput = popup.querySelector('.MarkALink_popup__menu_default-input')
+    const menu = popup.querySelector('.MarkALink_popup__menu')
+    const submenu = popup.querySelector('.MarkALink_popup__submenu')
     const addNewGrpBtn = popup.querySelector('.MarkALink_popup__menu_item-add')
     addNewGrpBtn.addEventListener('click', e => {
         e.preventDefault()
-        
-        const newGrpInput = popup.querySelector('.MarkALink_popup__menu_default-input')
+
+        addNewGrpBtn.parentNode.classList.add('MarkALink_popup__submenu-hide')
+        setTimeout(() => addNewGrpBtn.parentNode.classList.remove('MarkALink_popup__submenu-hide'), 400)
+
+        menu.classList.add('MarkALink_popup__menu_default-hide')
+        name.classList.add('MarkALink_popup__menu_default-hide')
+        newGrpInput.classList.remove('MarkALink_popup__menu_default-hide')
+
+        newGrpInput.focus()
+        newGrpInput.select()
+    })
+
+    newGrpInput.addEventListener('blur', e => {
+        addGrp(e.currentTarget.value)
+    })
+
+    newGrpInput.addEventListener('keyup', e => {
+        if (e.keyCode === 13) {
+            e.preventDefault()
+            newGrpInput.blur()
+        }
     })
 
     // type

@@ -139,3 +139,21 @@
 
     font-size: calc(var(--font-size) - 4px);
 }
+
+.MarkALink_popup__menu_default-hide {
+    display: none;
+}
+
+.MarkALink_popup__menu_default-input {
+    width: 360px;
+
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+
+    font-size: calc(var(--font-size) - 4px);
+    color: white;
+
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid white;
+}
