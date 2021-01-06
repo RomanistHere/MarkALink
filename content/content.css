@@ -36,9 +36,16 @@
     align-items: center;
 
     background-color: #00000080;
+    transition: all ease .4s;
+    opacity: 1;
 
     font-size: var(--font-size);
     font-weight: normal;
+}
+
+.MarkALink_popup-hidden {
+    opacity: 0;
+    z-index: -10000;
 }
 
 .MarkALink_popup__wrap {
@@ -73,7 +80,8 @@
     position: relative;
 }
 
-.MarkALink_popup__submenu {
+.MarkALink_popup__submenu,
+.MarkALink_popup__menu:hover .MarkALink_popup__submenu.MarkALink_popup__submenu-hide {
     position: absolute;
 
     left: 0;
@@ -97,10 +105,13 @@
     opacity: 1;
 }
 
-.MarkALink_popup__menu_item {
+.MarkALink_popup__menu_item,
+.MarkALink_popup__menu_item-add {
     display: block;
 
     padding: 2px 10px;
+
+    white-space: nowrap;
 }
 
 .MarkALink_popup__types {

@@ -1,6 +1,8 @@
 import {
 	getData,
-	syncStore
+	syncStore,
+	getStorageDataLocal,
+    setStorageDataLocal
 } from '../modules/helpers.js'
 
 chrome.runtime.onInstalled.addListener(async (details) => {
@@ -17,7 +19,9 @@ chrome.runtime.onInstalled.addListener(async (details) => {
     } else if (reason == 'update') {
 		// chrome.storage.sync.clear()
 		if (previousVersion === '0.0.1') {
-
+			await setStorageDataLocal({
+				defCategories: ['Hide', 'Favorite']
+			})
 		} else {
 
 		}

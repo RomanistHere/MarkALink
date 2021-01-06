@@ -72,3 +72,21 @@ const syncStore = (key, objectToStore, callback) => {
         chrome.storage.sync.set(storageObj, callback)
     })
 }
+
+const getStorageDataLocal = key =>
+	new Promise((resolve, reject) =>
+		chrome.storage.local.get(key, result =>
+			chrome.runtime.lastError
+				? reject(Error(chrome.runtime.lastError.message))
+				: resolve(result)
+		)
+	)
+
+const setStorageDataLocal = data =>
+	new Promise((resolve, reject) =>
+		chrome.storage.local.set(data, () =>
+			chrome.runtime.lastError
+				? reject(Error(chrome.runtime.lastError.message))
+				: resolve()
+		)
+	)
