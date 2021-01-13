@@ -157,3 +157,16 @@
     border: none;
     border-bottom: 2px solid white;
 }
+
+.MarkALink_popup__calendar {
+    max-height: 0;
+    overflow: hidden;
+
+    -webkit-transition: all ease .3s;
+    -o-transition: all ease .3s;
+    transition: all ease .3s;
+}
+
+.MarkALink_popup__calendar-show {
+    max-height: 50px;
+}

@@ -25,6 +25,9 @@ const getPopupHTML = (linkUrl, groups, defGroup = 'Add new group') =>
                 <a href="#" id="Reminder" class="MarkALink_popup__types_item">Reminder</a>
             </div>
         </div>
+        <div class="MarkALink_popup__calendar">
+            <input class=MarkALink_popup__calendar_input placeholder="Click to pick date">
+        </div>
         <div class="MarkALink_popup__grp MarkALink_popup__grp-flex">
             <textarea class="MarkALink_popup__textarea" placeholder="Type your Mark here..."></textarea>
         </div>
@@ -83,7 +86,9 @@ const initPopUp = async (linkUrl) => {
         grp: grp,
         type: 'Mark',
         mark: '',
-        existingGroups: [...arr]
+        existingGroups: [...arr],
+        datepicker: false,
+        date: new Date().fp_incr(7)
     }
 
     const popup = document.createElement('div')
@@ -169,6 +174,13 @@ const initPopUp = async (linkUrl) => {
         typeBtns.forEach(btn => btn.classList.remove('MarkALink_popup__types_item-active'))
         item.classList.add('MarkALink_popup__types_item-active')
         state = { ...state, type: e.currentTarget.id }
+
+        const calendarWrap = popup.querySelector('.MarkALink_popup__calendar')
+        if (state.type === 'Reminder') {
+            calendarWrap.classList.add('MarkALink_popup__calendar-show')
+        } else {
+            calendarWrap.classList.remove('MarkALink_popup__calendar-show')
+        }
     }))
 
 
@@ -202,6 +214,19 @@ const initPopUp = async (linkUrl) => {
 
         popup.classList.add('MarkALink_popup-hidden')
     })
+
+    // datepicker
+    if (!state.datepicker) {
+        const calendarInput = popup.querySelector('.MarkALink_popup__calendar_input')
+        const datepicker = flatpickr(calendarInput, {
+            minDate: new Date().fp_incr(1),
+            defaultDate: state.date,
+            onChange: (selectedDates, dateStr, instance) => {
+                const date = selectedDates[0]
+                console.log(date)
+            }
+        })
+    }
 
     document.body.appendChild(popup)
 }
