@@ -189,18 +189,24 @@ const initPopUp = async (linkUrl) => {
     saveBtn.addEventListener('click', async (e) => {
         e.preventDefault()
 
-        console.log(state)
         try {
-            const { url, grp, type, mark } = state
+            const { url, grp, type, mark, date } = state
             const data = await getData()
             const newData = {
                 ...data,
-                [url]: {
+                [url]: type === 'mark' ? {
                     grp: grp,
                     type: type,
                     mark: mark
+                } : {
+                    grp: grp,
+                    type: type,
+                    mark: mark,
+                    date: date,
+                    shown: false
                 }
             }
+            console.log(newData)
             await syncStore('na', newData)
             popup.classList.add('MarkALink_popup-hidden')
         } catch (e) {
@@ -223,7 +229,7 @@ const initPopUp = async (linkUrl) => {
             defaultDate: state.date,
             onChange: (selectedDates, dateStr, instance) => {
                 const date = selectedDates[0]
-                console.log(date)
+                state = { ...state, date: date }
             }
         })
     }

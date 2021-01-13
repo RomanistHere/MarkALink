@@ -5,7 +5,7 @@ const removeAll = () => {
 }
 
 const loopThorugh = (links, data) => {
-    // console.log(data)
+    console.log(data)
     links.forEach(item => {
         const url = item.href
         if (url in data) {
@@ -17,6 +17,27 @@ const loopThorugh = (links, data) => {
                 item.classList.add('NotaWay__marked')
             } else if (data[url] === 'show') {
                 item.classList.remove('NotaWay__marked', 'NotaWay__blocked')
+            }
+        }
+    })
+
+    const keys = Object.keys(data)
+    keys.forEach(async (key) => {
+        const item = data[key]
+        if (item.type === 'Reminder' && item.shown === false) {
+            const date = getDateWithoutTime(item.date)
+            const curDate = getDateWithoutTime(new Date)
+            if (curDate >= date) {
+                alert(`Url: ${key}, Mark: ${item.mark}`)
+
+                const newData = {
+                    ...data,
+                    [key]: {
+                        ...data[key],
+                        shown: true
+                    }
+                }
+                await syncStore('na', newData)
             }
         }
     })
