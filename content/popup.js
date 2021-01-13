@@ -1,4 +1,4 @@
-const getPopupHTML = (linkUrl, groups, defGroup = 'Add new group', textArea = '') =>
+const getPopupHTML = (linkUrl, groups, defGroup = 'Add new group', textArea = '', isMark = true) =>
     `<div class="MarkALink_popup__wrap">
         <div class="MarkALink_popup__logo"></div>
         <div class="MarkALink_popup__grp">
@@ -21,11 +21,11 @@ const getPopupHTML = (linkUrl, groups, defGroup = 'Add new group', textArea = ''
         <div class="MarkALink_popup__grp">
             <span class="MarkALink_popup__label">Type: </span>
             <div class="MarkALink_popup__types">
-                <a href="#" id="Mark" class="MarkALink_popup__types_item MarkALink_popup__types_item-active">Mark</a>
-                <a href="#" id="Reminder" class="MarkALink_popup__types_item">Reminder</a>
+                <a href="#" id="Mark" class="MarkALink_popup__types_item ${isMark ? `MarkALink_popup__types_item-active` : ``}">Mark</a>
+                <a href="#" id="Reminder" class="MarkALink_popup__types_item ${!isMark ? `MarkALink_popup__types_item-active` : ``}">Reminder</a>
             </div>
         </div>
-        <div class="MarkALink_popup__calendar">
+        <div class="MarkALink_popup__calendar ${!isMark ? `MarkALink_popup__calendar-show` : ``}">
             <input class="MarkALink_popup__calendar_input MarkALink_popup__inp" placeholder="Click to pick date">
         </div>
         <div class="MarkALink_popup__grp MarkALink_popup__grp-flex">
@@ -84,19 +84,21 @@ const initPopUp = async (linkUrl) => {
     const data = await getData()
     console.log(data)
     const { arr, grp } = await getGrps(data)
+    const isExists = linkUrl in data
+    const isMark = isExists && data[linkUrl].type === 'Reminder' ? false : true
 
     let state = {
         url: linkUrl,
         grp: grp,
-        type: 'Mark',
-        mark: linkUrl in data ? data[linkUrl].mark : '',
+        type:  isExists ? data[linkUrl].type : 'Mark',
+        mark: isExists ? data[linkUrl].mark : '',
         existingGroups: [...arr],
         datepicker: false,
-        date: new Date().fp_incr(7)
+        date: !isMark ? new Date(data[linkUrl].date) : new Date().fp_incr(7)
     }
 
     const popup = document.createElement('div')
-    const popupHTML = getPopupHTML(linkUrl, arr, grp, state.mark)
+    const popupHTML = getPopupHTML(linkUrl, arr, grp, state.mark, isMark)
     popup.classList.add('MarkALink_popup')
     popup.innerHTML = popupHTML
     popup.setAttribute('data-PopUpOFF', 'notification')
