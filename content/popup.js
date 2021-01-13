@@ -200,7 +200,7 @@ const initPopUp = async (linkUrl) => {
             const data = await getData()
             const newData = {
                 ...data,
-                [url]: type === 'mark' ? {
+                [url]: type === 'Mark' ? {
                     grp: grp,
                     type: type,
                     mark: mark
@@ -247,8 +247,11 @@ const initPopUp = async (linkUrl) => {
     if (!state.datepicker) {
         const calendarInput = popup.querySelector('.MarkALink_popup__calendar_input')
         const datepicker = flatpickr(calendarInput, {
-            // minDate: new Date().fp_incr(1),
+            minDate: new Date().fp_incr(1),
             defaultDate: state.date,
+            altInput: true,
+            altFormat: "F j, Y",
+            dateFormat: "Y-m-d",
             onChange: (selectedDates, dateStr, instance) => {
                 const date = selectedDates[0]
                 state = { ...state, date: date }
