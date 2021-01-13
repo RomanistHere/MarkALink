@@ -1,4 +1,4 @@
-const getPopupHTML = (linkUrl, groups, defGroup = 'Add new group') =>
+const getPopupHTML = (linkUrl, groups, defGroup = 'Add new group', textArea = '') =>
     `<div class="MarkALink_popup__wrap">
         <div class="MarkALink_popup__logo"></div>
         <div class="MarkALink_popup__grp">
@@ -26,10 +26,10 @@ const getPopupHTML = (linkUrl, groups, defGroup = 'Add new group') =>
             </div>
         </div>
         <div class="MarkALink_popup__calendar">
-            <input class=MarkALink_popup__calendar_input placeholder="Click to pick date">
+            <input class="MarkALink_popup__calendar_input MarkALink_popup__inp" placeholder="Click to pick date">
         </div>
         <div class="MarkALink_popup__grp MarkALink_popup__grp-flex">
-            <textarea class="MarkALink_popup__textarea" placeholder="Type your Mark here..."></textarea>
+            <textarea class="MarkALink_popup__textarea" placeholder="Type your Mark here...">${textArea}</textarea>
         </div>
         <div class="MarkALink_popup__btns">
             <a href="#" class="MarkALink_popup__save">Save</a>
@@ -60,8 +60,6 @@ const getGrps = async (data) => {
 
     const { defCategories } = await getStorageDataLocal()
 
-    console.log(obj)
-
     if (curMax === 0) {
         return {
             arr: [...defCategories],
@@ -75,24 +73,30 @@ const getGrps = async (data) => {
     }
 }
 
+const closePopUp = () => {
+    // popup.classList.add('MarkALink_popup-hidden')
+
+    document.querySelectorAll('.MarkALink_popup').forEach(item => item.remove())
+    document.querySelectorAll('.flatpickr-calendar').forEach(item => item.remove())
+}
+
 const initPopUp = async (linkUrl) => {
     const data = await getData()
     console.log(data)
     const { arr, grp } = await getGrps(data)
-    console.log(arr, grp)
 
     let state = {
         url: linkUrl,
         grp: grp,
         type: 'Mark',
-        mark: '',
+        mark: linkUrl in data ? data[linkUrl].mark : '',
         existingGroups: [...arr],
         datepicker: false,
         date: new Date().fp_incr(7)
     }
 
     const popup = document.createElement('div')
-    const popupHTML = getPopupHTML(linkUrl, arr, grp)
+    const popupHTML = getPopupHTML(linkUrl, arr, grp, state.mark)
     popup.classList.add('MarkALink_popup')
     popup.innerHTML = popupHTML
     popup.setAttribute('data-PopUpOFF', 'notification')
@@ -208,7 +212,7 @@ const initPopUp = async (linkUrl) => {
             }
             console.log(newData)
             await syncStore('na', newData)
-            popup.classList.add('MarkALink_popup-hidden')
+            closePopUp()
         } catch (e) {
             console.log(e)
         }
@@ -218,14 +222,30 @@ const initPopUp = async (linkUrl) => {
     closeBtn.addEventListener('click', e => {
         e.preventDefault()
 
-        popup.classList.add('MarkALink_popup-hidden')
+        closePopUp()
+    })
+
+    const unmarkBtn = popup.querySelector('.MarkALink_popup__unmark')
+    unmarkBtn.addEventListener('click', async (e) => {
+        e.preventDefault()
+
+        try {
+            let data = await getData()
+
+            delete data[state.url]
+
+            await syncStore('na', data)
+            closePopUp()
+        } catch (e) {
+            console.log(e)
+        }
     })
 
     // datepicker
     if (!state.datepicker) {
         const calendarInput = popup.querySelector('.MarkALink_popup__calendar_input')
         const datepicker = flatpickr(calendarInput, {
-            minDate: new Date().fp_incr(1),
+            // minDate: new Date().fp_incr(1),
             defaultDate: state.date,
             onChange: (selectedDates, dateStr, instance) => {
                 const date = selectedDates[0]

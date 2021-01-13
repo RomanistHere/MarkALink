@@ -5,7 +5,7 @@ const removeAll = () => {
 }
 
 const loopThorugh = (links, data) => {
-    console.log(data)
+    // console.log(data)
     links.forEach(item => {
         const url = item.href
         if (url in data) {
@@ -28,15 +28,13 @@ const loopThorugh = (links, data) => {
             const date = getDateWithoutTime(item.date)
             const curDate = getDateWithoutTime(new Date)
             if (curDate >= date) {
+                // TODO: show template
                 alert(`Url: ${key}, Mark: ${item.mark}`)
 
-                const newData = {
-                    ...data,
-                    [key]: {
-                        ...data[key],
-                        shown: true
-                    }
-                }
+                let newKey = { ...data[key] }
+                delete newKey['shown']
+
+                const newData = { ...data, [key]: newKey }
                 await syncStore('na', newData)
             }
         }
