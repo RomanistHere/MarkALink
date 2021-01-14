@@ -2,15 +2,15 @@
     --font-size: 24px;
 }
 
-.NotaWay__blocked {
+.MarkALink__blocked {
     opacity: 0 !important;
 }
 
-.NotaWay__blocked:hover {
+.MarkALink__blocked:hover {
     opacity: 1 !important;
 }
 
-.NotaWay__marked {
+.MarkALink__marked {
     /* outline: 2px dashed blue; */
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
@@ -83,6 +83,7 @@
 .MarkALink_popup__submenu,
 .MarkALink_popup__menu:hover .MarkALink_popup__submenu.MarkALink_popup__submenu-hide {
     position: absolute;
+    z-index: 10000;
 
     left: 0;
     top: 20px;

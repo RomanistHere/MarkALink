@@ -1,23 +1,30 @@
 const removeAll = () => {
     domObserver.disconnect()
-    document.querySelectorAll('.NotaWay__marked').forEach(item => item.classList.remove('NotaWay__marked'))
-    document.querySelectorAll('.NotaWay__blocked').forEach(item => item.classList.remove('NotaWay__blocked'))
+    document.querySelectorAll('.MarkALink__marked').forEach(item => {
+        item.classList.remove('MarkALink__marked')
+        item.removeAttribute("style")
+    })
+    document.querySelectorAll('.MarkALink__blocked').forEach(item => item.classList.remove('MarkALink__blocked'))
 }
 
-const loopThorugh = (links, data) => {
-    // console.log(data)
+const loopThorugh = (links, data, customSettings) => {
+    console.log(data)
     links.forEach(item => {
         const url = item.href
         if (url in data) {
-            if (data[url] === 'hide') {
-                item.classList.remove('NotaWay__marked')
-                item.classList.add('NotaWay__blocked')
-            } else if (data[url] === 'mark') {
-                item.classList.remove('NotaWay__blocked')
-                item.classList.add('NotaWay__marked')
-            } else if (data[url] === 'show') {
-                item.classList.remove('NotaWay__marked', 'NotaWay__blocked')
+            console.log(data[url])
+
+            const grpName = data[url].grp
+            if (grpName === 'Hide') {
+                item.classList.add('MarkALink__blocked')
+                return
             }
+
+            console.log(customSettings[grpName])
+            const { styleLeft, styleRight } = customSettings[grpName]
+
+            item.classList.add('MarkALink__marked')
+            item.style[styleLeft] = styleRight
         }
     })
 
@@ -44,8 +51,9 @@ const loopThorugh = (links, data) => {
 const init = async () => {
     const data = await getData()
     const links = document.querySelectorAll('a')
+    const { customSettings } = await getStorageDataLocal('customSettings')
 
-    loopThorugh(links, data)
+    loopThorugh(links, data, customSettings)
 }
 
 const debInit = debounce(init, 300)

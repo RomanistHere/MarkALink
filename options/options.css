@@ -12,10 +12,6 @@ body {
     line-height: 1.59;
 }
 
-body {
-    padding: 30px 40px;
-}
-
 .title {
     margin: 0;
 
@@ -26,4 +22,48 @@ body {
     display: block;
 
     padding: 10px 0;
+}
+
+.list {
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+
+    padding: 0;
+
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.list__item {
+    width: 20%;
+    margin: 0 20px 20px;
+    padding: 10px;
+    border-radius: 10px;
+
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 4px solid #000;
+
+    list-style-type: none;
+}
+
+.list__link {
+    display: block;
+
+    width: 100%;
+
+    word-wrap: break-word;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.title {
+    margin: 0 20px;
+}
+
+.settings {
+    height: 100vh;
 }
