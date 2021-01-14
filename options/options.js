@@ -4,14 +4,12 @@ import {
 } from '../modules/helpers.js'
 
 const sectTempl = (grpName) =>
-	`<section class="${grpName} section">
-		<h2 class="title">
-			${grpName}
-		</h2>
-		<ul class="list">
+	`<h2 class="title">
+		${grpName}
+	</h2>
+	<ul class="list">
 
-		</ul>
-	</section>`
+	</ul>`
 
 const markTempl = (url, mark) =>
     `<li class="list__item">
@@ -19,7 +17,7 @@ const markTempl = (url, mark) =>
 		<p class="list__text">${mark}</p>
 	</li>`
 
-const sortByGrps = async (data) => {
+const sortByGrps = (data) => {
     let obj = {}
     let curMax = 0
     let mostGrp = ''
@@ -28,48 +26,51 @@ const sortByGrps = async (data) => {
         const grp = data[prop]['grp']
 
         if (grp in obj) {
-            obj[grp] = [...obj[grp], data[prop]]
+            obj[grp] = [...obj[grp], { ...data[prop], url: prop}]
         } else {
-            obj[grp] = [data[prop]]
+            obj[grp] = [{ ...data[prop], url: prop}]
         }
     }
 
     return obj
 }
 
-const prepareItems = (arr = []) => {
-	const arrOfLinks = arr.map(href =>
-		markTempl(href))
-
-	return arrOfLinks.join('')
+let state = {
+	grpNamesAndClasses: {}
 }
 
 const init = async () => {
 	const data = await getData()
 	const groups = sortByGrps(data)
 	const grpNames = Object.keys(groups)
-	let dataToRender = []
 
 	for (let i = 0; i < grpNames.length; i++) {
+		const section = document.createElement('section')
+		const grpName = grpNames[i]
+		const sectionHTML = sectTempl(grpName)
+		const grpClass = grpName.split(' ').join('_')
 
+		section.classList.add('section', grpClass)
+	    section.innerHTML = sectionHTML
+		state = {
+			...state,
+			grpNamesAndClasses: {
+				...state.grpNamesAndClasses,
+				[grpName]: grpClass
+			}
+		}
+
+		const list = section.querySelector('.list')
+		for (let k = 0; k < groups[grpName].length; k++) {
+			const { url, mark } = groups[grpName][k]
+			const itemHTML = markTempl(url, mark)
+
+		    list.insertAdjacentHTML('afterbegin', itemHTML)
+		}
+
+		document.body.appendChild(section)
+		console.log(state)
 	}
-
-	// let marked = []
-	// let hidden = []
-	//
-	// for (let i = 0; i < length; i++) {
-	// 	const key = keys[i]
-	// 	if (data[key] === 'mark')
-	// 		marked = [...marked, key]
-	// 	else if (data[key] === 'hide')
-	// 		hidden = [...hidden, key]
-	// }
-	//
-	// const markedLinks = prepareItems(marked)
-	// document.querySelector('.marked').innerHTML = markedLinks
-	//
-	// const hiddenLinks = prepareItems(hidden)
-	// document.querySelector('.hidden').innerHTML = hiddenLinks
 }
 
 init()
