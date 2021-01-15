@@ -7,8 +7,8 @@ const removeAll = () => {
     document.querySelectorAll('.MarkALink__blocked').forEach(item => item.classList.remove('MarkALink__blocked'))
 }
 
-const loopThorugh = (links, data, customSettings) => {
-    console.log(data)
+const loopThorugh = (links, data, customSettings, pairs) => {
+    // console.log(data)
     links.forEach(item => {
         const url = item.href
         if (url in data) {
@@ -20,8 +20,8 @@ const loopThorugh = (links, data, customSettings) => {
                 return
             }
 
-            console.log(customSettings[grpName])
-            const { styleLeft, styleRight } = customSettings[grpName]
+            // console.log(customSettings[pairs[grpName]])
+            const { styleLeft, styleRight } = customSettings[pairs[grpName]]
 
             item.classList.add('MarkALink__marked')
             item.style[styleLeft] = styleRight
@@ -51,9 +51,9 @@ const loopThorugh = (links, data, customSettings) => {
 const init = async () => {
     const data = await getData()
     const links = document.querySelectorAll('a')
-    const { customSettings } = await getStorageDataLocal('customSettings')
+    const { customSettings, pairs } = await getStorageDataLocal(['customSettings', 'pairs'])
 
-    loopThorugh(links, data, customSettings)
+    loopThorugh(links, data, customSettings, pairs)
 }
 
 const debInit = debounce(init, 300)

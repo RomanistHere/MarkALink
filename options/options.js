@@ -42,10 +42,15 @@ let state = {
 }
 
 const init = async () => {
-	const { customSettings } = await getStorageDataLocal('customSettings')
+	const { customSettings, pairs } = await getStorageDataLocal(['customSettings', 'pairs'])
 	const data = await getData()
 	const groups = sortByGrps(data)
 	const grpNames = Object.keys(groups)
+
+	console.log(customSettings)
+	console.log(data)
+	console.log(groups)
+	console.log(pairs)
 
 	for (let i = 0; i < grpNames.length; i++) {
 		const section = document.createElement('section')
@@ -71,21 +76,21 @@ const init = async () => {
 		    list.insertAdjacentHTML('afterbegin', itemHTML)
 		}
 
-		initSettings(grpName, customSettings)
+		initSettings(grpName, customSettings, pairs)
 		document.body.appendChild(section)
 	}
 }
 
 init()
 
-const settingsTempl = (grpName, customItems, defSetting = 'None') =>
+const settingsTempl = (grpName, customSettings, defSetting = 'None') =>
 	`<div class="MarkALink_popup__grp">
 		<span class="MarkALink_popup__label">${grpName}</span>
 		<div class="MarkALink_popup__menu">
 			<span class="MarkALink_popup__menu_default">${defSetting}</span>
 			<div class="MarkALink_popup__submenu">
 				${
-					customItems.map(item => `<a href="#" id="${item}" class="MarkALink_popup__menu_item">${item}</a>`).join('')
+					customSettings.map(item => `<a href="#" id="${item}" class="MarkALink_popup__menu_item">${item}</a>`).join('')
 				}
 				<a href="#" class="MarkALink_popup__menu_item-add">Add new group</a>
 			</div>
@@ -93,14 +98,13 @@ const settingsTempl = (grpName, customItems, defSetting = 'None') =>
 		<input value="New group" class="MarkALink_popup__menu_default MarkALink_popup__menu_default-input MarkALink_popup__menu_default-hide">
 	</div>`
 
-const initSettings = (grpName, settingsData) => {
-	if (grpName === 'Hide') {
-		return
-	}
+const initSettings = (grpName, customSettings, pairs) => {
+	// if (grpName === 'Hide') {
+	// 	return
+	// }
 	const settings = document.querySelector('.settings__wrap')
-	const customKeys = Object.keys(settingsData)
-	const customItems = customKeys.map(item => settingsData[item].name)
-	const settingsHTML = settingsTempl(grpName, customItems, settingsData[grpName]?.name)
+	const customKeys = Object.keys(customSettings)
+	const settingsHTML = settingsTempl(grpName, customKeys, pairs[grpName])
 
 	settings.insertAdjacentHTML('afterbegin', settingsHTML)
 }

@@ -26,30 +26,33 @@ chrome.runtime.onInstalled.addListener(async (details) => {
     }
 
 	await setStorageDataLocal({
-		defCategories: ['Hide', 'Favorite'],
+		defCategories: ['Hide', 'Marked'],
+		pairs: {
+			'Hide': 'Transparent',
+			'Marked': 'Yellow border'
+		},
 		customSettings: {
-			'Favorite': {
-				name: 'Yellow border',
+			'Yellow border': {
 				styleLeft: 'border-bottom',
 				styleRight: '4px dashed yellow'
 			},
-			'custom grp': {
-				name: 'Red border',
+			'Red border': {
 				styleLeft: 'border-bottom',
 				styleRight: '4px dashed red'
 			},
-			'NewGrp1': {
-				name: 'Black border',
+			'Black border': {
 				styleLeft: 'border-bottom',
 				styleRight: '4px dashed black'
 			},
-			'NewGrp2': {
-				name: 'Green border',
+			'Green border': {
 				styleLeft: 'border-bottom',
 				styleRight: '4px dashed green'
 			},
-			'Hide': {
-				name: 'Transparent',
+			'Yellow outline': {
+				styleLeft: 'outline',
+				styleRight: '2px dashed yellow'
+			},
+			'Transparent': {
 				styleLeft: 'opacity',
 				styleRight: '0'
 			}
