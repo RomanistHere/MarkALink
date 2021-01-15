@@ -98,6 +98,14 @@ const settingsTempl = (grpName, customSettings, defSetting = 'None') =>
 		<input value="New group" class="MarkALink_popup__menu_default MarkALink_popup__menu_default-input MarkALink_popup__menu_default-hide">
 	</div>`
 
+const defCallBack = () => {
+    chrome.tabs.query({ url: null }, resp => {
+        Object.values(resp).forEach(item => {
+            chrome.tabs.sendMessage(item.id, 'updated')
+        })
+    })
+}
+
 const initSettings = (grpName, customSettings, pairs) => {
 	if (grpName === 'Hide') {
 		return
@@ -130,7 +138,7 @@ const initSettings = (grpName, customSettings, pairs) => {
 			await setStorageDataLocal({
 				pairs: { ...newPairs }
 			})
-			// TODO: send update to all the pages
+			defCallBack()
 		} catch (e) {
 			console.log(e)
 			alert('error')

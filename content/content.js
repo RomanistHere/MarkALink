@@ -8,11 +8,11 @@ const removeAll = () => {
 }
 
 const loopThorugh = (links, data, customSettings, pairs) => {
-    console.log(data)
+    // console.log(data)
     links.forEach(item => {
         const url = item.href
         if (url in data) {
-            console.log(data[url])
+            // console.log(data[url])
 
             const grpName = data[url].grp
             if (grpName === 'Hide') {
@@ -20,7 +20,7 @@ const loopThorugh = (links, data, customSettings, pairs) => {
                 return
             }
 
-            console.log(customSettings[pairs[grpName]])
+            // console.log(customSettings[pairs[grpName]])
             const { styleLeft, styleRight } = customSettings[pairs[grpName]]
 
             item.classList.add('MarkALink__marked')
@@ -78,7 +78,8 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     }
 	// from options
 	if (request === 'updated') {
-		debInit()
+        removeAll()
+		startUpd()
 	}
 	// from popup
 	if (request.notesShouldWork != null) {
