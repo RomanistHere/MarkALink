@@ -10,6 +10,8 @@ body {
     font-size: 20px;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
     line-height: 1.59;
+
+    --hover-col: gray;
 }
 
 .title {
@@ -47,6 +49,13 @@ body {
     border: 4px solid #000;
 
     list-style-type: none;
+
+    transition: all ease .3s;
+}
+
+.list__item:hover {
+    background-color: var(--hover-col);
+    cursor: pointer;
 }
 
 .list__link {
@@ -58,6 +67,11 @@ body {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    transition: all ease .3s;
+}
+
+.list__link:hover {
+    background: #fff;
 }
 
 .title {
@@ -72,7 +86,11 @@ body {
     margin: 0 20px;
 }
 
-.MarkALink_popup__submenu,
-.MarkALink_popup__menu:hover .MarkALink_popup__submenu.MarkALink_popup__submenu-hide {
+.settings__wrap .MarkALink_popup__submenu,
+.settings__wrap .MarkALink_popup__menu:hover .MarkALink_popup__submenu.MarkALink_popup__submenu-hide {
     transform: none;
+}
+
+.settings__wrap .MarkALink_popup__label {
+    width: 200px;
 }

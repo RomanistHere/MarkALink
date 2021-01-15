@@ -252,6 +252,8 @@ const initPopUp = async (linkUrl) => {
         }
     })
 
+    // TODO: close on Esc
+
     // datepicker
     if (!state.datepicker) {
         const calendarInput = popup.querySelector('.MarkALink_popup__calendar_input')

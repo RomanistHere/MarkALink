@@ -81,7 +81,7 @@ init()
 
 const settingsTempl = (grpName, customSettings, defSetting = 'None') =>
 	`<div class="MarkALink_popup__grp">
-		<span class="MarkALink_popup__label">${grpName}</span>
+		<span class="MarkALink_popup__label">${grpName}:</span>
 		<div class="MarkALink_popup__menu">
 			<span class="MarkALink_popup__menu_default">${defSetting}</span>
 			<div class="MarkALink_popup__submenu">
@@ -107,8 +107,10 @@ const initSettings = (grpName, customSettings, pairs) => {
 		return
 	}
 
-	const settings = document.querySelector('.settings__wrap')
+	const settingsWrap = document.querySelector('.settings__wrap')
 	const customKeys = Object.keys(customSettings)
+	const settings = document.createElement('div')
+	settings.classList.add('MarkALink_popup__grp')
 	const settingsHTML = settingsTempl(grpName, customKeys, pairs[grpName])
 
 	settings.insertAdjacentHTML('afterbegin', settingsHTML)
@@ -190,4 +192,6 @@ const initSettings = (grpName, customSettings, pairs) => {
     //         newGrpInput.blur()
     //     }
     // })
+
+	settingsWrap.appendChild(settings)
 }
