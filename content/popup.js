@@ -76,6 +76,14 @@ const getGrps = async (data) => {
 const closePopUp = () => {
     document.querySelectorAll('.MarkALink_popup').forEach(item => item.remove())
     document.querySelectorAll('.flatpickr-calendar').forEach(item => item.remove())
+    document.removeEventListener('keydown', handleEsc)
+}
+
+const handleEsc = event => {
+    const { key } = event
+    if (key === "Escape") {
+        closePopUp()
+    }
 }
 
 const initPopUp = async (linkUrl) => {
@@ -253,6 +261,7 @@ const initPopUp = async (linkUrl) => {
     })
 
     // TODO: close on Esc
+    document.addEventListener('keydown', handleEsc)
 
     // datepicker
     if (!state.datepicker) {
