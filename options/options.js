@@ -1,10 +1,3 @@
-import {
-	getData,
-	syncStore,
-    getStorageDataLocal,
-    setStorageDataLocal
-} from '../modules/helpers.js'
-
 const sectTempl = (grpName) =>
 	`<h2 class="title">
 		${grpName}
@@ -74,6 +67,9 @@ const init = async () => {
 			const itemHTML = markTempl(url, mark)
 
 		    list.insertAdjacentHTML('afterbegin', itemHTML)
+			list.querySelector('.list__text').addEventListener('click', e => {
+				initPopUp(url)
+			})
 		}
 
 		initSettings(grpName, customSettings, pairs)

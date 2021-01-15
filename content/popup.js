@@ -74,15 +74,13 @@ const getGrps = async (data) => {
 }
 
 const closePopUp = () => {
-    // popup.classList.add('MarkALink_popup-hidden')
-
     document.querySelectorAll('.MarkALink_popup').forEach(item => item.remove())
     document.querySelectorAll('.flatpickr-calendar').forEach(item => item.remove())
 }
 
 const initPopUp = async (linkUrl) => {
     const data = await getData()
-    console.log(data)
+    // console.log(data)
     const { arr, grp } = await getGrps(data)
     const isExists = linkUrl in data
     const isMark = isExists && data[linkUrl].type === 'Reminder' ? false : true
@@ -93,6 +91,7 @@ const initPopUp = async (linkUrl) => {
         type:  isExists ? data[linkUrl].type : 'Mark',
         mark: isExists ? data[linkUrl].mark : '',
         existingGroups: [...arr],
+        isGrpNew: false,
         datepicker: false,
         date: !isMark ? new Date(data[linkUrl].date) : new Date().fp_incr(7)
     }
@@ -133,7 +132,8 @@ const initPopUp = async (linkUrl) => {
         state = {
             ...state,
             grp: grp,
-            existingGroups: [...state.existingGroups, grp]
+            existingGroups: [...state.existingGroups, grp],
+            isGrpNew: true
         }
 
         menu.classList.remove('MarkALink_popup__menu_default-hide')
@@ -196,7 +196,7 @@ const initPopUp = async (linkUrl) => {
         e.preventDefault()
 
         try {
-            const { url, grp, type, mark, date } = state
+            const { url, grp, type, mark, date, isGrpNew } = state
             const data = await getData()
             const newData = {
                 ...data,
@@ -212,7 +212,16 @@ const initPopUp = async (linkUrl) => {
                     shown: false
                 }
             }
-            console.log(newData)
+            // console.log(newData)
+            if (isGrpNew) {
+                const { pairs } = await getStorageDataLocal('pairs')
+                // TODO: add not used yet customSetting if possible
+                const defSetting = 'Yellow border'
+
+                await setStorageDataLocal({
+    				pairs: { ...pairs, [grp]: defSetting }
+    			})
+            }
             await syncStore('na', newData)
             closePopUp()
         } catch (e) {

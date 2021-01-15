@@ -1,5 +1,6 @@
 :root {
     --font-size: 24px;
+    --text-col: #fff;
 }
 
 .MarkALink__blocked {
@@ -11,11 +12,8 @@
 }
 
 .MarkALink__marked {
-    /* outline: 2px dashed blue; */
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    /* border: 1px dashed red; */
-    /* border-bottom: 4px dashed yellow; */
 }
 
 .MarkALink_popup {
@@ -40,6 +38,7 @@
     opacity: 1;
 
     font-size: var(--font-size);
+    color: var(--text-col);
     font-weight: normal;
 }
 
