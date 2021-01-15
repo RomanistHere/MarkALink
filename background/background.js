@@ -48,9 +48,21 @@ chrome.runtime.onInstalled.addListener(async (details) => {
 				styleLeft: 'border-bottom',
 				styleRight: '4px dashed green'
 			},
-			'Yellow outline': {
-				styleLeft: 'outline',
-				styleRight: '2px dashed yellow'
+			'Yellow background': {
+				styleLeft: 'background',
+				styleRight: 'yellow'
+			},
+			'Red background': {
+				styleLeft: 'background',
+				styleRight: 'red'
+			},
+			'Black background': {
+				styleLeft: 'background',
+				styleRight: 'black'
+			},
+			'Green background': {
+				styleLeft: 'background',
+				styleRight: 'green'
 			},
 			'Transparent': {
 				styleLeft: 'opacity',

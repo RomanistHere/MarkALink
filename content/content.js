@@ -8,7 +8,7 @@ const removeAll = () => {
 }
 
 const loopThorugh = (links, data, customSettings, pairs) => {
-    // console.log(data)
+    console.log(data)
     links.forEach(item => {
         const url = item.href
         if (url in data) {
@@ -20,7 +20,7 @@ const loopThorugh = (links, data, customSettings, pairs) => {
                 return
             }
 
-            // console.log(customSettings[pairs[grpName]])
+            console.log(customSettings[pairs[grpName]])
             const { styleLeft, styleRight } = customSettings[pairs[grpName]]
 
             item.classList.add('MarkALink__marked')

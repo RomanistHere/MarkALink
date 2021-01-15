@@ -61,9 +61,14 @@ body {
 }
 
 .title {
-    margin: 0 20px;
+    margin: 0 20px 50px;
 }
 
 .settings {
     height: 100vh;
+}
+
+.MarkALink_popup__submenu,
+.MarkALink_popup__menu:hover .MarkALink_popup__submenu.MarkALink_popup__submenu-hide {
+    transform: none;
 }

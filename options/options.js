@@ -99,12 +99,91 @@ const settingsTempl = (grpName, customSettings, defSetting = 'None') =>
 	</div>`
 
 const initSettings = (grpName, customSettings, pairs) => {
-	// if (grpName === 'Hide') {
-	// 	return
-	// }
+	if (grpName === 'Hide') {
+		return
+	}
+
 	const settings = document.querySelector('.settings__wrap')
 	const customKeys = Object.keys(customSettings)
 	const settingsHTML = settingsTempl(grpName, customKeys, pairs[grpName])
 
 	settings.insertAdjacentHTML('afterbegin', settingsHTML)
+
+	// groups
+    const name = settings.querySelector('.MarkALink_popup__menu_default')
+    const groupBtns = settings.querySelectorAll('.MarkALink_popup__menu_item')
+    groupBtns.forEach(item => item.addEventListener('click', async (e) => {
+        e.preventDefault()
+
+		let { pairs } = await getStorageDataLocal('pairs')
+
+        item.parentNode.classList.add('MarkALink_popup__submenu-hide')
+        setTimeout(() => item.parentNode.classList.remove('MarkALink_popup__submenu-hide'), 400)
+
+		delete pairs[grpName]
+
+		const newCustSet = item.id
+		const newPairs = { ...pairs, [grpName]: newCustSet }
+
+		try {
+			name.textContent = newCustSet
+			await setStorageDataLocal({
+				pairs: { ...newPairs }
+			})
+			// TODO: send update to all the pages
+		} catch (e) {
+			console.log(e)
+			alert('error')
+		}
+    }))
+
+    const addGrp = grp => {
+        if (state.existingGroups.includes(grp)) {
+            console.log('existing')
+            alert('Try different name!')
+            return
+        }
+
+        name.textContent = grp
+        state = {
+            ...state,
+            grp: grp,
+            existingGroups: [...state.existingGroups, grp]
+        }
+
+        menu.classList.remove('MarkALink_popup__menu_default-hide')
+        newGrpInput.classList.add('MarkALink_popup__menu_default-hide')
+        name.classList.remove('MarkALink_popup__menu_default-hide')
+
+        submenu.insertAdjacentHTML('afterbegin', `<a href="#" id="${grp}" class="MarkALink_popup__menu_item">${grp}</a>`)
+    }
+
+    const newGrpInput = settings.querySelector('.MarkALink_popup__menu_default-input')
+    const menu = settings.querySelector('.MarkALink_popup__menu')
+    const submenu = settings.querySelector('.MarkALink_popup__submenu')
+    const addNewGrpBtn = settings.querySelector('.MarkALink_popup__menu_item-add')
+    addNewGrpBtn.addEventListener('click', e => {
+        e.preventDefault()
+
+        addNewGrpBtn.parentNode.classList.add('MarkALink_popup__submenu-hide')
+        setTimeout(() => addNewGrpBtn.parentNode.classList.remove('MarkALink_popup__submenu-hide'), 400)
+
+        menu.classList.add('MarkALink_popup__menu_default-hide')
+        name.classList.add('MarkALink_popup__menu_default-hide')
+        newGrpInput.classList.remove('MarkALink_popup__menu_default-hide')
+
+        newGrpInput.focus()
+        newGrpInput.select()
+    })
+
+    newGrpInput.addEventListener('blur', e => {
+        addGrp(e.currentTarget.value.trim())
+    })
+
+    newGrpInput.addEventListener('keyup', e => {
+        if (e.keyCode === 13) {
+            e.preventDefault()
+            newGrpInput.blur()
+        }
+    })
 }
