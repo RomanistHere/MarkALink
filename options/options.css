@@ -61,11 +61,15 @@ body {
 }
 
 .title {
-    margin: 0 20px 50px;
+    margin: 0 20px;
 }
 
 .settings {
-    height: 100vh;
+    /* height: 100vh; */
+}
+
+.settings__wrap {
+    margin: 0 20px;
 }
 
 .MarkALink_popup__submenu,

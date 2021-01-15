@@ -16,6 +16,52 @@ chrome.runtime.onInstalled.addListener(async (details) => {
                 })
             }
         })
+		
+		await setStorageDataLocal({
+			defCategories: ['Hide', 'Marked'],
+			pairs: {
+				'Hide': 'Transparent',
+				'Marked': 'Yellow border'
+			},
+			customSettings: {
+				'Yellow border': {
+					styleLeft: 'border-bottom',
+					styleRight: '4px dashed yellow'
+				},
+				'Red border': {
+					styleLeft: 'border-bottom',
+					styleRight: '4px dashed red'
+				},
+				'Black border': {
+					styleLeft: 'border-bottom',
+					styleRight: '4px dashed black'
+				},
+				'Green border': {
+					styleLeft: 'border-bottom',
+					styleRight: '4px dashed green'
+				},
+				'Yellow background': {
+					styleLeft: 'background',
+					styleRight: 'yellow'
+				},
+				'Red background': {
+					styleLeft: 'background',
+					styleRight: 'red'
+				},
+				'Black background': {
+					styleLeft: 'background',
+					styleRight: 'black'
+				},
+				'Green background': {
+					styleLeft: 'background',
+					styleRight: 'green'
+				},
+				'Transparent': {
+					styleLeft: 'opacity',
+					styleRight: '0'
+				}
+			}
+		})
     } else if (reason == 'update') {
 		// chrome.storage.sync.clear()
 		if (previousVersion === '0.0.1') {
@@ -24,52 +70,6 @@ chrome.runtime.onInstalled.addListener(async (details) => {
 
 		}
     }
-
-	await setStorageDataLocal({
-		defCategories: ['Hide', 'Marked'],
-		pairs: {
-			'Hide': 'Transparent',
-			'Marked': 'Yellow border'
-		},
-		customSettings: {
-			'Yellow border': {
-				styleLeft: 'border-bottom',
-				styleRight: '4px dashed yellow'
-			},
-			'Red border': {
-				styleLeft: 'border-bottom',
-				styleRight: '4px dashed red'
-			},
-			'Black border': {
-				styleLeft: 'border-bottom',
-				styleRight: '4px dashed black'
-			},
-			'Green border': {
-				styleLeft: 'border-bottom',
-				styleRight: '4px dashed green'
-			},
-			'Yellow background': {
-				styleLeft: 'background',
-				styleRight: 'yellow'
-			},
-			'Red background': {
-				styleLeft: 'background',
-				styleRight: 'red'
-			},
-			'Black background': {
-				styleLeft: 'background',
-				styleRight: 'black'
-			},
-			'Green background': {
-				styleLeft: 'background',
-				styleRight: 'green'
-			},
-			'Transparent': {
-				styleLeft: 'opacity',
-				styleRight: '0'
-			}
-		}
-	})
 })
 
 const setContMenu = () => {
