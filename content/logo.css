@@ -1,0 +1,101 @@
+@font-face {
+    font-family: neon;
+    src: url('../fonts/NEON.ttf');
+}
+
+.logo__neon {
+    position: relative;
+    display: block;
+
+    font-family: neon;
+    color: #FB4264;
+    font-size: 136px;
+    line-height: 1;
+    text-shadow: 0 0 1vw #FA1C16, 0 0 3vw #FA1C16, 0 0 10vw #FA1C16, 0 0 10vw #FA1C16, 0 0 .4vw #FED128, .5vw .5vw .1vw #806914;
+    color: #FED128;
+}
+
+.logo__neon-bot {
+    padding-left: 175px;
+}
+
+.logo-invis {
+    opacity: 0;
+}
+
+.logo-trick {
+    position: absolute;
+
+    left: 26px;
+    bottom: -18px;
+
+    font-size: 306px;
+}
+
+.logo_wrap {
+    position: relative;
+
+    height: 100vh;
+
+    background-color: #000;
+}
+
+.logo {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.logo-based {
+    animation: switch1 15s step-start infinite;
+}
+
+@keyframes switch1 {
+    0%,
+    20%,
+    21%,
+    40%,
+    42%,
+    70%,
+    95%,
+    100% {
+        opacity: 1;
+    }
+    20.1%,
+    20.9%,
+    40.1%,
+    41.9%,
+    70.1%,
+    94.9% {
+        opacity: 0;
+    }
+}
+
+.logo-glitch {
+    animation: switch2 15s step-start infinite;
+}
+
+@keyframes switch2 {
+    0%,
+    20%,
+    21%,
+    40%,
+    42%,
+    70%,
+    95%,
+    100% {
+        opacity: 0;
+    }
+    20.1%,
+    20.9%,
+    40.1%,
+    41.9%,
+    70.1%,
+    94.9% {
+        opacity: 1;
+    }
+}
