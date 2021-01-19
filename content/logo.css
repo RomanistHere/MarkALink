@@ -5,7 +5,6 @@
 
 :root {
     --bg-color: #131313;
-    --bg-color-glitch: #131313;
     --bg-color-glitch: #080808;
 
     --logo-col: #FED128;
@@ -13,7 +12,7 @@
     --logo-shadow-2: #806914;
 }
 
-.logo__neon {
+.MarkALink_logo__neon {
     position: relative;
     display: block;
 
@@ -21,19 +20,25 @@
     color: #FB4264;
     font-size: 136px;
     line-height: 1;
-    text-shadow: 0 0 1vw var(--logo-shadow), 0 0 3vw var(--logo-shadow), 0 0 10vw var(--logo-shadow), 0 0 10vw var(--logo-shadow), 0 0 .4vw var(--logo-col), .5vw .5vw .1vw var(--logo-shadow-2);
+    text-shadow:
+        0 0 1vw var(--logo-shadow),
+        0 0 3vw var(--logo-shadow),
+        0 0 10vw var(--logo-shadow),
+        0 0 10vw var(--logo-shadow),
+        0 0 .4vw var(--logo-col),
+        .5vw .5vw .1vw var(--logo-shadow-2);
     color: var(--logo-col);
 }
 
-.logo__neon-bot {
+.MarkALink_logo__neon-bot {
     padding-left: 175px;
 }
 
-.logo-invis {
+.MarkALink_logo-invis {
     opacity: 0;
 }
 
-.logo-trick {
+.MarkALink_logo-trick {
     position: absolute;
 
     left: 26px;
@@ -42,7 +47,7 @@
     font-size: 306px;
 }
 
-.logo_wrap {
+.MarkALink_logo_wrap {
     position: relative;
 
     width: 584px;
@@ -53,14 +58,14 @@
     text-align: left;
 }
 
-.logo {
+.MarkALink_logo {
     position: absolute;
 
     top: 0;
     left: 0;
 }
 
-.logo-based {
+.MarkALink_logo-based {
     animation: switch1 17s step-start infinite;
 }
 
@@ -99,7 +104,7 @@
     }
 }
 
-.logo-glitch {
+.MarkALink_logo-glitch {
     animation: switch2 17s step-start infinite;
 }
 
@@ -124,22 +129,22 @@
     }
 }
 
-.logo-shift {
+.MarkALink_logo-shift {
     animation: shift 17s step-start infinite;
     clip-path: polygon(0 20%, 100% 20%, 100% 40%, 0 40%);
     transform: none;
     background: var(--bg-color-glitch);
 }
 
-.logo-shift-1 {
+.MarkALink_logo-shift-1 {
     clip-path: polygon(0 50%, 100% 50%, 100% 60%, 0 60%);
 }
 
-.logo-shift-2 {
+.MarkALink_logo-shift-2 {
     clip-path: polygon(0 0%, 100% 0%, 100% 10%, 0 10%);
 }
 
-.logo-shift-2 {
+.MarkALink_logo-shift-2 {
     clip-path: polygon(0 90%, 100% 90%, 100% 100%, 0 100%);
 }
 
@@ -171,7 +176,7 @@
     }
 }
 
-.logo-glitch-shift {
+.MarkALink_logo-glitch-shift {
     animation: shift2 17s step-start infinite;
     clip-path: polygon(0 20%, 100% 20%, 100% 50%, 0 50%);
     transform: none;

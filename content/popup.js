@@ -2,43 +2,43 @@ const getPopupHTML = (linkUrl, groups, defGroup = 'Add new group', textArea = ''
     `<div class="MarkALink_popup__wrap">
         <div class="MarkALink_popup__logo_wrap">
             <div class="MarkALink_popup__logo">
-                <section class="logo_wrap">
-                    <div class="logo logo-based">
-                        <span class="logo__neon">Mark</span>
-                        <span class="logo__neon logo__neon-bot">ALink</span>
+                <section class="MarkALink_logo_wrap">
+                    <div class="MarkALink_logo MarkALink_logo-based">
+                        <span class="MarkALink_logo__neon">Mark</span>
+                        <span class="MarkALink_logo__neon MarkALink_logo__neon-bot">ALink</span>
                     </div>
-                    <div class="logo logo-shift">
-                        <span class="logo__neon">Mark</span>
-                        <span class="logo__neon logo__neon-bot">ALink</span>
+                    <div class="MarkALink_logo MarkALink_logo-shift">
+                        <span class="MarkALink_logo__neon">Mark</span>
+                        <span class="MarkALink_logo__neon MarkALink_logo__neon-bot">ALink</span>
                     </div>
-                    <div class="logo logo-shift logo-shift-1">
-                        <span class="logo__neon">Mark</span>
-                        <span class="logo__neon logo__neon-bot">ALink</span>
+                    <div class="MarkALink_logo MarkALink_logo-shift MarkALink_logo-shift-1">
+                        <span class="MarkALink_logo__neon">Mark</span>
+                        <span class="MarkALink_logo__neon MarkALink_logo__neon-bot">ALink</span>
                     </div>
-                    <div class="logo logo-shift logo-shift-2">
-                        <span class="logo__neon">Mark</span>
-                        <span class="logo__neon logo__neon-bot">ALink</span>
+                    <div class="MarkALink_logo MarkALink_logo-shift MarkALink_logo-shift-2">
+                        <span class="MarkALink_logo__neon">Mark</span>
+                        <span class="MarkALink_logo__neon MarkALink_logo__neon-bot">ALink</span>
                     </div>
-                    <div class="logo logo-shift logo-shift-3">
-                        <span class="logo__neon">Mark</span>
-                        <span class="logo__neon logo__neon-bot">ALink</span>
+                    <div class="MarkALink_logo MarkALink_logo-shift MarkALink_logo-shift-3">
+                        <span class="MarkALink_logo__neon">Mark</span>
+                        <span class="MarkALink_logo__neon MarkALink_logo__neon-bot">ALink</span>
                     </div>
-                    <div class="logo logo-glitch">
-                        <div class="logo__neon">
-                            M<span class="logo-invis">a</span>rk
+                    <div class="MarkALink_logo MarkALink_logo-glitch">
+                        <div class="MarkALink_logo__neon">
+                            M<span class="MarkALink_logo-invis">a</span>rk
                         </div>
-                        <div class="logo__neon logo__neon-bot">
-                            <span class="logo-invis">A</span>Link
-                            <span class="logo-trick">A</span>
+                        <div class="MarkALink_logo__neon MarkALink_logo__neon-bot">
+                            <span class="MarkALink_logo-invis">A</span>Link
+                            <span class="MarkALink_logo-trick">A</span>
                         </div>
                     </div>
-                    <div class="logo logo-glitch-shift">
-                        <div class="logo__neon">
-                            M<span class="logo-invis">a</span>rk
+                    <div class="MarkALink_logo MarkALink_logo-glitch-shift">
+                        <div class="MarkALink_logo__neon">
+                            M<span class="MarkALink_logo-invis">a</span>rk
                         </div>
-                        <div class="logo__neon logo__neon-bot">
-                            <span class="logo-invis">A</span>Link
-                            <span class="logo-trick">A</span>
+                        <div class="MarkALink_logo__neon MarkALink_logo__neon-bot">
+                            <span class="MarkALink_logo-invis">A</span>Link
+                            <span class="MarkALink_logo-trick">A</span>
                         </div>
                     </div>
                 </section>

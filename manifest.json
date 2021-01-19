@@ -21,6 +21,10 @@
 			"run_at":     "document_end"
 		}
 	],
+	"web_accessible_resources": [
+		"fonts/NEON.ttf",
+	    "fonts/Godsownjunkyard-Regular.otf"
+	],
 	"options_ui": {
 		"page": "options/options.html",
 		"open_in_tab": true
@@ -30,8 +34,20 @@
 	},
 	"browser_action": {
 		"default_popup": "popup/popup.html",
-		"default_title": "MarkALink - Click to open"
+		"default_title": "MarkALink - Click to open",
+        "default_icon": {
+            "16": "images/logo128.png",
+            "32": "images/logo128.png",
+            "48": "images/logo128.png",
+            "128": "images/logo128.png"
+        }
 	},
+	"icons": {
+        "16": "images/logo128.png",
+        "32": "images/logo128.png",
+        "48": "images/logo128.png",
+        "128": "images/logo128.png"
+    },
 	"content_security_policy": "script-src 'self'; object-src 'self'",
 	"manifest_version": 2
 }

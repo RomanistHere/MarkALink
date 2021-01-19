@@ -81,6 +81,9 @@
 
     background-color: var(--bg-color);
 
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+
     font-family: Verdana;
 }
 

@@ -67,7 +67,7 @@ const init = async () => {
 			const itemHTML = markTempl(url, mark)
 
 		    list.insertAdjacentHTML('afterbegin', itemHTML)
-			list.querySelector('.list__text').addEventListener('click', e => {
+			list.querySelector('.list__item').addEventListener('click', e => {
 				initPopUp(url)
 			})
 		}
