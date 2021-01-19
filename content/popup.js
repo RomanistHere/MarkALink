@@ -45,13 +45,13 @@ const getPopupHTML = (linkUrl, groups, defGroup = 'Add new group', textArea = ''
             </div>
         </div>
         <div class="MarkALink_popup__grp">
-            <span class="MarkALink_popup__label">Url: </span>
+            <span class="MarkALink_popup__label MarkALink_popup__glow">Url: </span>
             <input value=${linkUrl} type="text" class="MarkALink_popup__inp">
         </div>
         <div class="MarkALink_popup__grp">
-            <span class="MarkALink_popup__label">Group: </span>
+            <span class="MarkALink_popup__label MarkALink_popup__glow">Group: </span>
             <div class="MarkALink_popup__menu">
-                <span class="MarkALink_popup__menu_default">${defGroup}</span>
+                <span class="MarkALink_popup__menu_default MarkALink_popup__glow">${defGroup}</span>
                 <div class="MarkALink_popup__submenu">
                     ${
                         groups.map(item => `<a href="#" id="${item}" class="MarkALink_popup__menu_item">${item}</a>`).join('')
@@ -62,7 +62,7 @@ const getPopupHTML = (linkUrl, groups, defGroup = 'Add new group', textArea = ''
             <input value="New group" class="MarkALink_popup__menu_default MarkALink_popup__menu_default-input MarkALink_popup__menu_default-hide">
         </div>
         <div class="MarkALink_popup__grp">
-            <span class="MarkALink_popup__label">Type: </span>
+            <span class="MarkALink_popup__label MarkALink_popup__glow">Type: </span>
             <div class="MarkALink_popup__types">
                 <a href="#" id="Mark" class="MarkALink_popup__types_item ${isMark ? `MarkALink_popup__types_item-active` : ``}">Mark</a>
                 <a href="#" id="Reminder" class="MarkALink_popup__types_item ${!isMark ? `MarkALink_popup__types_item-active` : ``}">Reminder</a>

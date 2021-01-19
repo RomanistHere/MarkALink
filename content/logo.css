@@ -4,6 +4,12 @@
     src: url('chrome-extension://__MSG_@@extension_id__/fonts/NEON.ttf');
 }
 
+:root {
+    --bg-color: #131313;
+    --bg-color-glitch: #131313;
+    --bg-color-glitch: #080808;
+}
+
 .logo__neon {
     position: relative;
     display: block;
@@ -39,7 +45,7 @@
     width: 584px;
     height: 272px;
 
-    background-color: #000;
+    background-color: var(--bg-color);
 
     text-align: left;
 }
@@ -52,19 +58,24 @@
 }
 
 .logo-based {
-    animation: switch1 15s step-start infinite;
+    animation: switch1 17s step-start infinite;
 }
 
 @keyframes switch1 {
     0%,
+    19%,
     20%,
     21%,
     40%,
+    39%,
     42%,
+    55%,
+    56%,
     70%,
     95%,
     100% {
         opacity: 1;
+        transform: skew(0deg);
     }
     20.1%,
     20.9%,
@@ -74,10 +85,19 @@
     94.9% {
         opacity: 0;
     }
+    19.5% {
+        transform: skew(5deg);
+    }
+    39.5% {
+        transform: skew(15deg);
+    }
+    55.5% {
+        transform: skew(-5deg);
+    }
 }
 
 .logo-glitch {
-    animation: switch2 15s step-start infinite;
+    animation: switch2 17s step-start infinite;
 }
 
 @keyframes switch2 {
@@ -102,10 +122,10 @@
 }
 
 .logo-shift {
-    animation: shift 15s step-start infinite;
+    animation: shift 17s step-start infinite;
     clip-path: polygon(0 20%, 100% 20%, 100% 40%, 0 40%);
     transform: none;
-    background: #000;
+    background: var(--bg-color-glitch);
 }
 
 .logo-shift-1 {
@@ -149,10 +169,10 @@
 }
 
 .logo-glitch-shift {
-    animation: shift2 15s step-start infinite;
+    animation: shift2 17s step-start infinite;
     clip-path: polygon(0 20%, 100% 20%, 100% 50%, 0 50%);
     transform: none;
-    background: #000;
+    background: var(--bg-color-glitch);
 }
 
 @keyframes shift2 {

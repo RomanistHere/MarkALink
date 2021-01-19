@@ -1,6 +1,19 @@
+@font-face {
+    font-family: Godsownjunkyard;
+    src: url('chrome-extension://__MSG_@@extension_id__/fonts/Godsownjunkyard-Regular.otf');
+}
+
 :root {
     --font-size: 24px;
     --text-col: #fff;
+    --bg-color: #131313;
+    --blur-color: #00000080;
+
+    /* --active-col: #00ffc6; */
+    /* --active-col: #3afbd0; */
+    --active-col: #44fb3a;
+    /* --active-col: #fea628; */
+    /* --active-col: #f99a54; */
 }
 
 .MarkALink_popup {
@@ -20,7 +33,7 @@
     -ms-align-items: center;
     align-items: center;
 
-    background-color: #00000080;
+    background-color: var(--blur-color);
     transition: all ease .4s;
     opacity: 1;
 
@@ -47,26 +60,50 @@
 }
 
 .MarkALink_popup__wrap {
-    width: 450px;
+    width: 460px;
     padding: 20px;
 
     border: 5px solid white;
 
-    background-color: #000;
+    background-color: var(--bg-color);
 }
 
 .MarkALink_popup__label {
     display: inline-block;
-    width: 80px;
+    width: 90px;
+
+    color: azure;
+    --color1: azure;
+    --color2: aqua;
+    --color3: dodgerblue;
+    --color4: blue;
+}
+
+.MarkALink_popup__glow {
+    font-family: Godsownjunkyard;
+    text-shadow: 0 0 10px var(--color1), 0 0 20px var(--color2), 0 0 40px var(--color3), 0 0 80px var(--color4);
+    will-change: filter, color;
+    filter: saturate(60%);
 }
 
 .MarkALink_popup__inp {
     width: 360px;
+    padding: 5px 0;
+
+    border: none;
+    border-bottom: 2px solid var(--active-col);
+    text-shadow: 4px 2px 5px var(--active-col);
+    outline-color: var(--active-col);
+    color: var(--active-col);
 
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 
     font-size: var(--font-size);
+    font-family: Godsownjunkyard;
+
+    -webkit-appearance: none;
+    background: #000;
 }
 
 .MarkALink_popup__btns {
@@ -119,10 +156,15 @@
 
 .MarkALink_popup__types_item {
     margin-right: 5px;
+
+    font-family: Godsownjunkyard;
+    text-shadow: 0 0 10px #000, 0 0 5px #000, 0 0 15px #000, 0 0 20px #000, 4px 2px 5px azure;
+    color: azure;
 }
 
 .MarkALink_popup__types_item-active {
-    color: yellow;
+    text-shadow: 0 0 10px #000, 0 0 5px #000, 0 0 15px #000, 0 0 20px #000, 4px 2px 5px var(--active-col);
+    color: var(--active-col);
 }
 
 .MarkALink_popup__grp {
@@ -137,6 +179,11 @@
     height: 100px;
 
     font-size: calc(var(--font-size) - 4px);
+}
+
+.MarkALink_popup__menu_default {
+    text-shadow: 0 0 10px #000, 0 0 5px #000, 0 0 15px #000, 0 0 20px #000, 4px 2px 5px var(--active-col);
+    color: var(--active-col);
 }
 
 .MarkALink_popup__menu_default-hide {
