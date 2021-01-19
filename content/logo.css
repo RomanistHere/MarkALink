@@ -1,6 +1,7 @@
 @font-face {
     font-family: neon;
     src: url('../fonts/NEON.ttf');
+    src: url('chrome-extension://__MSG_@@extension_id__/fonts/NEON.ttf');
 }
 
 .logo__neon {
@@ -35,19 +36,19 @@
 .logo_wrap {
     position: relative;
 
-    height: 100vh;
+    width: 584px;
+    height: 272px;
 
     background-color: #000;
+
+    text-align: left;
 }
 
 .logo {
     position: absolute;
 
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+    top: 0;
+    left: 0;
 }
 
 .logo-based {
@@ -97,5 +98,82 @@
     70.1%,
     94.9% {
         opacity: 1;
+    }
+}
+
+.logo-shift {
+    animation: shift 15s step-start infinite;
+    clip-path: polygon(0 20%, 100% 20%, 100% 40%, 0 40%);
+    transform: none;
+    background: #000;
+}
+
+.logo-shift-1 {
+    clip-path: polygon(0 50%, 100% 50%, 100% 60%, 0 60%);
+}
+
+.logo-shift-2 {
+    clip-path: polygon(0 0%, 100% 0%, 100% 10%, 0 10%);
+}
+
+.logo-shift-2 {
+    clip-path: polygon(0 90%, 100% 90%, 100% 100%, 0 100%);
+}
+
+@keyframes shift {
+    0%,
+    19%,
+    39%,
+    69%,
+    95%,
+    20.1%,
+    40.1%,
+    55%,
+    56%,
+    70.1%,
+    95.2%,
+    96% {
+        transform: none;
+        opacity: 0;
+    }
+    20%,
+    40%,
+    55.2%,
+    55.8%,
+    70%,
+    95.4%,
+    95.8% {
+        transform: translate(5px, -2px);
+        opacity: 1;
+    }
+}
+
+.logo-glitch-shift {
+    animation: shift2 15s step-start infinite;
+    clip-path: polygon(0 20%, 100% 20%, 100% 50%, 0 50%);
+    transform: none;
+    background: #000;
+}
+
+@keyframes shift2 {
+    0%,
+    20.5%,
+    21%,
+    41.5%,
+    42%,
+    94.2%,
+    95%,
+    100% {
+        transform: none;
+        opacity: 0;
+    }
+    20.7%,
+    20.9%,
+    41.7%,
+    41.9%,
+    94.3%,
+    94.9% {
+        opacity: 1;
+        transform: translate(5px, -2px);
     }
 }

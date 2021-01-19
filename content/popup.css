@@ -1,0 +1,171 @@
+:root {
+    --font-size: 24px;
+    --text-col: #fff;
+}
+
+.MarkALink_popup {
+    position: fixed;
+    z-index: 10000;
+
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+
+    justify-content: center;
+    -ms-align-items: center;
+    align-items: center;
+
+    background-color: #00000080;
+    transition: all ease .4s;
+    opacity: 1;
+
+    font-size: var(--font-size);
+    color: var(--text-col);
+    font-weight: normal;
+}
+
+.MarkALink_popup-hidden {
+    opacity: 0;
+    z-index: -10000;
+}
+
+.MarkALink_popup__logo {
+    position: relative;
+    display: inline-block;
+
+    height: 140px;
+    width: 292px;
+}
+
+.MarkALink_popup__logo_wrap {
+    text-align: center;
+}
+
+.MarkALink_popup__wrap {
+    width: 450px;
+    padding: 20px;
+
+    border: 5px solid white;
+
+    background-color: #000;
+}
+
+.MarkALink_popup__label {
+    display: inline-block;
+    width: 80px;
+}
+
+.MarkALink_popup__inp {
+    width: 360px;
+
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+
+    font-size: var(--font-size);
+}
+
+.MarkALink_popup__btns {
+    text-align: center;
+}
+
+.MarkALink_popup__menu {
+    display: inline-block;
+    position: relative;
+}
+
+.MarkALink_popup__submenu,
+.MarkALink_popup__menu:hover .MarkALink_popup__submenu.MarkALink_popup__submenu-hide {
+    position: absolute;
+    z-index: 10000;
+
+    left: 0;
+    top: 20px;
+    width: 0;
+    height: 0;
+    transform: translateY(-50%);
+
+    opacity: 0;
+    overflow: hidden;
+    background-color: yellow;
+
+    transition: all ease .4s;
+}
+
+.MarkALink_popup__menu:hover .MarkALink_popup__submenu {
+    width: auto;
+    height: auto;
+    min-width: 100%;
+
+    opacity: 1;
+}
+
+.MarkALink_popup__menu_item,
+.MarkALink_popup__menu_item-add {
+    display: block;
+
+    padding: 2px 10px;
+
+    white-space: nowrap;
+}
+
+.MarkALink_popup__types {
+    display: inline-block;
+}
+
+.MarkALink_popup__types_item {
+    margin-right: 5px;
+}
+
+.MarkALink_popup__types_item-active {
+    color: yellow;
+}
+
+.MarkALink_popup__grp {
+    margin: 10px 0;
+}
+
+.MarkALink_popup__textarea {
+    display: block;
+
+    margin-top: 20px;
+    width: 100%;
+    height: 100px;
+
+    font-size: calc(var(--font-size) - 4px);
+}
+
+.MarkALink_popup__menu_default-hide {
+    display: none;
+}
+
+.MarkALink_popup__menu_default-input {
+    width: 360px;
+
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+
+    font-size: calc(var(--font-size) - 4px);
+    color: white;
+
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid white;
+}
+
+.MarkALink_popup__calendar {
+    max-height: 0;
+    overflow: hidden;
+
+    -webkit-transition: all ease .3s;
+    -o-transition: all ease .3s;
+    transition: all ease .3s;
+}
+
+.MarkALink_popup__calendar-show {
+    max-height: 50px;
+}
