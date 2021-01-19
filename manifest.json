@@ -21,9 +21,6 @@
 			"run_at":     "document_end"
 		}
 	],
-	"web_accessible_resources": [
-	    "fonts/NEON.ttf"
-	],
 	"options_ui": {
 		"page": "options/options.html",
 		"open_in_tab": true

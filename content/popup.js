@@ -51,7 +51,7 @@ const getPopupHTML = (linkUrl, groups, defGroup = 'Add new group', textArea = ''
         <div class="MarkALink_popup__grp">
             <span class="MarkALink_popup__label MarkALink_popup__glow">Group: </span>
             <div class="MarkALink_popup__menu">
-                <span class="MarkALink_popup__menu_default MarkALink_popup__glow">${defGroup}</span>
+                <span class="MarkALink_popup__menu_default">${defGroup}</span>
                 <div class="MarkALink_popup__submenu">
                     ${
                         groups.map(item => `<a href="#" id="${item}" class="MarkALink_popup__menu_item">${item}</a>`).join('')
@@ -71,13 +71,25 @@ const getPopupHTML = (linkUrl, groups, defGroup = 'Add new group', textArea = ''
         <div class="MarkALink_popup__calendar ${!isMark ? `MarkALink_popup__calendar-show` : ``}">
             <input class="MarkALink_popup__calendar_input MarkALink_popup__inp" placeholder="Click to pick date">
         </div>
-        <div class="MarkALink_popup__grp MarkALink_popup__grp-flex">
+        <div class="MarkALink_popup__grp MarkALink_popup__grp-flex MarkALink_popup__textarea_wrap">
             <textarea class="MarkALink_popup__textarea" placeholder="Type your Mark here...">${textArea}</textarea>
         </div>
         <div class="MarkALink_popup__btns">
-            <a href="#" class="MarkALink_popup__save">Save</a>
-            <a href="#" class="MarkALink_popup__close">Close</a>
-            <a href="#" class="MarkALink_popup__unmark">Unmark</a>
+            <a href="#" data-text="Save" class="MarkALink_popup__btn MarkALink_popup__save">
+                <span class="MarkALink_popup__text">Save</span>
+                <span class="MarkALink_popup__btns-trick"></span>
+                <span class="MarkALink_popup__btns-trick MarkALink_popup__btns-trick_2"></span>
+            </a>
+            <a href="#" data-text="Unmark" class="MarkALink_popup__btn MarkALink_popup__unmark">
+                <span class="MarkALink_popup__text">Unmark</span>
+                <span class="MarkALink_popup__btns-trick"></span>
+                <span class="MarkALink_popup__btns-trick MarkALink_popup__btns-trick_2"></span>
+            </a>
+            <a href="#" data-text="Close" class="MarkALink_popup__btn MarkALink_popup__close">
+                <span class="MarkALink_popup__text">Close</span>
+                <span class="MarkALink_popup__btns-trick"></span>
+                <span class="MarkALink_popup__btns-trick MarkALink_popup__btns-trick_2"></span>
+            </a>
         </div>
     </div>`
 

@@ -1,6 +1,5 @@
 @font-face {
     font-family: neon;
-    src: url('../fonts/NEON.ttf');
     src: url('chrome-extension://__MSG_@@extension_id__/fonts/NEON.ttf');
 }
 
@@ -8,6 +7,10 @@
     --bg-color: #131313;
     --bg-color-glitch: #131313;
     --bg-color-glitch: #080808;
+
+    --logo-col: #FED128;
+    --logo-shadow: #FA1C16;
+    --logo-shadow-2: #806914;
 }
 
 .logo__neon {
@@ -18,8 +21,8 @@
     color: #FB4264;
     font-size: 136px;
     line-height: 1;
-    text-shadow: 0 0 1vw #FA1C16, 0 0 3vw #FA1C16, 0 0 10vw #FA1C16, 0 0 10vw #FA1C16, 0 0 .4vw #FED128, .5vw .5vw .1vw #806914;
-    color: #FED128;
+    text-shadow: 0 0 1vw var(--logo-shadow), 0 0 3vw var(--logo-shadow), 0 0 10vw var(--logo-shadow), 0 0 10vw var(--logo-shadow), 0 0 .4vw var(--logo-col), .5vw .5vw .1vw var(--logo-shadow-2);
+    color: var(--logo-col);
 }
 
 .logo__neon-bot {

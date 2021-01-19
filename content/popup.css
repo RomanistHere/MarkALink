@@ -8,10 +8,12 @@
     --text-col: #fff;
     --bg-color: #131313;
     --blur-color: #00000080;
+    --title-color: #ace2e2;
 
     /* --active-col: #00ffc6; */
     /* --active-col: #3afbd0; */
     --active-col: #44fb3a;
+    --non-active-col: #adf9f9;
     /* --active-col: #fea628; */
     /* --active-col: #f99a54; */
 }
@@ -62,18 +64,32 @@
 .MarkALink_popup__wrap {
     width: 460px;
     padding: 20px;
+    border-radius: 20px;
 
-    border: 5px solid white;
+    border: 4px solid var(--logo-col);
+    box-shadow:
+        0 0 10px var(--logo-shadow),
+        0 0 20px var(--logo-shadow),
+        0 0 30px var(--logo-shadow),
+        0 0 30px var(--logo-shadow),
+        0 0 10px var(--logo-col),
+        inset 0 0 2px var(--logo-shadow),
+        inset 0 0 5px var(--logo-shadow),
+        inset 0 0 10px var(--logo-shadow),
+        inset 0 0 10px var(--logo-shadow),
+        inset 0 0 2px var(--logo-col);
 
     background-color: var(--bg-color);
+
+    font-family: Verdana;
 }
 
 .MarkALink_popup__label {
     display: inline-block;
     width: 90px;
 
-    color: azure;
-    --color1: azure;
+    color: var(--title-color);
+    --color1: var(--title-color);
     --color2: aqua;
     --color3: dodgerblue;
     --color4: blue;
@@ -88,10 +104,11 @@
 
 .MarkALink_popup__inp {
     width: 360px;
-    padding: 5px 0;
+    padding: 5px;
 
     border: none;
     border-bottom: 2px solid var(--active-col);
+    border: 2px solid var(--active-col);
     text-shadow: 4px 2px 5px var(--active-col);
     outline-color: var(--active-col);
     color: var(--active-col);
@@ -103,11 +120,214 @@
     font-family: Godsownjunkyard;
 
     -webkit-appearance: none;
-    background: #000;
+    background: none;
 }
 
 .MarkALink_popup__btns {
     text-align: center;
+}
+
+.MarkALink_popup__btn {
+    position: relative;
+    display: inline-block;
+
+    width: 120px;
+    height: 45px;
+    margin: 20px 6px 0;
+
+    text-decoration: none;
+    color: var(--bg-color);
+}
+
+.MarkALink_popup__btn::after,
+.MarkALink_popup__btn::before {
+    position: absolute;
+    content: attr(data-text);
+    z-index: 10;
+
+    width: 100%;
+    left: 0;
+    top: 0;
+    height: 100%;
+
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+
+    border: 2px solid #568eff;
+    opacity: 0;
+}
+
+.MarkALink_popup__save:hover::after {
+    animation: btnGlitch1 10s step-start infinite;
+    clip-path: polygon(0 35%, 100% 35%, 100% 65%, 0 65%);
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.MarkALink_popup__save:hover::before {
+    animation: btnGlitch2 10s step-start infinite;
+    clip-path: polygon(0 0%, 80% 0%, 80% 10%, 0 10%);
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.MarkALink_popup__unmark:hover::after {
+    animation: btnGlitch1 9s step-start 0.5s infinite;
+    clip-path: polygon(0 25%, 100% 25%, 100% 60%, 0 60%);
+}
+
+.MarkALink_popup__unmark:hover::before {
+    animation: btnGlitch2 9s step-start 0.55s infinite;
+    clip-path: polygon(0 0%, 80% 0%, 80% 15%, 0 15%);
+}
+
+.MarkALink_popup__close:hover::after {
+    animation: btnGlitch1 10s step-start 0.05s infinite;
+    clip-path: polygon(0 55%, 100% 55%, 100% 70%, 0 70%);
+}
+
+.MarkALink_popup__close:hover::before {
+    animation: btnGlitch2 10s step-start infinite;
+    clip-path: polygon(0 2%, 80% 2%, 80% 15%, 0 15%);
+}
+
+@keyframes btnGlitch1 {
+    0%,
+    5%,
+    8%,
+    16%,
+    22%,
+    30%,
+    50%,
+    58%,
+    70%,
+    78%,
+    100% {
+        opacity: 0;
+    }
+    0.5%,
+    4.5%,
+    9%,
+    15%,
+    23%,
+    29%,
+    51%,
+    57%,
+    71%,
+    77% {
+        opacity: 1;
+        transform: none;
+    }
+    1%,
+    4% {
+        transform: translate(5px, -1px);
+    }
+    11%,
+    13%,
+    53%,
+    55% {
+        transform: translate(9px, -2px);
+    }
+    25%,
+    27%,
+    73%,
+    75% {
+        transform: translate(-12px, 1px);
+    }
+}
+
+@keyframes btnGlitch2 {
+    0%,
+    5%,
+    8%,
+    16%,
+    22%,
+    30%,
+    50%,
+    58%,
+    70%,
+    78%,
+    100% {
+        opacity: 0;
+    }
+    0.5%,
+    4.5%,
+    9%,
+    15%,
+    23%,
+    29%,
+    51%,
+    57%,
+    71%,
+    77% {
+        opacity: 1;
+        transform: none;
+    }
+    1%,
+    4% {
+        transform: translate(4px, -2px);
+    }
+    11%,
+    13%,
+    53%,
+    55% {
+        transform: translate(7px, -2px);
+    }
+    25%,
+    27%,
+    73%,
+    75% {
+        transform: translate(-12px, 2px);
+    }
+}
+
+.MarkALink_popup__btns-trick {
+    position: absolute;
+
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+    border-right: 12px solid var(--bg-color);
+    transform-origin: center;
+    transform: translate(-2px, 10px) rotate(-45deg);
+}
+
+.MarkALink_popup__btns-trick_2 {
+    bottom: auto;
+    left: auto;
+    top: 0;
+    right: 0;
+
+    transform: translate(2px, -10px) rotate(135deg);
+}
+
+.MarkALink_popup__text {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.MarkALink_popup__save {
+    background-color: var(--active-col);
+    color: #fff;
+}
+
+.MarkALink_popup__save::after,
+.MarkALink_popup__save::before {
+    background-color: var(--active-col);
+}
+
+.MarkALink_popup__close,
+.MarkALink_popup__close::after,
+.MarkALink_popup__close::before,
+.MarkALink_popup__unmark,
+.MarkALink_popup__unmark::after,
+.MarkALink_popup__unmark::before {
+    background-color: var(--non-active-col);
 }
 
 .MarkALink_popup__menu {
@@ -125,10 +345,26 @@
     width: 0;
     height: 0;
     transform: translateY(-50%);
+    padding: 0;
 
     opacity: 0;
     overflow: hidden;
     background-color: yellow;
+
+    border: 1px solid var(--logo-col);
+    box-shadow:
+        0 0 2px var(--logo-shadow),
+        0 0 5px var(--logo-shadow),
+        0 0 10px var(--logo-shadow),
+        0 0 10px var(--logo-shadow),
+        0 0 2px var(--logo-col),
+        inset 0 0 2px var(--logo-shadow),
+        inset 0 0 5px var(--logo-shadow),
+        inset 0 0 10px var(--logo-shadow),
+        inset 0 0 10px var(--logo-shadow),
+        inset 0 0 2px var(--logo-col);
+
+    background-color: var(--bg-color);
 
     transition: all ease .4s;
 }
@@ -139,6 +375,7 @@
     min-width: 100%;
 
     opacity: 1;
+    padding: 12px 4px;
 }
 
 .MarkALink_popup__menu_item,
@@ -148,6 +385,14 @@
     padding: 2px 10px;
 
     white-space: nowrap;
+    font-family: Godsownjunkyard;
+    text-shadow: 0 0 10px #000, 0 0 5px #000, 0 0 15px #000, 0 0 20px #000, 4px 2px 5px var(--title-color);
+    color: var(--non-active-col);
+}
+
+.MarkALink_popup__menu_item:hover,
+.MarkALink_popup__menu_item-add:hover {
+    color: var(--active-col);
 }
 
 .MarkALink_popup__types {
@@ -158,12 +403,12 @@
     margin-right: 5px;
 
     font-family: Godsownjunkyard;
-    text-shadow: 0 0 10px #000, 0 0 5px #000, 0 0 15px #000, 0 0 20px #000, 4px 2px 5px azure;
-    color: azure;
+    text-shadow: 0 0 10px #000, 0 0 5px #000, 0 0 15px #000, 0 0 20px #000, 4px 2px 5px var(--title-color);
+    color: var(--non-active-col);
 }
 
 .MarkALink_popup__types_item-active {
-    text-shadow: 0 0 10px #000, 0 0 5px #000, 0 0 15px #000, 0 0 20px #000, 4px 2px 5px var(--active-col);
+    text-shadow: 4px 2px 5px var(--active-col);
     color: var(--active-col);
 }
 
@@ -171,18 +416,64 @@
     margin: 10px 0;
 }
 
+.MarkALink_popup__textarea_wrap {
+    position: relative;
+}
+
+.MarkALink_popup__textarea_wrap::after,
+.MarkALink_popup__textarea_wrap::before {
+    position: absolute;
+    z-index: 1;
+    content: "";
+    display: block;
+
+    height: 2px;
+    width: 40px;
+    transform: translate(-5px, -15px) rotate(45deg);
+    border-radius: 5px;
+    left: 0;
+    bottom: 0;
+
+    background: var(--active-col);
+    transform-origin: center;
+}
+
+.MarkALink_popup__textarea_wrap::before {
+    left: auto;
+    bottom: auto;
+    top: 0;
+    right: 0;
+    transform: translate(5px, 15px) rotate(45deg);
+}
+
 .MarkALink_popup__textarea {
     display: block;
 
-    margin-top: 20px;
-    width: 100%;
-    height: 100px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
 
+    width: 100%;
+    height: 130px;
+    padding: 10px;
+
+    clip-path: polygon(0% 0%, calc(100% - 30px) 0, 100% 30px, 100% 100%, 95% 100%, calc(0% + 30px) 100%, 0% calc(100% - 30px), 0% calc(100% + 30px));
+    background: none;
+    border: 2px solid var(--active-col);
+
+    text-shadow: 4px 2px 5px var(--active-col);
+    outline-color: var(--active-col);
+    color: var(--active-col);
     font-size: calc(var(--font-size) - 4px);
+    font-family: Verdana;
+}
+
+.MarkALink_popup__textarea::placeholder {
+    color: var(--active-col);
 }
 
 .MarkALink_popup__menu_default {
-    text-shadow: 0 0 10px #000, 0 0 5px #000, 0 0 15px #000, 0 0 20px #000, 4px 2px 5px var(--active-col);
+    font-family: Godsownjunkyard;
+    text-shadow: 4px 2px 5px var(--active-col);
     color: var(--active-col);
 }
 
