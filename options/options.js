@@ -8,7 +8,10 @@ const sectTempl = (grpName) =>
 
 const markTempl = (url, mark) =>
     `<li class="list__item">
-		<a href="${url}" title="${url}" class="list__link">${url}</a>
+		<div class="list__glitch_wrap">
+			<a href="${url}" title="${url}" class="list__link">${url}</a>
+			<a href="${url}" title="${url}" class="list__link list__link-glitch">${url}</a>
+		</div>
 		<p class="list__text">${mark}</p>
 	</li>`
 
