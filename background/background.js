@@ -16,8 +16,9 @@ chrome.runtime.onInstalled.addListener(async (details) => {
                 })
             }
         })
-		
+
 		await setStorageDataLocal({
+			notesOn: true,
 			defCategories: ['Hide', 'Marked'],
 			pairs: {
 				'Hide': 'Transparent',

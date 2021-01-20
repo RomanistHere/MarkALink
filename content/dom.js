@@ -86,7 +86,9 @@ const initSideElements = () => {
 }
 
 const loopThorugh = (links, data, customSettings, pairs) => {
-    initSideElements()
+    if (!document.querySelector('.MarkALink__tooltip'))
+        initSideElements()
+
     // console.log(data)
     links.forEach(item => {
         const url = item.href

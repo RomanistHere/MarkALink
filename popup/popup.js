@@ -1,6 +1,5 @@
 let state = {
-    notesOn: true,
-    messOn: true
+    notesOn: true
 }
 
 const optBtn = document.querySelector('.popup_opt')
@@ -9,10 +8,9 @@ const markBtn = document.querySelector('.popup_mark')
 const hideBtn = document.querySelector('.popup_hide')
 
 const configNotes = (shouldWork) => {
-    chrome.tabs.query({ active: true, currentWindow: true }, async (tabs) => {
-        chrome.tabs.sendMessage(tabs[0].id, { notesShouldWork: shouldWork }, resp => {
-            // if (resp && resp.closePopup === true) {
-            // }
+    chrome.tabs.query({ url: null }, resp => {
+        Object.values(resp).forEach(item => {
+            chrome.tabs.sendMessage(item.id, { notesShouldWork: shouldWork })
         })
     })
 }
@@ -31,20 +29,18 @@ const setBtn = (node, flag) =>
     flag ? activateBtn(node) : deactivateBtn(node)
 
 const getData = async () => {
-    chrome.storage.local.get(['notesOn', 'messOn'], resp => {
-        const { notesOn, messOn } = resp
-        if (notesOn == null || messOn == null) {
+    chrome.storage.local.get(['notesOn'], resp => {
+        const { notesOn } = resp
+        if (notesOn == null) {
             return
         }
 
         state = {
             ...state,
             notesOn: notesOn,
-            messOn: messOn
         }
 
         setBtn(notesBtn, !state.notesOn)
-        setBtn(messBtn, !state.messOn)
     })
 }
 

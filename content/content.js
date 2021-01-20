@@ -1,9 +1,10 @@
 const init = async () => {
     const data = await getData()
     const links = document.querySelectorAll('a')
-    const { customSettings, pairs } = await getStorageDataLocal(['customSettings', 'pairs'])
+    const { customSettings, pairs, notesOn } = await getStorageDataLocal(['customSettings', 'pairs', 'notesOn'])
 
-    loopThorugh(links, data, customSettings, pairs)
+    if (notesOn)
+        loopThorugh(links, data, customSettings, pairs)
 }
 
 const debInit = debounce(init, 300)
