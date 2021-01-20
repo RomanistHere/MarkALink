@@ -22,9 +22,12 @@ const startUpd = () => {
 startUpd()
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    // from bg
+    // from bg or popup
     if (request.openPopUp === true) {
         initPopUp(request.linkUrl)
+    }
+    if (request.addToHide === true) {
+        hideByUrl(request.linkUrl)
     }
 	// from options
 	if (request === 'updated') {

@@ -96,3 +96,21 @@ const getDateWithoutTime = date => {
     d.setHours(0, 0, 0, 0)
     return d
 }
+
+const hideByUrl = async (url) => {
+	try {
+		const data = await getData()
+		const newData = {
+			...data,
+			[url]: {
+				grp: 'Hide',
+				type: 'Mark',
+				mark: ''
+			}
+		}
+		await syncStore('na', newData)
+		// window.close()
+	} catch (e) {
+		console.log(e)
+	}
+}
