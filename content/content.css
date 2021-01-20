@@ -21,18 +21,80 @@
 }
 
 .MarkALink__tooltip {
+    --bg-color: #131313;
+    --bg-color-glitch: #080808;
+
+    --logo-col: #FED128;
+    --logo-shadow: #FA1C16;
+    --logo-shadow-2: #806914;
+
     position: fixed;
-    z-index: 100000000;
+    z-index: 1000000000000;
     display: none;
 
-    background: #ffffff;
-    border: 1px solid black;
-    padding: 5px;
+    max-width: 250px;
+    max-height: 200px;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
 
-    color: black;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    overflow: hidden;
+
+    color: #fff;
+    font-family: Verdana;
+    font-size: 16px;
+
+    background-color: var(--bg-color);
+    border: 1px solid var(--logo-col);
+    box-shadow:
+        0 0 5px var(--logo-shadow),
+        0 0 10px var(--logo-shadow),
+        0 0 20px var(--logo-shadow),
+        0 0 20px var(--logo-shadow),
+        0 0 4px var(--logo-col),
+        inset 0 0 2px var(--logo-shadow),
+        inset 0 0 5px var(--logo-shadow),
+        inset 0 0 10px var(--logo-shadow),
+        inset 0 0 10px var(--logo-shadow),
+        inset 0 0 2px var(--logo-col);
 }
 
 .MarkALink__blocked:hover .MarkALink__tooltip,
 .MarkALink__marked:hover .MarkALink__tooltip {
     display: block;
+
+    animation: popping .9s ease-out;
+}
+
+@keyframes popping {
+    0%, 70% {
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+    100% {
+        transform: none;
+        opacity: 1;
+    }
+}
+
+.MarkALink__tooltip_text-mark {
+    display: block;
+}
+
+.MarkALink__tooltip_text-grp {
+    margin-bottom: 10px;
+
+    font-family: Godsownjunkyard;
+    font-size: 22px;
+    color: azure;
+    --color1: azure;
+    --color2: aqua;
+    --color3: dodgerblue;
+    --color4: blue;
+
+    text-shadow: 0 0 10px var(--color1), 0 0 20px var(--color2), 0 0 40px var(--color3), 0 0 80px var(--color4);
+    will-change: filter, color;
+    filter: saturate(60%);
 }

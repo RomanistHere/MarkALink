@@ -35,7 +35,10 @@ const removeAll = () => {
 }
 
 const getTooltip = ({ grp, mark, type }) =>
-    `<span data-PopUpOFF="notification" class="MarkALink__tooltip">${mark}</span>`
+    `<div data-PopUpOFF="notification" class="MarkALink__tooltip">
+        <span class="MarkALink__tooltip_text MarkALink__tooltip_text-grp">${grp}</span>
+        <span class="MarkALink__tooltip_text MarkALink__tooltip_text-mark">${mark}</span>
+    </div>`
 
 const loopThorugh = (links, data, customSettings, pairs) => {
     // console.log(data)
