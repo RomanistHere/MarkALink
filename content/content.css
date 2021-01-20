@@ -61,8 +61,11 @@
         inset 0 0 2px var(--logo-col);
 }
 
-.MarkALink__blocked:hover .MarkALink__tooltip,
-.MarkALink__marked:hover .MarkALink__tooltip {
+.MarkALink__tooltip-hidden {
+    display: none;
+}
+
+.MarkALink__tooltip-show {
     display: block;
 
     animation: popping .9s ease-out;
