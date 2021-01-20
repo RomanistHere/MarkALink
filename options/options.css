@@ -132,6 +132,10 @@ body {
     animation: titleShift 10s step-start infinite;
 }
 
+.list__glitch_wrap:hover .list__link-glitch {
+    animation: none;
+}
+
 @keyframes titleShift {
     0%,
     5%,

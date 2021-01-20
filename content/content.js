@@ -1,11 +1,41 @@
+const showTooltip = (e) => {
+    const tooltip = e.target.classList.contains('MarkALink__tooltip')
+        ? e.target
+        : e.target.querySelector(':scope .MarkALink__tooltip')
+
+    if (!tooltip)
+        return
+
+    tooltip.style.left = (e.clientX + tooltip.clientWidth + 10 < document.body.clientWidth)
+        ? (e.clientX + 10 + 'px')
+        : (document.body.clientWidth + 5 - tooltip.clientWidth + 'px')
+    tooltip.style.top = (e.clientY + tooltip.clientHeight + 10 < document.body.clientHeight)
+        ? (e.clientY + 10 + 'px')
+        : (document.body.clientHeight + 5 - tooltip.clientHeight + 'px')
+}
+
 const removeAll = () => {
     domObserver.disconnect()
     document.querySelectorAll('.MarkALink__marked').forEach(item => {
         item.classList.remove('MarkALink__marked')
+        item.classList.remove('MarkALink__tooltiped')
         item.removeAttribute("style")
+        item.removeEventListener('mousemove', showTooltip)
     })
-    document.querySelectorAll('.MarkALink__blocked').forEach(item => item.classList.remove('MarkALink__blocked'))
+    document.querySelectorAll('.MarkALink__blocked').forEach(item => {
+        item.classList.remove('MarkALink__blocked')
+        item.classList.remove('MarkALink__tooltiped')
+        item.removeEventListener('mousemove', showTooltip)
+    })
+    document.querySelectorAll('.MarkALink__tooltiped').forEach(item => {
+        item.classList.remove('MarkALink__tooltiped')
+        item.removeEventListener('mousemove', showTooltip)
+    })
+    document.querySelectorAll('.MarkALink__tooltip').forEach(item => item.remove())
 }
+
+const getTooltip = ({ grp, mark, type }) =>
+    `<span data-PopUpOFF="notification" class="MarkALink__tooltip">${mark}</span>`
 
 const loopThorugh = (links, data, customSettings, pairs) => {
     // console.log(data)
@@ -13,6 +43,14 @@ const loopThorugh = (links, data, customSettings, pairs) => {
         const url = item.href
         if (url in data) {
             // console.log(data[url])
+
+            // tooltip
+            if (!item.classList.contains('MarkALink__tooltiped')) {
+                const tooltipHTML = getTooltip(data[url])
+                item.insertAdjacentHTML('beforeend', tooltipHTML)
+                item.classList.add('MarkALink__tooltiped')
+                item.addEventListener('mousemove', showTooltip)
+            }
 
             const grpName = data[url].grp
             if (grpName === 'Hide') {

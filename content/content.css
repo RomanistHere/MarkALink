@@ -19,3 +19,20 @@
     top: 0;
     left: 0;
 }
+
+.MarkALink__tooltip {
+    position: fixed;
+    z-index: 100000000;
+    display: none;
+
+    background: #ffffff;
+    border: 1px solid black;
+    padding: 5px;
+
+    color: black;
+}
+
+.MarkALink__blocked:hover .MarkALink__tooltip,
+.MarkALink__marked:hover .MarkALink__tooltip {
+    display: block;
+}
