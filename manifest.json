@@ -14,7 +14,7 @@
 	],
 	"content_scripts": [
 		{
-			"js":         [ "datepicker/index.js", "content/helpers.js", "content/popup.js", "content/content.js" ],
+			"js":         [ "datepicker/index.js", "content/helpers.js", "content/popup.js", "content/dom.js", "content/content.js" ],
 			"css":        [ "datepicker/index.css", "content/popup.css", "content/logo.css", "content/content.css" ],
 			"matches":    [ "<all_urls>" ],
 			"all_frames": true,
