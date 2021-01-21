@@ -229,7 +229,7 @@ body {
     width: 200px;
 }
 
-.logo_section .MarkALink_logo_wrap {
+/* .logo_section .MarkALink_logo_wrap {
     position: absolute;
     transform-origin: right top;
 
@@ -238,6 +238,16 @@ body {
     top: 20px;
 
     background-color: transparent;
+} */
+
+.logo_section {
+    height: 100vh;
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    justify-content: center;
+    -ms-align-items: center;
+    align-items: center;
 }
 
 .MarkALink_popup__logo .MarkALink_logo_wrap {

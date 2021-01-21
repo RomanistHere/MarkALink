@@ -2,7 +2,7 @@ const getPopupHTML = (linkUrl, groups, defGroup = 'Add new group', textArea = ''
     `<div class="MarkALink_popup__wrap">
         <div class="MarkALink_popup__logo_wrap">
             <div class="MarkALink_popup__logo">
-                <section class="MarkALink_logo_wrap">
+                <section class="MarkALink_logo_wrap MarkALink_logo_wrap-basic">
                     <div class="MarkALink_logo MarkALink_logo-based">
                         <span class="MarkALink_logo__neon">Mark</span>
                         <span class="MarkALink_logo__neon MarkALink_logo__neon-bot">ALink</span>
@@ -40,6 +40,23 @@ const getPopupHTML = (linkUrl, groups, defGroup = 'Add new group', textArea = ''
                             <span class="MarkALink_logo-invis">A</span>Link
                             <span class="MarkALink_logo-trick">A</span>
                         </div>
+                    </div>
+                </section>
+                <section class="MarkALink_logo_wrap MarkALink_logo_wrap-hidden MarkALink_logo_wrap-success">
+                    <div class="MarkALink_logo MarkALink_logo-based">
+                        <span class="MarkALink_logo__neon">Success</span>
+                    </div>
+                    <div class="MarkALink_logo MarkALink_logo-shift">
+                        <span class="MarkALink_logo__neon">Success</span>
+                    </div>
+                    <div class="MarkALink_logo MarkALink_logo-shift MarkALink_logo-shift-1">
+                        <span class="MarkALink_logo__neon">Success</span>
+                    </div>
+                    <div class="MarkALink_logo MarkALink_logo-shift MarkALink_logo-shift-2">
+                        <span class="MarkALink_logo__neon">Success</span>
+                    </div>
+                    <div class="MarkALink_logo MarkALink_logo-shift MarkALink_logo-shift-3">
+                        <span class="MarkALink_logo__neon">Success</span>
                     </div>
                 </section>
             </div>
@@ -126,6 +143,33 @@ const getGrps = async (data) => {
         arr: [...new Set([...defCategories, ...Object.keys(obj)])],
         grp: mostGrp
     }
+}
+
+const onSuccess = (popup) => {
+	const hideClass = 'MarkALink_logo_wrap-hidden'
+	const glitchClass = 'MarkALink_logo_wrap-glitch'
+	const logo = popup.querySelector('.MarkALink_logo_wrap-basic')
+	const success = popup.querySelector('.MarkALink_logo_wrap-success')
+
+	logo.classList.add(glitchClass)
+
+	setTimeout(() => {
+		logo.classList.add(hideClass)
+		logo.classList.remove(glitchClass)
+		success.classList.remove(hideClass)
+	}, 500)
+
+    // setTimeout(closePopUp, 3000)
+
+	setTimeout(() => {
+		success.classList.add(hideClass)
+		logo.classList.remove(hideClass)
+		logo.classList.add(glitchClass)
+	}, 5500)
+
+	setTimeout(() => {
+		logo.classList.remove(glitchClass)
+	}, 6000)
 }
 
 const closePopUp = () => {
@@ -286,7 +330,7 @@ const initPopUp = async (linkUrl) => {
     			})
             }
             await syncStore('na', newData)
-            closePopUp()
+            onSuccess(popup)
         } catch (e) {
             console.log(e)
         }
