@@ -42,7 +42,7 @@ const getPopupHTML = (linkUrl, groups, defGroup = 'Add new group', textArea = ''
                         </div>
                     </div>
                 </section>
-                <section class="MarkALink_logo_wrap MarkALink_logo_wrap-hidden MarkALink_logo_wrap-success">
+                <section class="MarkALink_logo_wrap MarkALink_logo_wrap-hidden MarkALink_logo_wrap-success MarkALink_logo_wrap-success_one">
                     <div class="MarkALink_logo MarkALink_logo-based">
                         <span class="MarkALink_logo__neon">Success</span>
                     </div>
@@ -57,6 +57,23 @@ const getPopupHTML = (linkUrl, groups, defGroup = 'Add new group', textArea = ''
                     </div>
                     <div class="MarkALink_logo MarkALink_logo-shift MarkALink_logo-shift-3">
                         <span class="MarkALink_logo__neon">Success</span>
+                    </div>
+                </section>
+                <section class="MarkALink_logo_wrap MarkALink_logo_wrap-hidden MarkALink_logo_wrap-err MarkALink_logo_wrap-success">
+                    <div class="MarkALink_logo MarkALink_logo-based">
+                        <span class="MarkALink_logo__neon">Error</span>
+                    </div>
+                    <div class="MarkALink_logo MarkALink_logo-shift">
+                        <span class="MarkALink_logo__neon">Error</span>
+                    </div>
+                    <div class="MarkALink_logo MarkALink_logo-shift MarkALink_logo-shift-1">
+                        <span class="MarkALink_logo__neon">Error</span>
+                    </div>
+                    <div class="MarkALink_logo MarkALink_logo-shift MarkALink_logo-shift-2">
+                        <span class="MarkALink_logo__neon">Error</span>
+                    </div>
+                    <div class="MarkALink_logo MarkALink_logo-shift MarkALink_logo-shift-3">
+                        <span class="MarkALink_logo__neon">Error</span>
                     </div>
                 </section>
             </div>
@@ -145,11 +162,11 @@ const getGrps = async (data) => {
     }
 }
 
-const onSuccess = (popup) => {
+const onSuccess = (popup, query = false) => {
 	const hideClass = 'MarkALink_logo_wrap-hidden'
 	const glitchClass = 'MarkALink_logo_wrap-glitch'
 	const logo = popup.querySelector('.MarkALink_logo_wrap-basic')
-	const success = popup.querySelector('.MarkALink_logo_wrap-success')
+	const success = popup.querySelector(query ? '.MarkALink_logo_wrap-err' : '.MarkALink_logo_wrap-success_one')
 
 	logo.classList.add(glitchClass)
 
@@ -171,6 +188,9 @@ const onSuccess = (popup) => {
 		logo.classList.remove(glitchClass)
 	}, 6000)
 }
+
+const onError = (popup) =>
+    onSuccess(popup, true)
 
 const closePopUp = () => {
     document.querySelectorAll('.MarkALink_popup').forEach(item => item.remove())
@@ -333,6 +353,7 @@ const initPopUp = async (linkUrl) => {
             onSuccess(popup)
         } catch (e) {
             console.log(e)
+            onError(popup)
         }
     })
 
@@ -356,6 +377,7 @@ const initPopUp = async (linkUrl) => {
             onSuccess(popup)
         } catch (e) {
             console.log(e)
+            onError(popup)
         }
     })
 

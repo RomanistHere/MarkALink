@@ -251,11 +251,39 @@
     color: var(--logo-col);
 }
 
+.MarkALink_logo_wrap-err .MarkALink_logo__neon {
+    font-size: 160px;
+    font-size: 177px;
+
+    --logo-shadow-2: #ff6565;
+    --logo-shadow: #9e2121;
+    --logo-col: #ff0909;
+
+    text-shadow:
+        0 0 1vw var(--logo-shadow),
+        0 0 3vw var(--logo-shadow),
+        0 0 10vw var(--logo-shadow),
+        0 0 10vw var(--logo-shadow),
+        0 0 .4vw var(--logo-col),
+        .5vw .5vw .1vw var(--logo-shadow-2);
+    color: var(--logo-col);
+}
+
 .MarkALink_logo_wrap-success .MarkALink_logo {
     left: -67px;
     right: -67px;
     top: 57px;
     width: 718px;
+}
+
+.MarkALink_logo_wrap-err .MarkALink_logo {
+    /* width: 722px; */
+    /* left: -69px; */
+    /* right: -69px; */
+    width: auto;
+    left: auto;
+    right: auto;
+    top: 47px;
 }
 
 .MarkALink_logo_wrap-success .MarkALink_logo-shift {
