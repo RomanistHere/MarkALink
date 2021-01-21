@@ -353,7 +353,7 @@ const initPopUp = async (linkUrl) => {
             delete data[state.url]
 
             await syncStore('na', data)
-            closePopUp()
+            onSuccess(popup)
         } catch (e) {
             console.log(e)
         }
