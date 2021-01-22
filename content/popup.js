@@ -207,7 +207,6 @@ const handleEsc = event => {
 
 const initPopUp = async (linkUrl) => {
     const data = await getData()
-    // console.log(data)
     const { arr, grp } = await getGrps(data)
     const isExists = linkUrl in data
     const isMark = isExists && data[linkUrl].type === 'Reminder' ? false : true

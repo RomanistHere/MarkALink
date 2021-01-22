@@ -86,20 +86,17 @@ body {
     background-color: var(--sec-bg-col);
     border-color: var(--bg-col);
 
-    /* --color1: #ff00cb;
-    --color2: #ff00cb;
-    --color3: dodgerblue;
-    --color4: azure; */
-
-    /* --color1: var(--logo-col);
-    --color2: var(--logo-shadow);
-    --color3: var(--logo-shadow);
-    --color4: var(--logo-col); */
-
     --color1: yellow;
     --color2: gold;
     --color3: orange;
     --color4: darkred;
+}
+
+.popup__button:active {
+    --color1: #ff00cb;
+    --color2: #ff00cb;
+    --color3: dodgerblue;
+    --color4: azure;
 }
 
 .popup__text {

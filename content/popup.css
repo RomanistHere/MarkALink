@@ -349,9 +349,11 @@
     height: 0;
     transform: translateY(-50%);
     padding: 0;
+    max-height: 500px;
 
     opacity: 0;
     overflow: hidden;
+    overflow-y: auto;
     background-color: yellow;
 
     border: 1px solid var(--logo-col);
@@ -385,7 +387,7 @@
 .MarkALink_popup__menu_item-add {
     display: block;
 
-    padding: 2px 10px;
+    padding: 8px 10px;
 
     white-space: nowrap;
     font-family: Godsownjunkyard;

@@ -26,9 +26,11 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     // from bg or popup
     if (request.openPopUp === true) {
         initPopUp(request.linkUrl)
+        sendResponse({ closePopup: true })
     }
     if (request.addToHide === true) {
         hideByUrl(request.linkUrl)
+        sendResponse({ closePopup: true })
     }
 	// from options
 	if (request === 'updated') {

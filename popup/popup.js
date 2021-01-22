@@ -71,8 +71,9 @@ markBtn.addEventListener('click', (e) => {
 
     chrome.tabs.query({ active: true, currentWindow: true }, async (tabs) => {
         chrome.tabs.sendMessage(tabs[0].id, { openPopUp: true, linkUrl: tabs[0].url }, resp => {
-            // if (resp && resp.closePopup === true) {
-            // }
+            if (resp && resp.closePopup === true) {
+                window.close()
+            }
         })
     })
 })
@@ -82,8 +83,9 @@ hideBtn.addEventListener('click', (e) => {
 
     chrome.tabs.query({ active: true, currentWindow: true }, async (tabs) => {
         chrome.tabs.sendMessage(tabs[0].id, { addToHide: true, linkUrl: tabs[0].url }, resp => {
-            // if (resp && resp.closePopup === true) {
-            // }
+            if (resp && resp.closePopup === true) {
+                window.close()
+            }
         })
     })
 })
