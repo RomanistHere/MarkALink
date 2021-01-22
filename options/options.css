@@ -23,7 +23,11 @@ body {
 }
 
 .title {
+    position: relative;
+    display: inline-block;
+
     margin: 0 20px;
+    padding-right: 30px;
 
     font-size: 70px;
     font-family: Godsownjunkyard;
@@ -36,6 +40,28 @@ body {
     text-shadow: 0 0 10px var(--color1), 0 0 20px var(--color2), 0 0 40px var(--color3), 0 0 80px var(--color4);
     will-change: filter, color;
     filter: saturate(60%);
+
+    transition: all ease .3s;
+}
+
+.title__remove {
+    position: absolute;
+
+    top: 0;
+    right: 0;
+
+    color: red;
+    --color1: red;
+    --color2: #000;
+    --color3: #000;
+    --color4: #000;
+
+    font-size: 30px;
+    text-shadow: 0 0 10px var(--color1), 0 0 20px var(--color2), 0 0 40px var(--color3), 0 0 80px var(--color4);
+    color: var(--color1);
+    text-decoration: none;
+
+    transition: all ease .3s;
 }
 
 .section {
@@ -48,6 +74,14 @@ body {
     --color2: gold;
     --color3: orange;
     --color4: darkred;
+}
+
+.title__remove:hover {
+    color: red;
+    --color1: red;
+    --color2: #f37070;
+    --color3: #ff6464;
+    --color4: #000;
 }
 
 .link {
@@ -229,7 +263,7 @@ body {
     width: 200px;
 }
 
-/* .logo_section .MarkALink_logo_wrap {
+.logo_section .MarkALink_logo_wrap {
     position: absolute;
     transform-origin: right top;
 
@@ -238,9 +272,9 @@ body {
     top: 20px;
 
     background-color: transparent;
-} */
+}
 
-.logo_section {
+/* .logo_section {
     height: 100vh;
     display: -webkit-flex;
     display: -ms-flex;
@@ -248,7 +282,7 @@ body {
     justify-content: center;
     -ms-align-items: center;
     align-items: center;
-}
+} */
 
 .MarkALink_popup__logo .MarkALink_logo_wrap {
     position: absolute;

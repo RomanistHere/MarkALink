@@ -1,6 +1,11 @@
 const sectTempl = (grpName) =>
 	`<h2 class="title">
 		${grpName}
+		${
+			(grpName === 'Hide' || grpName === 'Marked')
+				? ''
+				: `<a href="#" title="Delete '${grpName}' group and all the Marks" class="title__remove">x</a>`
+		}
 	</h2>
 	<ul class="list">
 
@@ -41,12 +46,24 @@ const init = async () => {
 	const { customSettings, pairs } = await getStorageDataLocal(['customSettings', 'pairs'])
 	const data = await getData()
 	const groups = sortByGrps(data)
-	const grpNames = Object.keys(groups)
+	const grpNames = Object.keys(groups).sort((a, b) => {
+		const nameA = a.toLowerCase()
+		const nameB = b.toLowerCase()
+
+		if (nameA < nameB)
+			return -1
+
+		if (nameA > nameB)
+			return 1
+
+		return 0;
+	});
 
 	console.log(customSettings)
 	console.log(data)
 	console.log(groups)
 	console.log(pairs)
+	console.log(grpNames)
 
 	for (let i = 0; i < grpNames.length; i++) {
 		const section = document.createElement('section')
@@ -77,6 +94,44 @@ const init = async () => {
 
 		initSettings(grpName, customSettings, pairs)
 		document.body.appendChild(section)
+
+		const deleteGrp = section.querySelector('.title__remove')
+		if (!deleteGrp)
+			continue
+
+		deleteGrp.addEventListener('click', e => {
+			e.preventDefault()
+
+			removeGrp(grpName)
+		})
+	}
+}
+
+const showError = e => {
+	console.log(e)
+	alert('Error')
+}
+
+const removeGrp = async (grpName) => {
+	let { pairs } = await getStorageDataLocal('pairs')
+	let data = await getData()
+
+	for (const prop in data) {
+        const grp = data[prop]['grp']
+
+        if (grp === grpName) {
+			delete data[prop]
+			delete pairs[grpName]
+        }
+    }
+
+	try {
+		await setStorageDataLocal({ pairs: { ...pairs } })
+		await syncStore('na', data)
+		defCallBack()
+		location.reload()
+	} catch (e) {
+		showError(e)
 	}
 }
 
@@ -141,8 +196,7 @@ const initSettings = (grpName, customSettings, pairs) => {
 			})
 			defCallBack()
 		} catch (e) {
-			console.log(e)
-			alert('error')
+			showError(e)
 		}
     }))
 

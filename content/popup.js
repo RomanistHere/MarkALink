@@ -381,7 +381,6 @@ const initPopUp = async (linkUrl) => {
         }
     })
 
-    // TODO: close on Esc
     document.addEventListener('keydown', handleEsc)
 
     // datepicker
