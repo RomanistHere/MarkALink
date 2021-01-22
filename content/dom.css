@@ -1,0 +1,128 @@
+.MarkALink_aside {
+    position: fixed;
+    z-index: 1000000000000;
+
+    top: 100px;
+    padding: 20px 0 20px 20px;
+    right: 0;
+    max-height: 450px;
+
+    overflow: auto;
+}
+
+.MarkALink_aside__item {
+    max-width: 250px;
+    max-height: 200px;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    overflow: hidden;
+
+    color: #fff;
+    font-family: Verdana;
+    font-size: 16px;
+
+    background-color: var(--bg-color);
+    border: 1px solid var(--logo-col);
+    box-shadow:
+        0 0 5px var(--logo-shadow),
+        0 0 10px var(--logo-shadow),
+        0 0 20px var(--logo-shadow),
+        0 0 20px var(--logo-shadow),
+        0 0 4px var(--logo-col),
+        inset 0 0 2px var(--logo-shadow),
+        inset 0 0 5px var(--logo-shadow),
+        inset 0 0 10px var(--logo-shadow),
+        inset 0 0 10px var(--logo-shadow),
+        inset 0 0 2px var(--logo-col);
+}
+
+.MarkALink_aside__list {
+    padding: 0;
+    margin: 0;
+
+    list-style: none;
+}
+
+.MarkALink_aside__mark {
+    display: block;
+
+    margin: 0;
+    margin-bottom: 10px;
+    max-height: 100px;
+
+    color: #fff;
+    text-decoration: none;
+
+    overflow: auto;
+    cursor: pointer;
+    transition: all ease .3s;
+}
+
+.MarkALink_aside__link {
+    display: block;
+
+    width: 100%;
+    margin-bottom: 10px;
+
+    color: #fff;
+    font-size: 14px;
+    word-wrap: break-word;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    transition: all ease .3s;
+}
+
+.MarkALink_aside__link:hover,
+.MarkALink_aside__mark:hover {
+    color: azure;
+    --color1: azure;
+    --color2: aqua;
+    --color3: dodgerblue;
+    --color4: blue;
+
+    text-shadow: 0 0 2px var(--color1), 0 0 5px var(--color2), 0 0 10px var(--color3), 0 0 10px var(--color4);
+    will-change: filter, color;
+    filter: saturate(60%);
+}
+
+.MarkALink_aside__btn {
+    display: inline-block;
+
+    padding-right: 10px;
+
+    font-family: Godsownjunkyard;
+    font-size: 20px;
+    color: azure;
+    --color1: azure;
+    --color2: aqua;
+    --color3: dodgerblue;
+    --color4: blue;
+
+    text-shadow: 0 0 10px var(--color1), 0 0 20px var(--color2), 0 0 40px var(--color3), 0 0 80px var(--color4);
+    will-change: filter, color;
+    filter: saturate(60%);
+    transition: all ease .3s;
+}
+
+.MarkALink_aside__btn:hover {
+    --active-col: #44fb3a;
+    color: var(--active-col);
+    --color1: var(--active-col);
+    --color2: var(--active-col);
+    --color3: green;
+    --color4: var(--active-col);
+}
+
+.MarkALink_aside__btn-hide:hover {
+    color: lightyellow;
+    --color1: yellow;
+    --color2: gold;
+    --color3: orange;
+    --color4: darkred;
+}

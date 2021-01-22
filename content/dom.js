@@ -1,25 +1,29 @@
+const removeEventListeners = elem => {
+    elem.removeEventListener('mouseenter', showTooltip)
+    elem.removeEventListener('mousemove', moveTooltip)
+    elem.removeEventListener('mouseleave', hideTooltip)
+}
+
 const removeAll = () => {
-    domObserver.disconnect()
+    try {
+        domObserver.disconnect()
+    } catch (e) {
+        console.log(e)
+    }
     document.querySelectorAll('.MarkALink__marked').forEach(item => {
         item.classList.remove('MarkALink__marked')
         item.classList.remove('MarkALink__tooltiped')
         item.removeAttribute("style")
-        item.removeEventListener('mouseenter', showTooltip)
-        item.removeEventListener('mousemove', moveTooltip)
-        item.removeEventListener('mouseleave', hideTooltip)
+        removeEventListeners(item)
     })
     document.querySelectorAll('.MarkALink__blocked').forEach(item => {
         item.classList.remove('MarkALink__blocked')
         item.classList.remove('MarkALink__tooltiped')
-        item.removeEventListener('mouseenter', showTooltip)
-        item.removeEventListener('mousemove', moveTooltip)
-        item.removeEventListener('mouseleave', hideTooltip)
+        removeEventListeners(item)
     })
     document.querySelectorAll('.MarkALink__tooltiped').forEach(item => {
         item.classList.remove('MarkALink__tooltiped')
-        item.removeEventListener('mouseenter', showTooltip)
-        item.removeEventListener('mousemove', moveTooltip)
-        item.removeEventListener('mouseleave', hideTooltip)
+        removeEventListeners(item)
     })
     document.querySelectorAll('.MarkALink__tooltip').forEach(item => item.remove())
 }
@@ -79,6 +83,22 @@ const getTooltip = () =>
         <span class="MarkALink__tooltip_text MarkALink__tooltip_text-grp">grp</span>
         <span class="MarkALink__tooltip_text MarkALink__tooltip_text-mark">mark</span>
     </div>`
+
+const getAside = () =>
+    `<ul class="MarkALink_aside__list">
+
+    </ul>`
+
+const getAsideItem = (link, text) => {
+    <li class="MarkALink_aside__item">
+        <a href="${link}" title="${link}" class="MarkALink_aside__link">${link}</a>
+        <span class="MarkALink_aside__mark">${text}</span>
+        <div class="MarkALink_aside__btns">
+            <a href="#" class="MarkALink_aside__btn MarkALink_aside__btn-complete">Complete</a>
+            <a href="#" class="MarkALink_aside__btn MarkALink_aside__btn-hide">Minimize</a>
+        </div>
+    </li>
+}
 
 const initSideElements = () => {
     const tooltipHTML = getTooltip()

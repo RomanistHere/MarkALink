@@ -76,7 +76,7 @@ chrome.runtime.onInstalled.addListener(async (details) => {
 const setContMenu = () => {
 	chrome.contextMenus.removeAll()
 	chrome.contextMenus.create({
-		title: 'Mark (opens popup)',
+		title: 'Mark (open popup)',
 		contexts: ['link'],
 		documentUrlPatterns: ["http://*/*", "https://*/*", "http://*/", "https://*/"],
 		onclick: ({ linkUrl }, tabs) => {
