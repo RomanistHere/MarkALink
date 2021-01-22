@@ -76,20 +76,27 @@ chrome.runtime.onInstalled.addListener(async (details) => {
 const setContMenu = () => {
 	chrome.contextMenus.removeAll()
 	chrome.contextMenus.create({
-		title: 'MarkALink',
+		title: 'Mark (opens popup)',
 		contexts: ['link'],
 		documentUrlPatterns: ["http://*/*", "https://*/*", "http://*/", "https://*/"],
-		onclick: async ({ linkUrl }, tabs) => {
-			// const data = await getData()
-			// const newData = { ...data, [linkUrl]: item.mode }
-
+		onclick: ({ linkUrl }, tabs) => {
 			const tabID = tabs.id
 			chrome.tabs.sendMessage(tabID, {
 				linkUrl: linkUrl,
 				openPopUp: true,
 			})
-
-			// syncStore('na', newData)
+		}
+	})
+	chrome.contextMenus.create({
+		title: 'Add to "Hide"',
+		contexts: ['link'],
+		documentUrlPatterns: ["http://*/*", "https://*/*", "http://*/", "https://*/"],
+		onclick: ({ linkUrl }, tabs) => {
+			const tabID = tabs.id
+			chrome.tabs.sendMessage(tabID, {
+				linkUrl: linkUrl,
+				addToHide: true,
+			})
 		}
 	})
 }
