@@ -59,11 +59,11 @@ const init = async () => {
 		return 0;
 	});
 
-	console.log(customSettings)
-	console.log(data)
-	console.log(groups)
-	console.log(pairs)
-	console.log(grpNames)
+	// console.log(customSettings)
+	// console.log(data)
+	// console.log(groups)
+	// console.log(pairs)
+	// console.log(grpNames)
 
 	for (let i = 0; i < grpNames.length; i++) {
 		const section = document.createElement('section')
@@ -88,7 +88,10 @@ const init = async () => {
 
 		    list.insertAdjacentHTML('afterbegin', itemHTML)
 			list.querySelector('.list__item').addEventListener('click', e => {
-				initPopUp(url)
+				if (e.target.nodeName !== 'A') {
+					e.preventDefault()
+					initPopUp(url, e.currentTarget)
+				}
 			})
 		}
 

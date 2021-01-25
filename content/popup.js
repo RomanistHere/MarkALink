@@ -205,7 +205,7 @@ const handleEsc = event => {
     }
 }
 
-const initPopUp = async (linkUrl) => {
+const initPopUp = async (linkUrl, optionsItem = null) => {
     const data = await getData()
     const { arr, grp } = await getGrps(data)
     const isExists = linkUrl in data
@@ -373,6 +373,7 @@ const initPopUp = async (linkUrl) => {
             delete data[state.url]
 
             await syncStore('na', data)
+            optionsItem.remove()
             onSuccess(popup)
         } catch (e) {
             console.log(e)
@@ -386,7 +387,7 @@ const initPopUp = async (linkUrl) => {
     if (!state.datepicker) {
         const calendarInput = popup.querySelector('.MarkALink_popup__calendar_input')
         const datepicker = flatpickr(calendarInput, {
-            // minDate: new Date().fp_incr(1),
+            minDate: new Date().fp_incr(1),
             defaultDate: state.date,
             altInput: true,
             altFormat: "F j, Y",
