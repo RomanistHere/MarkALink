@@ -3,16 +3,70 @@
     z-index: 1000000000000;
 
     top: 100px;
-    padding: 20px 0 20px 20px;
+    padding: 20px 0 20px 50px;
     right: 0;
     max-height: 450px;
+    transform: none;
 
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    transition: transform ease .6s .3s;
+}
+
+.MarkALink_aside-hidden {
+    transform: translateX(92%);
+}
+
+.MarkALink_aside__expand {
+    position: absolute;
+    display: none;
+
+    top: 25px;
+    left: 25px;
+    width: 50px;
+    height: 70px;
+    border-radius: 50%;
+
+    border: 1px solid var(--logo-col);
+    box-shadow:
+        0 0 5px var(--logo-shadow),
+        0 0 8px var(--logo-shadow),
+        0 0 15px var(--logo-shadow),
+        0 0 15px var(--bg-color),
+        0 0 4px var(--logo-col),
+        inset 0 0 2px var(--logo-shadow),
+        inset 0 0 5px var(--logo-shadow),
+        inset 0 0 10px var(--logo-shadow),
+        inset 0 0 10px var(--bg-color),
+        inset 0 0 2px var(--logo-col);
+
+    cursor: pointer;
+    transition: all ease .3s;
+
+    animation: expandAppear .5s ease;
+}
+
+@keyframes expandAppear {
+    0% {
+        opacity: 0;
+    },
+    100% {
+        opacity: 1;
+    }
+}
+
+.MarkALink_aside__expand:hover {
+    --logo-col: azure;
+    --logo-shadow: aqua;
+}
+
+.MarkALink_aside-hidden .MarkALink_aside__expand {
+    display: block;
 }
 
 .MarkALink_aside__item {
-    max-width: 250px;
-    max-height: 200px;
+    max-width: 500px;
+    max-height: 160px;
     padding: 10px;
     margin: 10px;
     border-radius: 10px;
@@ -38,6 +92,30 @@
         inset 0 0 10px var(--logo-shadow),
         inset 0 0 10px var(--logo-shadow),
         inset 0 0 2px var(--logo-col);
+
+    transition: all ease .3s .5s, transform ease .5s;
+}
+
+.MarkALink_aside__item-del {
+    max-height: 0;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    box-shadow: none;
+    border: none;
+
+    transform: scale(.01, .01);
+}
+
+.MarkALink_aside__item-min {
+    max-height: 0;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    box-shadow: none;
+    border: none;
+
+    transform: translateX(110%);
 }
 
 .MarkALink_aside__list {
@@ -68,7 +146,7 @@
     width: 100%;
     margin-bottom: 10px;
 
-    color: #fff;
+    color: #fff !important;
     font-size: 14px;
     word-wrap: break-word;
     white-space: nowrap;

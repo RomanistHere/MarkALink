@@ -84,22 +84,6 @@ const getTooltip = () =>
         <span class="MarkALink__tooltip_text MarkALink__tooltip_text-mark">mark</span>
     </div>`
 
-const getAside = () =>
-    `<ul class="MarkALink_aside__list">
-
-    </ul>`
-
-const getAsideItem = (link, text) => {
-    <li class="MarkALink_aside__item">
-        <a href="${link}" title="${link}" class="MarkALink_aside__link">${link}</a>
-        <span class="MarkALink_aside__mark">${text}</span>
-        <div class="MarkALink_aside__btns">
-            <a href="#" class="MarkALink_aside__btn MarkALink_aside__btn-complete">Complete</a>
-            <a href="#" class="MarkALink_aside__btn MarkALink_aside__btn-hide">Minimize</a>
-        </div>
-    </li>
-}
-
 const initSideElements = () => {
     const tooltipHTML = getTooltip()
     document.body.insertAdjacentHTML('beforeend', tooltipHTML)
