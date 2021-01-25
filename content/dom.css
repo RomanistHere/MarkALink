@@ -14,7 +14,7 @@
 }
 
 .MarkALink_aside-hidden {
-    transform: translateX(92%);
+    transform: translateX(calc(100% - 45px));
 }
 
 .MarkALink_aside__expand {
@@ -43,11 +43,11 @@
     cursor: pointer;
     transition: all ease .3s;
 
-    animation: expandAppear .5s ease;
+    animation: expandAppear 1.5s ease;
 }
 
 @keyframes expandAppear {
-    0% {
+    0%, 70% {
         opacity: 0;
     },
     100% {
@@ -65,7 +65,7 @@
 }
 
 .MarkALink_aside__item {
-    max-width: 500px;
+    width: 400px;
     max-height: 160px;
     padding: 10px;
     margin: 10px;
@@ -130,7 +130,7 @@
 
     margin: 0;
     margin-bottom: 10px;
-    max-height: 100px;
+    max-height: 76px;
 
     color: #fff;
     text-decoration: none;
@@ -175,7 +175,7 @@
     padding-right: 10px;
 
     font-family: Godsownjunkyard;
-    font-size: 20px;
+    font-size: 20px !important;
     color: azure;
     --color1: azure;
     --color2: aqua;

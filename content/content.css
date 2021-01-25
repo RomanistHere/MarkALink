@@ -6,6 +6,15 @@
     opacity: 1 !important;
 }
 
+.MarkALink_aside .MarkALink__blocked {
+    opacity: 1 !important;
+}
+
+.MarkALink_aside .MarkALink__marked {
+    background: unset !important;
+    border: none !important;
+}
+
 .MarkALink__marked {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;

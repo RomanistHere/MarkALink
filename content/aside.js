@@ -16,31 +16,44 @@ const getAsideItem = (link, text) =>
             class="MarkALink_aside__btn MarkALink_aside__btn-hide">Minimize</a>
     </div>`
 
-const setBtnHandlers = (parent, list, aside) => {
+const setBtnHandlers = (parent, list, aside, key) => {
     const complete = parent.querySelector('.MarkALink_aside__btn-complete')
     const minimize = parent.querySelector('.MarkALink_aside__btn-hide')
 
     complete.addEventListener('click', async (e) => {
         e.preventDefault()
+        const data = await getData()
 
-        parent.classList.add('MarkALink_aside__item-del')
-        setTimeout(() => {
-            parent.remove()
-            if (!list.hasChildNodes()) {
-                aside.remove()
-                initAside()
-            }
-        }, 900)
+        let newKey = { ...data[key] }
+        delete newKey['shown']
+
+        const newData = { ...data, [key]: newKey }
+        try {
+            await syncStore('na', newData)
+
+            parent.classList.add('MarkALink_aside__item-del')
+            setTimeout(() => {
+                parent.remove()
+                if (!list.hasChildNodes()) {
+                    aside.remove()
+                    sendMsgToAllTabs({ asideCompleted: true })
+                }
+            }, 900)
+        } catch (e) {
+            console.log(e)
+        }
     })
 
     minimize.addEventListener('click', e => {
         e.preventDefault()
 
         parent.classList.add('MarkALink_aside__item-min')
-        setTimeout(() => {
+        setTimeout(async () => {
             parent.remove()
             if (!list.hasChildNodes()) {
                 aside.remove()
+                await setStorageDataLocal({ asideMinimized: true })
+                sendMsgToAllTabs({ asideMinimized: true })
                 initAside()
             }
         }, 900)
@@ -50,31 +63,70 @@ const setBtnHandlers = (parent, list, aside) => {
 const addExpand = (aside = document) => {
     const expand = aside.querySelector('.MarkALink_aside__expand')
 
-    expand.addEventListener('click', e => {
+    expand.addEventListener('click', async (e) => {
         e.preventDefault()
+
+        await setStorageDataLocal({ asideMinimized: false })
+        sendMsgToAllTabs({ asideMinimized: false })
         aside.classList.remove('MarkALink_aside-hidden')
     })
 }
 
-const initAside = () => {
-    if (document.querySelector('.MarkALink_aside'))
-        document.querySelector('.MarkALink_aside').remove()
+const updateAside = (asideMinimized) => {
+    const aside = document.querySelector('.MarkALink_aside')
 
-    const arr = [{
-        link: 'https://music.youtube.com/browse/MPREb_IXSUnzxwa2X',
-        text: 'some text written in hand (not) asd as asd asd as das dsa asd ssome text written in hand (not) asd asd asd as dsasd asd asd as ds ome text written in hand (not) asd as asd asd as das dsa asd ssome text written in hand (not) asd asd asd as dsasd asd asd as ds'
-    },
-    {
-        link: 'https://music.youtube.com/browse/MPREb_IXSUnzxwa2X',
-        text: 'some text written in hand (not)some text written in hand (not) asd asd asd as dsasd asd asd as ds'
-    }]
+    if (!aside)
+        return
+
+    asideMinimized
+        ? aside.classList.add('MarkALink_aside-hidden')
+        : aside.classList.remove('MarkALink_aside-hidden')
+}
+
+const sendMsgToAllTabs = (request) =>
+    chrome.runtime.sendMessage({ ...request, toAllTheTabs: true })
+
+const getAsideData = async () => {
+    const data = await getData()
+    const keys = Object.keys(data)
+    let notifArr = []
+
+    keys.forEach(async (key) => {
+        const item = data[key]
+        if (item.type === 'Reminder' && item.shown === false) {
+            const date = getDateWithoutTime(item.date)
+            const curDate = getDateWithoutTime(new Date)
+            if (curDate >= date) {
+                const notif = {
+                    link: key,
+                    text: item.mark
+                }
+                notifArr = [...notifArr, notif]
+            }
+        }
+    })
+
+    return notifArr
+}
+
+const initAside = async () => {
+    if (document.querySelector('.MarkALink_aside')) {
+        // return
+        document.querySelector('.MarkALink_aside').remove()
+    }
+
+    const arr = await getAsideData()
+    const { asideMinimized } = await getStorageDataLocal('asideMinimized')
 
     const aside = document.createElement('ASIDE')
     const asideHTML = getAside()
-    aside.classList.add('MarkALink_aside', 'MarkALink_aside-hidden')
-    aside.insertAdjacentHTML('beforeend', asideHTML)
+    asideMinimized
+        ? aside.classList.add('MarkALink_aside', 'MarkALink_aside-hidden')
+        : aside.classList.add('MarkALink_aside')
 
+    aside.insertAdjacentHTML('beforeend', asideHTML)
     const list = aside.querySelector('.MarkALink_aside__list')
+
     for (let i = 0; i < arr.length; i++) {
         const { link, text } = arr[i]
         const listItem = document.createElement('LI')
@@ -83,7 +135,7 @@ const initAside = () => {
         const listItemHTML = getAsideItem(link, text)
         listItem.insertAdjacentHTML('beforeend', listItemHTML)
 
-        setBtnHandlers(listItem, list, aside)
+        setBtnHandlers(listItem, list, aside, link)
 
         list.append(listItem)
     }

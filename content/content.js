@@ -32,6 +32,11 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         hideByUrl(request.linkUrl)
         sendResponse({ closePopup: true })
     }
+    if (request.asideMinimized === true || request.asideMinimized === false) {
+        updateAside(request.asideMinimized)
+    } else if (request.asideCompleted === true) {
+        initAside()
+    }
 	// from options
 	if (request === 'updated') {
         removeAll()

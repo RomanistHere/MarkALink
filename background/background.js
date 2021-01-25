@@ -18,6 +18,7 @@ chrome.runtime.onInstalled.addListener(async (details) => {
         })
 
 		await setStorageDataLocal({
+			asideMinimized: false,
 			notesOn: true,
 			defCategories: ['Hide', 'Marked'],
 			pairs: {
@@ -70,6 +71,19 @@ chrome.runtime.onInstalled.addListener(async (details) => {
 		} else {
 
 		}
+    }
+})
+
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+	// resend message to all the tabs
+    if (message.toAllTheTabs === true) {
+		const { toAllTheTabs, ...rest } = message
+
+		chrome.tabs.query({ url: null }, resp => {
+	        Object.values(resp).forEach(item => {
+	            chrome.tabs.sendMessage(item.id, rest)
+	        })
+	    })
     }
 })
 

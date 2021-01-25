@@ -386,7 +386,7 @@ const initPopUp = async (linkUrl) => {
     if (!state.datepicker) {
         const calendarInput = popup.querySelector('.MarkALink_popup__calendar_input')
         const datepicker = flatpickr(calendarInput, {
-            minDate: new Date().fp_incr(1),
+            // minDate: new Date().fp_incr(1),
             defaultDate: state.date,
             altInput: true,
             altFormat: "F j, Y",

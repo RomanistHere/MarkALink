@@ -97,8 +97,6 @@ const loopThorugh = (links, data, customSettings, pairs) => {
     links.forEach(item => {
         const url = item.href
         if (url in data) {
-            // console.log(data[url])
-
             // tooltip
             if (!item.classList.contains('MarkALink__tooltiped')) {
                 const tooltipHTML = getTooltipHdn(data[url])
@@ -115,30 +113,10 @@ const loopThorugh = (links, data, customSettings, pairs) => {
                 return
             }
 
-            // console.log(customSettings[pairs[grpName]])
             const { styleLeft, styleRight } = customSettings[pairs[grpName]]
 
             item.classList.add('MarkALink__marked')
             item.style[styleLeft] = styleRight
-        }
-    })
-
-    const keys = Object.keys(data)
-    keys.forEach(async (key) => {
-        const item = data[key]
-        if (item.type === 'Reminder' && item.shown === false) {
-            const date = getDateWithoutTime(item.date)
-            const curDate = getDateWithoutTime(new Date)
-            if (curDate >= date) {
-                // TODO: show template
-                alert(`Url: ${key}, Mark: ${item.mark}`)
-
-                let newKey = { ...data[key] }
-                delete newKey['shown']
-
-                const newData = { ...data, [key]: newKey }
-                await syncStore('na', newData)
-            }
         }
     })
 }
