@@ -78,6 +78,7 @@ const getPopupHTML = (linkUrl, groups, defGroup = 'Add new group', textArea = ''
                 </section>
             </div>
         </div>
+        <span class="MarkALink_popup-tab" tabindex=0></span>
         <div class="MarkALink_popup__grp">
             <span class="MarkALink_popup__label MarkALink_popup__glow">Url: </span>
             <input value=${linkUrl} type="text" class="MarkALink_popup__inp">
@@ -213,13 +214,12 @@ const initPopUp = async (linkUrl, optionsItem = null) => {
 
     let state = {
         url: linkUrl,
-        grp: grp,
+        grp: isExists ? data[linkUrl].grp : grp,
         type:  isExists ? data[linkUrl].type : 'Mark',
         mark: isExists ? data[linkUrl].mark : '',
         existingGroups: [...arr],
         isGrpNew: false,
-        datepicker: false,
-        date: !isMark ? new Date(data[linkUrl].date) : new Date().fp_incr(7)
+        date: isExists && data[linkUrl].type === 'Reminder' ? new Date(data[linkUrl].date) : new Date().fp_incr(7)
     }
 
     const popup = document.createElement('div')
@@ -239,6 +239,7 @@ const initPopUp = async (linkUrl, optionsItem = null) => {
     const groupBtns = popup.querySelectorAll('.MarkALink_popup__menu_item')
     groupBtns.forEach(item => item.addEventListener('click', e => {
         e.preventDefault()
+        e.currentTarget.blur()
 
         item.parentNode.classList.add('MarkALink_popup__submenu-hide')
         setTimeout(() => item.parentNode.classList.remove('MarkALink_popup__submenu-hide'), 400)
@@ -309,12 +310,25 @@ const initPopUp = async (linkUrl, optionsItem = null) => {
 
         const calendarWrap = popup.querySelector('.MarkALink_popup__calendar')
         if (state.type === 'Reminder') {
+
+            const calendarInput = popup.querySelector('.MarkALink_popup__calendar_input')
+            const datepicker = flatpickr(calendarInput, {
+                minDate: new Date().fp_incr(1),
+                defaultDate: state.date,
+                altInput: true,
+                altFormat: "F j, Y",
+                dateFormat: "Y-m-d",
+                onChange: (selectedDates, dateStr, instance) => {
+                    const date = selectedDates[0]
+                    state = { ...state, date: date }
+                }
+            })
+
             calendarWrap.classList.add('MarkALink_popup__calendar-show')
         } else {
             calendarWrap.classList.remove('MarkALink_popup__calendar-show')
         }
     }))
-
 
     // save and close
     const saveBtn = popup.querySelector('.MarkALink_popup__save')
@@ -381,23 +395,28 @@ const initPopUp = async (linkUrl, optionsItem = null) => {
         }
     })
 
-    document.addEventListener('keydown', handleEsc)
+    if (isExists) {
+        if (state.type === 'Reminder') {
+            const calendarInput = popup.querySelector('.MarkALink_popup__calendar_input')
+            const calendarWrap = popup.querySelector('.MarkALink_popup__calendar')
+            const datepicker = flatpickr(calendarInput, {
+                minDate: new Date().fp_incr(1),
+                defaultDate: state.date,
+                altInput: true,
+                altFormat: "F j, Y",
+                dateFormat: "Y-m-d",
+                onChange: (selectedDates, dateStr, instance) => {
+                    const date = selectedDates[0]
+                    state = { ...state, date: date }
+                }
+            })
+            calendarWrap.classList.add('MarkALink_popup__calendar-show')
+        }
 
-    // datepicker
-    if (!state.datepicker) {
-        const calendarInput = popup.querySelector('.MarkALink_popup__calendar_input')
-        const datepicker = flatpickr(calendarInput, {
-            minDate: new Date().fp_incr(1),
-            defaultDate: state.date,
-            altInput: true,
-            altFormat: "F j, Y",
-            dateFormat: "Y-m-d",
-            onChange: (selectedDates, dateStr, instance) => {
-                const date = selectedDates[0]
-                state = { ...state, date: date }
-            }
-        })
+        name.textContent = state.grp
     }
 
+    document.addEventListener('keydown', handleEsc)
     document.body.appendChild(popup)
+    popup.querySelector('.MarkALink_popup-tab').focus()
 }

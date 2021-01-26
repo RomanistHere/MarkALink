@@ -59,6 +59,8 @@
 
 .MarkALink_popup__logo_wrap {
     text-align: center;
+
+    padding-bottom: 7px;
 }
 
 .MarkALink_popup__wrap {
@@ -129,7 +131,7 @@
 .MarkALink_popup__inp:focus,
 .MarkALink_popup__textarea:focus {
     outline: none;
-    
+
     --focus-col: #14f514;
     box-shadow:
         0 0 5px var(--focus-col),
@@ -163,6 +165,14 @@
 
     text-decoration: none;
     color: var(--bg-color);
+
+    transition: all ease .4s;
+}
+
+.MarkALink_popup__btn:focus {
+    transform: scale(1.1, 1.1);
+
+    outline: none;
 }
 
 .MarkALink_popup__btn::after,
@@ -403,7 +413,8 @@
     transition: all ease .4s;
 }
 
-.MarkALink_popup__menu:hover .MarkALink_popup__submenu {
+.MarkALink_popup__menu:hover .MarkALink_popup__submenu,
+.MarkALink_popup__menu:focus-within .MarkALink_popup__submenu {
     width: auto;
     height: auto;
     min-width: 100%;
@@ -422,6 +433,8 @@
     font-family: Godsownjunkyard;
     text-shadow: 0 0 10px #000, 0 0 5px #000, 0 0 15px #000, 0 0 20px #000, 4px 2px 5px var(--title-color);
     color: var(--non-active-col);
+
+    transition: all ease .4s;
 }
 
 .MarkALink_popup__menu_item:hover,
@@ -439,6 +452,8 @@
     font-family: Godsownjunkyard;
     text-shadow: 0 0 10px #000, 0 0 5px #000, 0 0 15px #000, 0 0 20px #000, 4px 2px 5px var(--title-color);
     color: var(--non-active-col);
+
+    transition: all ease .4s;
 }
 
 .MarkALink_popup__types_item-active {
@@ -551,4 +566,16 @@
     100% {
         overflow: initial;
     }
+}
+
+.MarkALink_popup__menu_item:focus,
+.MarkALink_popup__menu_item:hover,
+.MarkALink_popup__menu_item-add:focus,
+.MarkALink_popup__menu_item-add:hover,
+.MarkALink_popup__types_item:focus,
+.MarkALink_popup__types_item:hover {
+    --title-color: #ff00cb;
+    --active-col: var(--title-color);
+    color: var(--title-color);
+    outline: none;
 }
