@@ -16,8 +16,7 @@
 }
 
 .MarkALink__marked {
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
+    box-sizing: border-box !important;
 }
 
 .MarkALink_logo_wrap {
@@ -47,13 +46,12 @@
     margin: 10px;
     border-radius: 10px;
 
-    -webkit-box-sizing: border-box;
     box-sizing: border-box;
     overflow: hidden;
 
-    color: #fff;
-    font-family: Verdana;
-    font-size: 16px;
+    color: #fff !important;
+    font-family: Verdana !important;
+    font-size: 16px !important;
 
     background-color: var(--bg-color);
     border: 1px solid var(--logo-col);
@@ -98,9 +96,9 @@
 .MarkALink__tooltip_text-grp {
     margin-bottom: 10px;
 
-    font-family: Godsownjunkyard;
-    font-size: 22px;
-    color: azure;
+    font-family: Godsownjunkyard !important;
+    font-size: 22px !important;
+    color: azure !important;
     --color1: azure;
     --color2: aqua;
     --color3: dodgerblue;

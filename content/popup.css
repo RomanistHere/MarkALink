@@ -39,9 +39,9 @@
     transition: all ease .4s;
     opacity: 1;
 
-    font-size: var(--font-size);
-    color: var(--text-col);
-    font-weight: normal;
+    font-size: var(--font-size) !important;
+    color: var(--text-col) !important;
+    font-weight: normal !important;
 }
 
 .MarkALink_popup-hidden {
@@ -86,14 +86,14 @@
     -webkit-box-sizing: content-box;
     box-sizing: content-box;
 
-    font-family: Verdana;
+    font-family: Verdana !important;
 }
 
 .MarkALink_popup__label {
     display: inline-block;
     width: 90px;
 
-    color: var(--title-color);
+    color: var(--title-color) !important;
     --color1: var(--title-color);
     --color2: aqua;
     --color3: dodgerblue;
@@ -101,36 +101,36 @@
 }
 
 .MarkALink_popup__glow {
-    font-family: Godsownjunkyard;
+    font-family: Godsownjunkyard !important;
     text-shadow: 0 0 10px var(--color1), 0 0 20px var(--color2), 0 0 40px var(--color3), 0 0 80px var(--color4);
     will-change: filter, color;
     filter: saturate(60%);
 }
 
 .MarkALink_popup__inp {
-    width: 360px;
-    padding: 5px;
+    display: inline-block !important;
 
-    border: none;
-    border-bottom: 2px solid var(--active-col);
-    border: 2px solid var(--active-col);
+    width: 360px !important;
+    padding: 5px !important;
+    margin: 0 !important;
+
+    border: 2px solid var(--active-col) !important;
     text-shadow: 4px 2px 5px var(--active-col);
-    outline-color: var(--active-col);
-    color: var(--active-col);
+    outline-color: var(--active-col) !important;
 
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
+    box-sizing: border-box !important;
 
-    font-size: var(--font-size);
-    font-family: Godsownjunkyard;
+    font-size: var(--font-size) !important;
+    font-family: Godsownjunkyard !important;
+    color: var(--active-col) !important;
 
     -webkit-appearance: none;
-    background: none;
+    background: none !important;
 }
 
 .MarkALink_popup__inp:focus,
 .MarkALink_popup__textarea:focus {
-    outline: none;
+    outline: none !important;
 
     --focus-col: #14f514;
     box-shadow:
@@ -163,7 +163,7 @@
     height: 45px;
     margin: 20px 6px 0;
 
-    text-decoration: none;
+    text-decoration: none !important;
     color: var(--bg-color) !important;
 
     transition: all ease .4s;
@@ -172,7 +172,7 @@
 .MarkALink_popup__btn:focus {
     transform: scale(1.1, 1.1);
 
-    outline: none;
+    outline: none !important;
 }
 
 .MarkALink_popup__btn::after,
@@ -186,7 +186,6 @@
     top: 0;
     height: 100%;
 
-    -webkit-box-sizing: border-box;
     box-sizing: border-box;
 
     border: 2px solid #568eff;
@@ -222,7 +221,7 @@
 .MarkALink_popup__close:hover::after,
 .MarkALink_popup__close:focus::after {
     animation: btnGlitch1 10s step-start 0.05s infinite;
-    clip-path: polygon(0 55%, 100% 55%, 100% 70%, 0 70%);
+    clip-path: polygon(0 50%, 100% 50%, 100% 70%, 0 70%);
 }
 
 .MarkALink_popup__close:hover::before,
@@ -427,12 +426,13 @@
 .MarkALink_popup__menu_item-add {
     display: block;
 
-    padding: 8px 10px;
+    padding: 5px 10px;
 
     white-space: nowrap;
-    font-family: Godsownjunkyard;
+    font-family: Godsownjunkyard !important;
     text-shadow: 0 0 10px #000, 0 0 5px #000, 0 0 15px #000, 0 0 20px #000, 4px 2px 5px var(--title-color);
     color: var(--non-active-col) !important;
+    text-decoration: none !important;
 
     transition: all ease .4s;
 }
@@ -449,9 +449,10 @@
 .MarkALink_popup__types_item {
     margin-right: 5px;
 
-    font-family: Godsownjunkyard;
+    font-family: Godsownjunkyard !important;
     text-shadow: 0 0 10px #000, 0 0 5px #000, 0 0 15px #000, 0 0 20px #000, 4px 2px 5px var(--title-color);
     color: var(--non-active-col) !important;
+    text-decoration: none !important;
 
     transition: all ease .4s;
 }
@@ -462,11 +463,13 @@
 }
 
 .MarkALink_popup__grp {
-    margin: 10px 0;
+    margin: 16px 0;
 }
 
 .MarkALink_popup__textarea_wrap {
     position: relative;
+
+    margin: 0;
 }
 
 .MarkALink_popup__textarea_wrap::after,
@@ -507,23 +510,23 @@
 
     clip-path: polygon(0% 0%, calc(100% - 30px) 0, 100% 30px, 100% 100%, 95% 100%, calc(0% + 30px) 100%, 0% calc(100% - 30px), 0% calc(100% + 30px));
     background: var(--bg-color);
-    border: 2px solid var(--active-col);
+    border: 2px solid var(--active-col) !important;
 
     text-shadow: 4px 2px 5px var(--active-col);
-    outline-color: var(--active-col);
-    color: var(--active-col);
-    font-size: calc(var(--font-size) - 4px);
-    font-family: Verdana;
+    outline-color: var(--active-col) !important;
+    color: var(--active-col) !important;
+    font-size: calc(var(--font-size) - 4px) !important;
+    font-family: Verdana !important;
 }
 
 .MarkALink_popup__textarea::placeholder {
-    color: var(--active-col);
+    color: var(--active-col) !important;
 }
 
 .MarkALink_popup__menu_default {
-    font-family: Godsownjunkyard;
+    font-family: Godsownjunkyard !important;
     text-shadow: 4px 2px 5px var(--active-col);
-    color: var(--active-col);
+    color: var(--active-col) !important;
 }
 
 .MarkALink_popup__menu_default-hide {
@@ -536,11 +539,11 @@
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 
-    font-size: calc(var(--font-size) - 4px);
-    color: white;
+    font-size: calc(var(--font-size) - 4px) !important;
+    color: white !important;
 
-    background: transparent;
-    border: none;
+    background: transparent !important;
+    border: none !important;
     border-bottom: 2px solid white;
 }
 
@@ -566,6 +569,10 @@
     }
 }
 
+.MarkALink_popup__calendar_input {
+    margin-bottom: 16px !important;
+}
+
 .MarkALink_popup__menu_item:focus,
 .MarkALink_popup__menu_item:hover,
 .MarkALink_popup__menu_item-add:focus,
@@ -575,5 +582,6 @@
     --title-color: #ff00cb;
     --active-col: var(--title-color);
     color: var(--title-color) !important;
-    outline: none;
+    outline: none !important;
+    text-decoration: none !important;
 }

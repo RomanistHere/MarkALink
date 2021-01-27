@@ -106,7 +106,7 @@ const getPopupHTML = (linkUrl, groups, defGroup = 'Add new group', textArea = ''
         <div class="MarkALink_popup__calendar ${!isMark ? `MarkALink_popup__calendar-show` : ``}">
             <input class="MarkALink_popup__calendar_input MarkALink_popup__inp" placeholder="Click to pick date">
         </div>
-        <div class="MarkALink_popup__grp MarkALink_popup__grp-flex MarkALink_popup__textarea_wrap">
+        <div class="MarkALink_popup__grp-flex MarkALink_popup__textarea_wrap">
             <textarea class="MarkALink_popup__textarea" placeholder="Type your Mark here...">${textArea}</textarea>
         </div>
         <div class="MarkALink_popup__btns">
@@ -328,6 +328,8 @@ const initPopUp = async (linkUrl, optionsItem = null) => {
         } else {
             calendarWrap.classList.remove('MarkALink_popup__calendar-show')
         }
+        
+        item.blur()
     }))
 
     // save and close
