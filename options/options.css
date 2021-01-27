@@ -134,7 +134,8 @@ body {
     transition: all ease .3s;
 }
 
-.list__item:hover {
+.list__item:hover,
+.list__item:focus {
     border: 1px solid var(--logo-col);
     box-shadow:
         0 0 5px var(--logo-shadow),
@@ -149,6 +150,7 @@ body {
         inset 0 0 2px var(--logo-col);
 
     cursor: pointer;
+    outline: none;
 }
 
 .list__glitch_wrap {

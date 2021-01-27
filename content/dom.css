@@ -75,7 +75,7 @@
     box-sizing: border-box;
     overflow: hidden;
 
-    color: #fff;
+    color: #fff !important;
     font-family: Verdana;
     font-size: 16px;
 
@@ -132,7 +132,7 @@
     margin-bottom: 10px;
     max-height: 76px;
 
-    color: #fff;
+    color: #fff !important;
     text-decoration: none;
 
     overflow: auto;
@@ -147,7 +147,7 @@
     margin-bottom: 10px;
 
     color: #fff !important;
-    font-size: 14px;
+    font-size: 14px !important;
     word-wrap: break-word;
     white-space: nowrap;
     overflow: hidden;
@@ -158,7 +158,7 @@
 
 .MarkALink_aside__link:hover,
 .MarkALink_aside__mark:hover {
-    color: azure;
+    color: azure !important;
     --color1: azure;
     --color2: aqua;
     --color3: dodgerblue;
@@ -176,7 +176,7 @@
 
     font-family: Godsownjunkyard;
     font-size: 20px !important;
-    color: azure;
+    color: azure !important;
     --color1: azure;
     --color2: aqua;
     --color3: dodgerblue;
@@ -190,7 +190,7 @@
 
 .MarkALink_aside__btn:hover {
     --active-col: #44fb3a;
-    color: var(--active-col);
+    color: var(--active-col) !important;
     --color1: var(--active-col);
     --color2: var(--active-col);
     --color3: green;
@@ -199,7 +199,7 @@
 
 .MarkALink_aside__btn-hide:hover {
     color: lightyellow;
-    --color1: yellow;
+    --color1: yellow !important;
     --color2: gold;
     --color3: orange;
     --color4: darkred;

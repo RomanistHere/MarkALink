@@ -12,10 +12,10 @@ const sectTempl = (grpName) =>
 	</ul>`
 
 const markTempl = (url, mark) =>
-    `<li class="list__item">
+    `<li class="list__item" tabindex="0">
 		<div class="list__glitch_wrap">
 			<a href="${url}" title="${url}" class="list__link">${url}</a>
-			<a href="${url}" title="${url}" class="list__link list__link-glitch">${url}</a>
+			<a href="${url}" title="${url}" class="list__link list__link-glitch" tabindex="-1">${url}</a>
 		</div>
 		<p class="list__text">${mark}</p>
 	</li>`
@@ -87,11 +87,18 @@ const init = async () => {
 			const itemHTML = markTempl(url, mark)
 
 		    list.insertAdjacentHTML('afterbegin', itemHTML)
-			list.querySelector('.list__item').addEventListener('click', e => {
+			const listItem = list.querySelector('.list__item')
+			listItem.addEventListener('click', e => {
+				console.log('click')
 				if (e.target.nodeName !== 'A') {
 					e.preventDefault()
 					initPopUp(url, e.currentTarget)
 				}
+			})
+
+			listItem.addEventListener("keyup", e => {
+				if (e.keyCode === 13)
+					listItem.click()
 			})
 		}
 

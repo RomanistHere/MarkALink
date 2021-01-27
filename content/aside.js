@@ -94,6 +94,7 @@ const getAsideData = async () => {
     keys.forEach(async (key) => {
         const item = data[key]
         if (item.type === 'Reminder' && item.shown === false) {
+            // console.log(data[key])
             const date = getDateWithoutTime(item.date)
             const curDate = getDateWithoutTime(new Date)
             if (curDate >= date) {

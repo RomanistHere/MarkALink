@@ -164,7 +164,7 @@
     margin: 20px 6px 0;
 
     text-decoration: none;
-    color: var(--bg-color);
+    color: var(--bg-color) !important;
 
     transition: all ease .4s;
 }
@@ -197,14 +197,14 @@
 .MarkALink_popup__save:focus::after {
     animation: btnGlitch1 10s step-start infinite;
     clip-path: polygon(0 35%, 100% 35%, 100% 65%, 0 65%);
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.8) !important;
 }
 
 .MarkALink_popup__save:hover::before,
 .MarkALink_popup__save:focus::before {
     animation: btnGlitch2 10s step-start infinite;
     clip-path: polygon(0 0%, 80% 0%, 80% 10%, 0 10%);
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.8) !important;
 }
 
 .MarkALink_popup__unmark:hover::after,
@@ -355,7 +355,7 @@
 
 .MarkALink_popup__save {
     background-color: var(--active-col);
-    color: #fff;
+    color: #fff !important;
 }
 
 .MarkALink_popup__save::after,
@@ -432,14 +432,14 @@
     white-space: nowrap;
     font-family: Godsownjunkyard;
     text-shadow: 0 0 10px #000, 0 0 5px #000, 0 0 15px #000, 0 0 20px #000, 4px 2px 5px var(--title-color);
-    color: var(--non-active-col);
+    color: var(--non-active-col) !important;
 
     transition: all ease .4s;
 }
 
 .MarkALink_popup__menu_item:hover,
 .MarkALink_popup__menu_item-add:hover {
-    color: var(--active-col);
+    color: var(--active-col) !important;
 }
 
 .MarkALink_popup__types {
@@ -451,14 +451,14 @@
 
     font-family: Godsownjunkyard;
     text-shadow: 0 0 10px #000, 0 0 5px #000, 0 0 15px #000, 0 0 20px #000, 4px 2px 5px var(--title-color);
-    color: var(--non-active-col);
+    color: var(--non-active-col) !important;
 
     transition: all ease .4s;
 }
 
 .MarkALink_popup__types_item-active {
     text-shadow: 4px 2px 5px var(--active-col);
-    color: var(--active-col);
+    color: var(--active-col) !important;
 }
 
 .MarkALink_popup__grp {
@@ -548,8 +548,6 @@
     max-height: 0;
     overflow: hidden;
 
-    -webkit-transition: all ease .3s;
-    -o-transition: all ease .3s;
     transition: all ease .3s;
 }
 
@@ -576,6 +574,6 @@
 .MarkALink_popup__types_item:hover {
     --title-color: #ff00cb;
     --active-col: var(--title-color);
-    color: var(--title-color);
+    color: var(--title-color) !important;
     outline: none;
 }

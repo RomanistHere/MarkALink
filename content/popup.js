@@ -78,7 +78,7 @@ const getPopupHTML = (linkUrl, groups, defGroup = 'Add new group', textArea = ''
                 </section>
             </div>
         </div>
-        <span class="MarkALink_popup-tab" tabindex=0></span>
+        <span class="MarkALink_popup-tab" tabindex="0"></span>
         <div class="MarkALink_popup__grp">
             <span class="MarkALink_popup__label MarkALink_popup__glow">Url: </span>
             <input value=${linkUrl} type="text" class="MarkALink_popup__inp">
