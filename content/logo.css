@@ -10,6 +10,8 @@
     --logo-col: #FED128;
     --logo-shadow: #FA1C16;
     --logo-shadow-2: #806914;
+
+    --active-col: #44fb3a;
 }
 
 .MarkALink_logo__neon {
@@ -28,6 +30,15 @@
         0 0 .4vw var(--logo-col),
         .5vw .5vw .1vw var(--logo-shadow-2);
     color: var(--logo-col);
+}
+
+.MarkALink_logo::selection,
+.MarkALink_logo__neon::selection {
+    background-color: var(--active-col);
+}
+
+.MarkALink_logo-trick::selection {
+    background-color: var(--logo-shadow);
 }
 
 .MarkALink_logo__neon-bot {

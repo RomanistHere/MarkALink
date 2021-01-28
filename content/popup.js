@@ -328,7 +328,7 @@ const initPopUp = async (linkUrl, optionsItem = null) => {
         } else {
             calendarWrap.classList.remove('MarkALink_popup__calendar-show')
         }
-        
+
         item.blur()
     }))
 
@@ -389,7 +389,9 @@ const initPopUp = async (linkUrl, optionsItem = null) => {
             delete data[state.url]
 
             await syncStore('na', data)
-            optionsItem.remove()
+            if (optionsItem)
+                optionsItem.remove()
+
             onSuccess(popup)
         } catch (e) {
             console.log(e)
@@ -402,7 +404,6 @@ const initPopUp = async (linkUrl, optionsItem = null) => {
             const calendarInput = popup.querySelector('.MarkALink_popup__calendar_input')
             const calendarWrap = popup.querySelector('.MarkALink_popup__calendar')
             const datepicker = flatpickr(calendarInput, {
-                minDate: new Date().fp_incr(1),
                 defaultDate: state.date,
                 altInput: true,
                 altFormat: "F j, Y",

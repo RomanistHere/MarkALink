@@ -585,3 +585,11 @@
     outline: none !important;
     text-decoration: none !important;
 }
+
+.MarkALink_popup__grp::selection,
+.MarkALink_popup__btns::selection,
+.MarkALink_popup__btns *::selection,
+.MarkALink_popup__textarea::selection,
+.MarkALink_popup__grp *::selection {
+    background: #ff00cb;
+}

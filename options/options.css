@@ -22,6 +22,10 @@ body {
     background-color: #131313;
 }
 
+*::selection {
+    background-color: var(--logo-shadow);
+}
+
 .title {
     position: relative;
     display: inline-block;

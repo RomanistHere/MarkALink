@@ -197,9 +197,14 @@
 }
 
 .MarkALink_aside__btn-hide:hover {
-    color: lightyellow;
-    --color1: yellow !important;
+    color: lightyellow !important;
+    --color1: yellow;
     --color2: gold;
     --color3: orange;
     --color4: darkred;
+}
+
+.MarkALink_aside::selection,
+.MarkALink_aside *::selection {
+    background: #ff00cb;
 }
