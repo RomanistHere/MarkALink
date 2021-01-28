@@ -1,3 +1,3 @@
 # Mark a link :)
 
-![](https://github.com/RomanistHere/MarkALink-Website/tree/master/images/MarkALink-low.gif)
+![](https://romanisthere.github.io/MarkALink-Website/images/MarkALink-low.gif)
