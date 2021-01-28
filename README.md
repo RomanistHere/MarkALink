@@ -1,5 +1,3 @@
-# Mark a link :)
+#MarkALink
 
-![Gif should be here](https://romanisthere.github.io/MarkALink-Website/images/MarkALink-low.gif)
-
-some test text here
+![Gif goes here (or not)](additional/MarkALink-low.gif)
