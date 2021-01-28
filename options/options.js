@@ -188,6 +188,7 @@ const initSettings = (grpName, customSettings, pairs) => {
     const groupBtns = settings.querySelectorAll('.MarkALink_popup__menu_item')
     groupBtns.forEach(item => item.addEventListener('click', async (e) => {
         e.preventDefault()
+		e.currentTarget.blur()
 
 		let { pairs } = await getStorageDataLocal('pairs')
 
