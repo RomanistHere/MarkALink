@@ -1,4 +1,4 @@
-const getPopupHTML = (linkUrl, groups, defGroup = 'Add new group', textArea = '', isMark = true) =>
+const getPopupHTML = (linkUrl, groups, defGroup = 'Add new group', textArea = '', isMark = true, isPage = true) =>
     `<div class="MarkALink_popup__wrap">
         <div class="MarkALink_popup__logo_wrap">
             <div class="MarkALink_popup__logo">
@@ -80,8 +80,15 @@ const getPopupHTML = (linkUrl, groups, defGroup = 'Add new group', textArea = ''
         </div>
         <span class="MarkALink_popup-tab" tabindex="0"></span>
         <div class="MarkALink_popup__grp">
+            <span class="MarkALink_popup__label MarkALink_popup__glow">Target: </span>
+            <div class="MarkALink_popup__types">
+                <a href="#" id="Page" class="targetBtn MarkALink_popup__types_item ${isPage ? `MarkALink_popup__types_item-active` : ``}">Page</a>
+                <a href="#" id="Site" class="targetBtn MarkALink_popup__types_item ${!isPage ? `MarkALink_popup__types_item-active` : ``}">Whole website</a>
+            </div>
+        </div>
+        <div class="MarkALink_popup__grp">
             <span class="MarkALink_popup__label MarkALink_popup__glow">Url: </span>
-            <input value=${linkUrl} type="text" class="MarkALink_popup__inp">
+            <input value=${linkUrl} type="text" class="MarkALink_popup__inp linkInp">
         </div>
         <div class="MarkALink_popup__grp">
             <span class="MarkALink_popup__label MarkALink_popup__glow">Group: </span>
@@ -99,8 +106,8 @@ const getPopupHTML = (linkUrl, groups, defGroup = 'Add new group', textArea = ''
         <div class="MarkALink_popup__grp">
             <span class="MarkALink_popup__label MarkALink_popup__glow">Type: </span>
             <div class="MarkALink_popup__types">
-                <a href="#" id="Mark" class="MarkALink_popup__types_item ${isMark ? `MarkALink_popup__types_item-active` : ``}">Mark</a>
-                <a href="#" id="Reminder" class="MarkALink_popup__types_item ${!isMark ? `MarkALink_popup__types_item-active` : ``}">Reminder</a>
+                <a href="#" id="Mark" class="typeBtn MarkALink_popup__types_item ${isMark ? `MarkALink_popup__types_item-active` : ``}">Mark</a>
+                <a href="#" id="Reminder" class="typeBtn MarkALink_popup__types_item ${!isMark ? `MarkALink_popup__types_item-active` : ``}">Reminder</a>
             </div>
         </div>
         <div class="MarkALink_popup__calendar ${!isMark ? `MarkALink_popup__calendar-show` : ``}">
@@ -211,19 +218,21 @@ const initPopUp = async (linkUrl, optionsItem = null) => {
     const { arr, grp } = await getGrps(data)
     const isExists = linkUrl in data
     const isMark = isExists && data[linkUrl].type === 'Reminder' ? false : true
+    const isPage = isExists && data[linkUrl].targ === 'Page' ? false : true
 
     let state = {
         url: linkUrl,
         grp: isExists ? data[linkUrl].grp : grp,
         type:  isExists ? data[linkUrl].type : 'Mark',
         mark: isExists ? data[linkUrl].mark : '',
+        target:  isExists ? data[linkUrl].targ : 'Page',
         existingGroups: [...arr],
         isGrpNew: false,
         date: isExists && data[linkUrl].type === 'Reminder' ? new Date(data[linkUrl].date) : new Date().fp_incr(7)
     }
 
     const popup = document.createElement('div')
-    const popupHTML = getPopupHTML(linkUrl, arr, grp, state.mark, isMark)
+    const popupHTML = getPopupHTML(linkUrl, arr, grp, state.mark, isMark, isPage)
     popup.classList.add('MarkALink_popup')
     popup.innerHTML = popupHTML
     popup.setAttribute('data-PopUpOFF', 'notification')
@@ -299,8 +308,35 @@ const initPopUp = async (linkUrl, optionsItem = null) => {
         }
     })
 
+    // target
+    const targetBtns = popup.querySelectorAll('.targetBtn')
+    const linkInp = popup.querySelector('.linkInp')
+    targetBtns.forEach(item => item.addEventListener('click', e => {
+        e.preventDefault()
+
+        targetBtns.forEach(btn => btn.classList.remove('MarkALink_popup__types_item-active'))
+        item.classList.add('MarkALink_popup__types_item-active')
+        state = { ...state, targ: e.currentTarget.id }
+
+        if (state.targ === 'Site') {
+            const pureUrl = linkUrl.substring(linkUrl.lastIndexOf("//") + 2, linkUrl.indexOf("/", 8))
+            state = { ...state, url: pureUrl }
+        } else {
+            state = { ...state, url: linkUrl }
+        }
+
+        linkInp.value = state.url
+        item.blur()
+    }))
+
+    // url
+    linkInp.addEventListener('input', () => {
+        state = { ...state, url: linkInp.value }
+        console.log(state.url)
+    })
+
     // type
-    const typeBtns = popup.querySelectorAll('.MarkALink_popup__types_item')
+    const typeBtns = popup.querySelectorAll('.typeBtn')
     typeBtns.forEach(item => item.addEventListener('click', e => {
         e.preventDefault()
 
@@ -338,18 +374,20 @@ const initPopUp = async (linkUrl, optionsItem = null) => {
         e.preventDefault()
 
         try {
-            const { url, grp, type, mark, date, isGrpNew } = state
+            const { url, grp, type, mark, date, isGrpNew, targ } = state
             const data = await getData()
             const newData = {
                 ...data,
                 [url]: type === 'Mark' ? {
                     grp: grp,
                     type: type,
-                    mark: mark
+                    mark: mark,
+                    targ: targ
                 } : {
                     grp: grp,
                     type: type,
                     mark: mark,
+                    targ: targ,
                     date: date,
                     shown: false
                 }

@@ -89,34 +89,41 @@ const initSideElements = () => {
     document.body.insertAdjacentHTML('beforeend', tooltipHTML)
 }
 
+const fixDOM = (url, data, customSettings, pairs, item) => {
+    // tooltip
+    if (!item.classList.contains('MarkALink__tooltiped')) {
+        const tooltipHTML = getTooltipHdn(data[url])
+        item.insertAdjacentHTML('beforeend', tooltipHTML)
+        item.classList.add('MarkALink__tooltiped')
+        item.addEventListener('mouseenter', showTooltip)
+        item.addEventListener('mousemove', moveTooltip)
+        item.addEventListener('mouseleave', hideTooltip)
+    }
+
+    const grpName = data[url].grp
+    if (grpName === 'Hide') {
+        item.classList.add('MarkALink__blocked')
+        return
+    }
+
+    const { styleLeft, styleRight } = customSettings[pairs[grpName]]
+
+    item.classList.add('MarkALink__marked')
+    item.style[styleLeft] = styleRight
+}
+
 const loopThorugh = (links, data, customSettings, pairs) => {
     if (!document.querySelector('.MarkALink__tooltip'))
         initSideElements()
 
-    // console.log(data)
+    console.log(data)
     links.forEach(item => {
         const url = item.href
+        const pureUrl = url.substring(url.lastIndexOf("//") + 2, url.indexOf("/", 8))
         if (url in data) {
-            // tooltip
-            if (!item.classList.contains('MarkALink__tooltiped')) {
-                const tooltipHTML = getTooltipHdn(data[url])
-                item.insertAdjacentHTML('beforeend', tooltipHTML)
-                item.classList.add('MarkALink__tooltiped')
-                item.addEventListener('mouseenter', showTooltip)
-                item.addEventListener('mousemove', moveTooltip)
-                item.addEventListener('mouseleave', hideTooltip)
-            }
-
-            const grpName = data[url].grp
-            if (grpName === 'Hide') {
-                item.classList.add('MarkALink__blocked')
-                return
-            }
-
-            const { styleLeft, styleRight } = customSettings[pairs[grpName]]
-
-            item.classList.add('MarkALink__marked')
-            item.style[styleLeft] = styleRight
+            fixDOM(url, data, customSettings, pairs, item)
+        } else if (pureUrl in data) {
+            fixDOM(pureUrl, data, customSettings, pairs, item)
         }
     })
 }

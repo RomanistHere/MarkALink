@@ -90,7 +90,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 const setContMenu = () => {
 	chrome.contextMenus.removeAll()
 	chrome.contextMenus.create({
-		title: 'Mark (open popup)',
+		title: 'Mark',
 		contexts: ['link'],
 		documentUrlPatterns: ["http://*/*", "https://*/*", "http://*/", "https://*/"],
 		onclick: ({ linkUrl }, tabs) => {

@@ -1,9 +1,17 @@
 .MarkALink__blocked {
-    opacity: 0 !important;
+    opacity: 0.15 !important;
 }
 
 .MarkALink__blocked:hover {
     opacity: 1 !important;
+}
+
+.MarkALink_popup a {
+    opacity: 1 !important;
+}
+
+.MarkALink_popup .MarkALink__tooltip-hidden {
+    display: none !important;
 }
 
 .MarkALink_aside .MarkALink__blocked {
