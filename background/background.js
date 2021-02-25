@@ -102,13 +102,26 @@ const setContMenu = () => {
 		}
 	})
 	chrome.contextMenus.create({
-		title: 'Add to "Hide"',
+		title: '"Hide" the page',
 		contexts: ['link'],
 		documentUrlPatterns: ["http://*/*", "https://*/*", "http://*/", "https://*/"],
 		onclick: ({ linkUrl }, tabs) => {
 			const tabID = tabs.id
 			chrome.tabs.sendMessage(tabID, {
 				linkUrl: linkUrl,
+				addToHide: true,
+			})
+		}
+	})
+	chrome.contextMenus.create({
+		title: '"Hide" whole website',
+		contexts: ['link'],
+		documentUrlPatterns: ["http://*/*", "https://*/*", "http://*/", "https://*/"],
+		onclick: ({ linkUrl }, tabs) => {
+			const tabID = tabs.id
+			const pureUrl = linkUrl.substring(linkUrl.lastIndexOf("//") + 2, linkUrl.indexOf("/", 8))
+			chrome.tabs.sendMessage(tabID, {
+				linkUrl: pureUrl,
 				addToHide: true,
 			})
 		}
