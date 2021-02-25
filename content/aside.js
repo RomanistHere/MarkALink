@@ -83,9 +83,6 @@ const updateAside = (asideMinimized) => {
         : aside.classList.remove('MarkALink_aside-hidden')
 }
 
-const sendMsgToAllTabs = (request) =>
-    chrome.runtime.sendMessage({ ...request, toAllTheTabs: true })
-
 const getAsideData = async () => {
     const data = await getData()
     const keys = Object.keys(data)

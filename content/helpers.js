@@ -1,3 +1,6 @@
+const sendMsgToAllTabs = (request) =>
+    chrome.runtime.sendMessage({ ...request, toAllTheTabs: true })
+
 const debounce = (func, wait, immediate) => {
 	var timeout
 	return function() {

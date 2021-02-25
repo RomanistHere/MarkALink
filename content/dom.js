@@ -89,7 +89,7 @@ const initSideElements = () => {
     document.body.insertAdjacentHTML('beforeend', tooltipHTML)
 }
 
-const fixDOM = (url, data, customSettings, pairs, item) => {
+const markLinks = (url, data, customSettings, pairs, item) => {
     // tooltip
     if (!item.classList.contains('MarkALink__tooltiped')) {
         const tooltipHTML = getTooltipHdn(data[url])
@@ -116,14 +116,14 @@ const loopThorugh = (links, data, customSettings, pairs) => {
     if (!document.querySelector('.MarkALink__tooltip'))
         initSideElements()
 
-    console.log(data)
+    // console.log(data)
     links.forEach(item => {
         const url = item.href
         const pureUrl = url.substring(url.lastIndexOf("//") + 2, url.indexOf("/", 8))
         if (url in data) {
-            fixDOM(url, data, customSettings, pairs, item)
+            markLinks(url, data, customSettings, pairs, item)
         } else if (pureUrl in data) {
-            fixDOM(pureUrl, data, customSettings, pairs, item)
+            markLinks(pureUrl, data, customSettings, pairs, item)
         }
     })
 }

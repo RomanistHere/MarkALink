@@ -1,6 +1,6 @@
 const init = async () => {
     const data = await getData()
-    const links = document.querySelectorAll('a')
+    const links = document.querySelectorAll('a:not([href="#"])')
     const { customSettings, pairs, notesOn } = await getStorageDataLocal(['customSettings', 'pairs', 'notesOn'])
 
     if (notesOn)
@@ -37,8 +37,9 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     } else if (request.asideCompleted === true) {
         initAside()
     }
+
 	// from options
-	if (request === 'updated') {
+	if (request === 'updated' || request.updated === true) {
         removeAll()
 		startUpd()
 	}

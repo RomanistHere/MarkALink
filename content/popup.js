@@ -176,6 +176,8 @@ const onSuccess = (popup, query = false) => {
 	const logo = popup.querySelector('.MarkALink_logo_wrap-basic')
 	const success = popup.querySelector(query ? '.MarkALink_logo_wrap-err' : '.MarkALink_logo_wrap-success_one')
 
+    sendMsgToAllTabs({ updated: true })
+
 	logo.classList.add(glitchClass)
 
 	setTimeout(() => {
@@ -236,6 +238,12 @@ const initPopUp = async (linkUrl, optionsItem = null) => {
     popup.classList.add('MarkALink_popup')
     popup.innerHTML = popupHTML
     popup.setAttribute('data-PopUpOFF', 'notification')
+
+    // click outside the popup
+    popup.addEventListener('click', e => {
+        if (e.target === e.currentTarget)
+            closePopUp()
+    })
 
     // mark
     const textArea = popup.querySelector('.MarkALink_popup__textarea');
@@ -332,7 +340,6 @@ const initPopUp = async (linkUrl, optionsItem = null) => {
     // url
     linkInp.addEventListener('input', () => {
         state = { ...state, url: linkInp.value }
-        console.log(state.url)
     })
 
     // type
