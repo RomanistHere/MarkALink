@@ -65,6 +65,8 @@ chrome.runtime.onInstalled.addListener(async (details) => {
 				}
 			}
 		})
+
+		chrome.tabs.create({ url: 'https://marka.link/#about' })
     } else if (reason == 'update') {
 		// chrome.storage.sync.clear()
 		if (previousVersion === '0.0.1') {
