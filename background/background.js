@@ -19,6 +19,7 @@ chrome.runtime.onInstalled.addListener(async (details) => {
 
 		await setStorageDataLocal({
 			asideMinimized: false,
+			shouldShowNotification: true,
 			notesOn: true,
 			defCategories: ['Hide', 'Marked'],
 			pairs: {
@@ -67,7 +68,7 @@ chrome.runtime.onInstalled.addListener(async (details) => {
     } else if (reason == 'update') {
 		// chrome.storage.sync.clear()
 		if (previousVersion === '0.0.1') {
-
+			await setStorageDataLocal({ shouldShowNotification: true })
 		} else {
 
 		}

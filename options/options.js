@@ -11,11 +11,11 @@ const sectTempl = (grpName) =>
 
 	</ul>`
 
-const markTempl = (url, mark) =>
+const markTempl = (url, mark, isValidUrl = true) =>
     `<li class="list__item" tabindex="0">
 		<div class="list__glitch_wrap">
-			<a href="${url}" title="${url}" class="list__link">${url}</a>
-			<a href="${url}" title="${url}" class="list__link list__link-glitch" tabindex="-1">${url}</a>
+			<a href="${isValidUrl ? url : ''}" title="${url}" class="list__link">${url}</a>
+			<a href="${isValidUrl ? url : ''}" title="${url}" target="_blank" class="list__link list__link-glitch" tabindex="-1">${url}</a>
 		</div>
 		<p class="list__text">${mark}</p>
 	</li>`
@@ -38,12 +38,37 @@ const sortByGrps = (data) => {
     return obj
 }
 
+const showNoticBtn = document.querySelector(`#shouldShowNotification`)
+showNoticBtn.addEventListener('click', async (e) => {
+	e.preventDefault()
+
+	try {
+		state = {
+			...state,
+			shouldShowNotification: !state.shouldShowNotification
+		}
+		await setStorageDataLocal({ shouldShowNotification: state.shouldShowNotification })
+		showNoticBtn.classList.toggle('settings__toggle-active')
+	} catch (e) {
+		console.log(e)
+	}
+})
+
+const enableSettings = (shouldShowNotification) => {
+	state = {
+		...state,
+		shouldShowNotification
+	}
+	if (shouldShowNotification)
+		showNoticBtn.classList.add('settings__toggle-active')
+}
+
 let state = {
 	grpNamesAndClasses: {}
 }
 
 const init = async () => {
-	const { customSettings, pairs } = await getStorageDataLocal(['customSettings', 'pairs'])
+	const { customSettings, pairs, shouldShowNotification } = await getStorageDataLocal(['customSettings', 'pairs', 'shouldShowNotification'])
 	const data = await getData()
 	const groups = sortByGrps(data)
 	const grpNames = Object.keys(groups).sort((a, b) => {
@@ -57,7 +82,9 @@ const init = async () => {
 			return 1
 
 		return 0;
-	});
+	})
+
+	enableSettings(shouldShowNotification)
 
 	// console.log(customSettings)
 	// console.log(data)
@@ -84,15 +111,15 @@ const init = async () => {
 		const list = section.querySelector('.list')
 		for (let k = 0; k < groups[grpName].length; k++) {
 			const { url, mark } = groups[grpName][k]
-			const itemHTML = markTempl(url, mark)
+			const isValidUrl = /^((http|https|ftp):\/\/)/.test(url)
+			const itemHTML = markTempl(url, mark, isValidUrl)
 
 		    list.insertAdjacentHTML('afterbegin', itemHTML)
 			const listItem = list.querySelector('.list__item')
 			listItem.addEventListener('click', e => {
-				console.log('click')
 				if (e.target.nodeName !== 'A') {
 					e.preventDefault()
-					initPopUp(url, e.currentTarget)
+					initPopUp(url, e.currentTarget, isValidUrl)
 				}
 			})
 

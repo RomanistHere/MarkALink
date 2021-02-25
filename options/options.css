@@ -256,6 +256,30 @@ body {
     padding: 5px;
 }
 
+.settings__toggle {
+    font-family: Godsownjunkyard;
+    color: rgba(255, 255, 255, .5);
+
+    transition: all ease .3s;
+}
+
+.settings__toggle:hover,
+.settings__toggle-active {
+    color: azure;
+    --color1: azure;
+    --color2: aqua;
+    --color3: dodgerblue;
+    --color4: blue;
+
+    text-shadow:
+        0 0 5px var(--color1),
+        0 0 10px var(--color2),
+        0 0 20px var(--color3),
+        0 0 40px var(--color4);
+    will-change: filter, color;
+    filter: saturate(60%);
+}
+
 .settings__wrap {
     margin: 0 20px;
 }

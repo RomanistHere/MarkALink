@@ -89,6 +89,48 @@ const initSideElements = () => {
     document.body.insertAdjacentHTML('beforeend', tooltipHTML)
 }
 
+const getNotification = (text = 'page') =>
+    `<span class="MarkALink__tooltip_text MarkALink__notification_text">This ${text} was Hidden by you.</span>
+    <div class="MarkALink_aside__btns">
+        <a
+            href="#"
+            title="Close the notification"
+            class="MarkALink_aside__btn MarkALink__notification__btn-close">Okay</a>
+        <a
+            href="#"
+            title="Don't show this notification again"
+            class="MarkALink_aside__btn MarkALink__notification__btn-remember">Don't show again</a>
+    </div>`
+
+const showNotification = text => {
+    const notification = document.createElement('div')
+    const notificationHTML = getNotification(text)
+
+    notification.classList.add('MarkALink__notification')
+    notification.innerHTML = notificationHTML
+    notification.setAttribute('data-PopUpOFF', 'notification')
+
+    const closeBtn = notification.querySelector('.MarkALink__notification__btn-close')
+    closeBtn.addEventListener('click', e => {
+        e.preventDefault()
+        notification.remove()
+    })
+
+    const closeBtnRemember = notification.querySelector('.MarkALink__notification__btn-remember')
+    closeBtnRemember.addEventListener('click', async (e) => {
+        e.preventDefault()
+        notification.remove()
+
+        try {
+            await setStorageDataLocal({ shouldShowNotification: false })
+        } catch (e) {
+            console.log(e)
+        }
+    })
+
+    document.body.appendChild(notification)
+}
+
 const markLinks = (url, data, customSettings, pairs, item) => {
     // tooltip
     if (!item.classList.contains('MarkALink__tooltiped')) {

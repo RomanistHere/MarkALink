@@ -215,19 +215,19 @@ const handleEsc = event => {
     }
 }
 
-const initPopUp = async (linkUrl, optionsItem = null) => {
+const initPopUp = async (linkUrl, optionsItem = null, isValidUrl = true) => {
     const data = await getData()
     const { arr, grp } = await getGrps(data)
     const isExists = linkUrl in data
     const isMark = isExists && data[linkUrl].type === 'Reminder' ? false : true
-    const isPage = isExists && data[linkUrl].targ === 'Page' ? false : true
+    const isPage = isValidUrl ? true : false
 
     let state = {
         url: linkUrl,
         grp: isExists ? data[linkUrl].grp : grp,
         type:  isExists ? data[linkUrl].type : 'Mark',
         mark: isExists ? data[linkUrl].mark : '',
-        target:  isExists ? data[linkUrl].targ : 'Page',
+        target:  isValidUrl ? 'Page' : 'Site',
         existingGroups: [...arr],
         isGrpNew: false,
         date: isExists && data[linkUrl].type === 'Reminder' ? new Date(data[linkUrl].date) : new Date().fp_incr(7)

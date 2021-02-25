@@ -54,3 +54,21 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
 	return true
 })
+
+const checkIsPageHidden = async () => {
+    const { shouldShowNotification } = await getStorageDataLocal('shouldShowNotification')
+    if (!shouldShowNotification)
+        return
+
+    const data = await getData()
+    const pageUrl = window.location.href
+    const pureUrl = pageUrl.substring(pageUrl.lastIndexOf("//") + 2, pageUrl.indexOf("/", 8))
+
+    if (pageUrl in data) {
+        showNotification('page')
+    } else if (pureUrl in data) {
+        showNotification('website')
+    }
+}
+
+checkIsPageHidden()
