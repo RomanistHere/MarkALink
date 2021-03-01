@@ -1,8 +1,8 @@
 const getStorageData = key =>
     new Promise((resolve, reject) =>
         chrome.storage.sync.get(key, result =>
-            chrome.runtime.lastError
-            ? reject(Error(chrome.runtime.lastError.message))
+            browser.runtime.lastError
+            ? reject(Error(browser.runtime.lastError.message))
             : resolve(result)
         )
     )
@@ -35,7 +35,7 @@ const syncStore = (key, objectToStore, callback) => {
     }
 
     let jsonstr = JSON.stringify(objectToStore), i = 0, storageObj = {},
-        maxBytesPerItem = chrome.storage.sync.QUOTA_BYTES_PER_ITEM,
+        maxBytesPerItem = 8192,
         maxValueBytes, index, segment, counter
 
     while (jsonstr.length > 0) {
@@ -61,8 +61,8 @@ const syncStore = (key, objectToStore, callback) => {
 const getStorageDataLocal = key =>
 	new Promise((resolve, reject) =>
 		chrome.storage.local.get(key, result =>
-			chrome.runtime.lastError
-				? reject(Error(chrome.runtime.lastError.message))
+			browser.runtime.lastError
+				? reject(Error(browser.runtime.lastError.message))
 				: resolve(result)
 		)
 	)
@@ -70,8 +70,8 @@ const getStorageDataLocal = key =>
 const setStorageDataLocal = data =>
 	new Promise((resolve, reject) =>
 		chrome.storage.local.set(data, () =>
-			chrome.runtime.lastError
-				? reject(Error(chrome.runtime.lastError.message))
+			browser.runtime.lastError
+				? reject(Error(browser.runtime.lastError.message))
 				: resolve()
 		)
 	)

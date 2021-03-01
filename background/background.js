@@ -5,7 +5,7 @@ import {
     setStorageDataLocal
 } from '../modules/helpers.js'
 
-chrome.runtime.onInstalled.addListener(async (details) => {
+browser.runtime.onInstalled.addListener(async (details) => {
 	const { previousVersion, reason } = details
 
     if (reason == 'install') {
@@ -66,7 +66,7 @@ chrome.runtime.onInstalled.addListener(async (details) => {
 			}
 		})
 
-		chrome.tabs.create({ url: 'https://marka.link/#about' })
+		browser.tabs.create({ url: 'https://marka.link/#about' })
     } else if (reason == 'update') {
 		// chrome.storage.sync.clear()
 		if (previousVersion === '0.0.1') {
@@ -77,53 +77,53 @@ chrome.runtime.onInstalled.addListener(async (details) => {
     }
 })
 
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
 	// resend message to all the tabs
     if (message.toAllTheTabs === true) {
 		const { toAllTheTabs, ...rest } = message
 
-		chrome.tabs.query({ url: null }, resp => {
+		browser.tabs.query({ url: null }, resp => {
 	        Object.values(resp).forEach(item => {
-	            chrome.tabs.sendMessage(item.id, rest)
+	            browser.tabs.sendMessage(item.id, rest)
 	        })
 	    })
     }
 })
 
 const setContMenu = () => {
-	chrome.contextMenus.removeAll()
-	chrome.contextMenus.create({
+	browser.contextMenus.removeAll()
+	browser.contextMenus.create({
 		title: 'Mark',
 		contexts: ['link'],
 		documentUrlPatterns: ["http://*/*", "https://*/*", "http://*/", "https://*/"],
 		onclick: ({ linkUrl }, tabs) => {
 			const tabID = tabs.id
-			chrome.tabs.sendMessage(tabID, {
+			browser.tabs.sendMessage(tabID, {
 				linkUrl: linkUrl,
 				openPopUp: true,
 			})
 		}
 	})
-	chrome.contextMenus.create({
+	browser.contextMenus.create({
 		title: '"Hide" the page',
 		contexts: ['link'],
 		documentUrlPatterns: ["http://*/*", "https://*/*", "http://*/", "https://*/"],
 		onclick: ({ linkUrl }, tabs) => {
 			const tabID = tabs.id
-			chrome.tabs.sendMessage(tabID, {
+			browser.tabs.sendMessage(tabID, {
 				linkUrl: linkUrl,
 				addToHide: true,
 			})
 		}
 	})
-	chrome.contextMenus.create({
+	browser.contextMenus.create({
 		title: '"Hide" whole website',
 		contexts: ['link'],
 		documentUrlPatterns: ["http://*/*", "https://*/*", "http://*/", "https://*/"],
 		onclick: ({ linkUrl }, tabs) => {
 			const tabID = tabs.id
 			const pureUrl = linkUrl.substring(linkUrl.lastIndexOf("//") + 2, linkUrl.indexOf("/", 8))
-			chrome.tabs.sendMessage(tabID, {
+			browser.tabs.sendMessage(tabID, {
 				linkUrl: pureUrl,
 				addToHide: true,
 			})

@@ -47,6 +47,11 @@
         "48": "images/logo128.png",
         "128": "images/logo128.png"
     },
+    "browser_specific_settings": {
+        "gecko": {
+            "id": "romanisthere@gmail.com"
+        }
+    },
 	"content_security_policy": "script-src 'self'; object-src 'self'",
 	"manifest_version": 2
 }

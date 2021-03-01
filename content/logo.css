@@ -1,6 +1,6 @@
 @font-face {
     font-family: neon;
-    src: url('chrome-extension://__MSG_@@extension_id__/fonts/NEON.ttf');
+    src: url('/fonts/NEON.ttf');
 }
 
 :root {

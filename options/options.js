@@ -190,9 +190,9 @@ const settingsTempl = (grpName, customSettings, defSetting = 'None') =>
 	</div>`
 
 const defCallBack = () => {
-    chrome.tabs.query({ url: null }, resp => {
+    browser.tabs.query({ url: null }, resp => {
         Object.values(resp).forEach(item => {
-            chrome.tabs.sendMessage(item.id, 'updated')
+            browser.tabs.sendMessage(item.id, 'updated')
         })
     })
 }

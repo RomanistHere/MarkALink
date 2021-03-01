@@ -1,5 +1,5 @@
 const sendMsgToAllTabs = (request) =>
-    chrome.runtime.sendMessage({ ...request, toAllTheTabs: true })
+    browser.runtime.sendMessage({ ...request, toAllTheTabs: true })
 
 const debounce = (func, wait, immediate) => {
 	var timeout
@@ -18,9 +18,9 @@ const debounce = (func, wait, immediate) => {
 
 const getStorageData = key =>
     new Promise((resolve, reject) =>
-        chrome.storage.sync.get(key, result =>
-            chrome.runtime.lastError
-            ? reject(Error(chrome.runtime.lastError.message))
+        browser.storage.sync.get(key, result =>
+            browser.runtime.lastError
+            ? reject(Error(browser.runtime.lastError.message))
             : resolve(result)
         )
     )
@@ -53,7 +53,7 @@ const syncStore = (key, objectToStore, callback) => {
     }
 
     let jsonstr = JSON.stringify(objectToStore), i = 0, storageObj = {},
-        maxBytesPerItem = chrome.storage.sync.QUOTA_BYTES_PER_ITEM,
+        maxBytesPerItem = 8192,
         maxValueBytes, index, segment, counter
 
     while (jsonstr.length > 0) {
@@ -71,25 +71,25 @@ const syncStore = (key, objectToStore, callback) => {
 
     storageObj[key] = i
 
-	chrome.storage.sync.clear(function(){
-        chrome.storage.sync.set(storageObj, callback)
+	browser.storage.sync.clear(function(){
+        browser.storage.sync.set(storageObj, callback)
     })
 }
 
 const getStorageDataLocal = key =>
 	new Promise((resolve, reject) =>
-		chrome.storage.local.get(key, result =>
-			chrome.runtime.lastError
-				? reject(Error(chrome.runtime.lastError.message))
+		browser.storage.local.get(key, result =>
+			browser.runtime.lastError
+				? reject(Error(browser.runtime.lastError.message))
 				: resolve(result)
 		)
 	)
 
 const setStorageDataLocal = data =>
 	new Promise((resolve, reject) =>
-		chrome.storage.local.set(data, () =>
-			chrome.runtime.lastError
-				? reject(Error(chrome.runtime.lastError.message))
+		browser.storage.local.set(data, () =>
+			browser.runtime.lastError
+				? reject(Error(browser.runtime.lastError.message))
 				: resolve()
 		)
 	)
