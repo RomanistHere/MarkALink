@@ -1,11 +1,10 @@
 {
 	"name": "MarkALink",
 	"short_name": "MarkALink",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "Redesigned bookmark experience. Make links visible! Block other ones or search results from being ever shown on the page if you like",
 	"permissions": [
 		"unlimitedStorage",
-		"activeTab",
 	    "storage",
 	    "tabs",
 	    "http://*/",
