@@ -62,7 +62,7 @@ const checkIsPageHidden = async () => {
 
     const data = await getData()
     const pageUrl = window.location.href
-    const pureUrl = pageUrl.substring(pageUrl.lastIndexOf("//") + 2, pageUrl.indexOf("/", 8))
+    const pureUrl = getPureUrl(pageUrl)
 
     if (pageUrl in data) {
         showNotification('page')

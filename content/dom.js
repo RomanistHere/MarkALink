@@ -161,7 +161,7 @@ const loopThorugh = (links, data, customSettings, pairs) => {
     // console.log(data)
     links.forEach(item => {
         const url = item.href
-        const pureUrl = url.substring(url.lastIndexOf("//") + 2, url.indexOf("/", 8))
+        const pureUrl = getPureUrl(url)
         if (url in data) {
             markLinks(url, data, customSettings, pairs, item)
         } else if (pureUrl in data) {

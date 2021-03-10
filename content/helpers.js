@@ -1,6 +1,9 @@
 const sendMsgToAllTabs = (request) =>
     chrome.runtime.sendMessage({ ...request, toAllTheTabs: true })
 
+const getPureUrl = url =>
+    (typeof url === 'string') ? url.substring(url.lastIndexOf("//") + 2, url.indexOf("/", 8)) : null
+
 const debounce = (func, wait, immediate) => {
 	var timeout
 	return function() {

@@ -327,7 +327,7 @@ const initPopUp = async (linkUrl, optionsItem = null, isValidUrl = true) => {
         state = { ...state, targ: e.currentTarget.id }
 
         if (state.targ === 'Site') {
-            const pureUrl = linkUrl.substring(linkUrl.lastIndexOf("//") + 2, linkUrl.indexOf("/", 8))
+            const pureUrl = getPureUrl(linkUrl)
             state = { ...state, url: pureUrl }
         } else {
             state = { ...state, url: linkUrl }
