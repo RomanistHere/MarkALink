@@ -246,7 +246,7 @@
 }
 
 .MarkALink_logo_wrap-success .MarkALink_logo__neon {
-    font-size: 160px;
+    font-size: 160px !important;
 
     --logo-shadow-2: #a1f5a1;
     --logo-shadow: #208c20;
@@ -259,12 +259,11 @@
         0 0 10vw var(--logo-shadow),
         0 0 .4vw var(--logo-col),
         .5vw .5vw .1vw var(--logo-shadow-2);
-    color: var(--logo-col);
+    color: var(--logo-col) !important;
 }
 
 .MarkALink_logo_wrap-err .MarkALink_logo__neon {
-    font-size: 160px;
-    font-size: 177px;
+    font-size: 177px !important;
 
     --logo-shadow-2: #ff6565;
     --logo-shadow: #9e2121;
@@ -277,21 +276,21 @@
         0 0 10vw var(--logo-shadow),
         0 0 .4vw var(--logo-col),
         .5vw .5vw .1vw var(--logo-shadow-2);
-    color: var(--logo-col);
+    color: var(--logo-col) !important;
 }
 
 .MarkALink_logo_wrap-success .MarkALink_logo {
-    left: -67px;
-    right: -67px;
-    top: 57px;
-    width: 718px;
+    left: -67px !important;
+    right: -67px !important;
+    top: 57px !important;
+    width: 718px !important;
 }
 
 .MarkALink_logo_wrap-err .MarkALink_logo {
-    width: auto;
-    left: auto;
-    right: auto;
-    top: 47px;
+    width: auto !important;
+    left: auto !important;
+    right: auto !important;
+    top: 47px !important;
 }
 
 .MarkALink_logo_wrap-success .MarkALink_logo-shift {
