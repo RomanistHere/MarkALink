@@ -1,8 +1,8 @@
 {
 	"name": "MarkALink",
 	"short_name": "MarkALink",
-	"version": "0.1.1",
-	"description": "Redesigned bookmark experience. Make links visible! Block other ones or search results from being ever shown on the page if you like",
+	"version": "0.1.2",
+	"description": "Highlight interesting links. Hide irrelevant ones. Remove whole websites from search results. Cyberpunk! Updated bookmark experience",
 	"permissions": [
 		"unlimitedStorage",
 	    "storage",

@@ -19,25 +19,25 @@
 }
 
 .MarkALink_popup {
-    position: fixed;
-    z-index: 10000;
+    position: fixed !important;
+    z-index: 10000 !important;
 
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
 
     display: -webkit-flex;
     display: -ms-flex;
-    display: flex;
+    display: flex !important;
 
-    justify-content: center;
+    justify-content: center !important;
     -ms-align-items: center;
-    align-items: center;
+    align-items: center !important;
 
-    background-color: var(--blur-color);
+    background-color: var(--blur-color) !important;
     transition: all ease .4s;
-    opacity: 1;
+    opacity: 1 !important;
 
     font-size: var(--font-size) !important;
     color: var(--text-col) !important;
@@ -45,30 +45,30 @@
 }
 
 .MarkALink_popup-hidden {
-    opacity: 0;
-    z-index: -10000;
+    opacity: 0 !important;
+    z-index: -10000 !important;
 }
 
 .MarkALink_popup__logo {
-    position: relative;
-    display: inline-block;
+    position: relative !important;
+    display: inline-block !important;
 
-    height: 140px;
-    width: 292px;
+    height: 140px !important;
+    width: 292px !important;
 }
 
 .MarkALink_popup__logo_wrap {
-    text-align: center;
+    text-align: center !important;
 
-    padding-bottom: 7px;
+    padding-bottom: 7px !important;
 }
 
 .MarkALink_popup__wrap {
-    width: 460px;
-    padding: 20px;
-    border-radius: 20px;
+    width: 460px !important;
+    padding: 20px !important;
+    border-radius: 20px !important;
 
-    border: 4px solid var(--logo-col);
+    border: 4px solid var(--logo-col) !important;
     box-shadow:
         0 0 10px var(--logo-shadow),
         0 0 20px var(--logo-shadow),
@@ -81,17 +81,17 @@
         inset 0 0 10px var(--logo-shadow),
         inset 0 0 2px var(--logo-col);
 
-    background-color: var(--bg-color);
+    background-color: var(--bg-color) !important;
 
-    -webkit-box-sizing: content-box;
-    box-sizing: content-box;
+    -webkit-box-sizing: content-box !important;
+    box-sizing: content-box !important;
 
     font-family: Verdana !important;
 }
 
 .MarkALink_popup__label {
-    display: inline-block;
-    width: 90px;
+    display: inline-block !important;
+    width: 90px !important;
 
     color: var(--title-color) !important;
     --color1: var(--title-color);
@@ -156,12 +156,12 @@
 }
 
 .MarkALink_popup__btn {
-    position: relative;
-    display: inline-block;
+    position: relative !important;
+    display: inline-block !important;
 
-    width: 120px;
-    height: 45px;
-    margin: 20px 6px 0;
+    width: 120px !important;
+    height: 45px !important;
+    margin: 20px 6px 0 !important;
 
     text-decoration: none !important;
     color: var(--bg-color) !important;
@@ -170,7 +170,7 @@
 }
 
 .MarkALink_popup__btn:focus {
-    transform: scale(1.1, 1.1);
+    transform: scale(1.1, 1.1) !important;
 
     outline: none !important;
 }
@@ -179,17 +179,17 @@
 .MarkALink_popup__btn::before {
     position: absolute;
     content: attr(data-text);
-    z-index: 10;
+    z-index: 10 !important;
 
-    width: 100%;
-    left: 0;
-    top: 0;
-    height: 100%;
+    width: 100% !important;
+    left: 0 !important;
+    top: 0 !important;
+    height: 100% !important;
 
-    box-sizing: border-box;
+    box-sizing: border-box !important;
 
-    border: 2px solid #568eff;
-    opacity: 0;
+    border: 2px solid #568eff !important;
+    opacity: 0 !important;
 }
 
 .MarkALink_popup__save:hover::after,
@@ -242,7 +242,7 @@
     70%,
     78%,
     100% {
-        opacity: 0;
+        opacity: 0 !important;
     }
     0.5%,
     4.5%,
@@ -254,24 +254,24 @@
     57%,
     71%,
     77% {
-        opacity: 1;
-        transform: none;
+        opacity: 1 !important;
+        transform: none !important;
     }
     1%,
     4% {
-        transform: translate(5px, -1px);
+        transform: translate(5px, -1px) !important;
     }
     11%,
     13%,
     53%,
     55% {
-        transform: translate(9px, -2px);
+        transform: translate(9px, -2px) !important;
     }
     25%,
     27%,
     73%,
     75% {
-        transform: translate(-12px, 1px);
+        transform: translate(-12px, 1px) !important;
     }
 }
 
@@ -287,7 +287,7 @@
     70%,
     78%,
     100% {
-        opacity: 0;
+        opacity: 0 !important;
     }
     0.5%,
     4.5%,
@@ -299,67 +299,67 @@
     57%,
     71%,
     77% {
-        opacity: 1;
-        transform: none;
+        opacity: 1 !important;
+        transform: none !important;
     }
     1%,
     4% {
-        transform: translate(4px, -2px);
+        transform: translate(4px, -2px) !important;
     }
     11%,
     13%,
     53%,
     55% {
-        transform: translate(7px, -2px);
+        transform: translate(7px, -2px) !important;
     }
     25%,
     27%,
     73%,
     75% {
-        transform: translate(-12px, 2px);
+        transform: translate(-12px, 2px) !important;
     }
 }
 
 .MarkALink_popup__btns-trick {
-    position: absolute;
+    position: absolute !important;
 
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 0;
+    bottom: 0 !important;
+    left: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
 
-    border-top: 12px solid transparent;
-    border-bottom: 12px solid transparent;
-    border-right: 12px solid var(--bg-color);
-    transform-origin: center;
-    transform: translate(-2px, 10px) rotate(-45deg);
+    border-top: 12px solid transparent !important;
+    border-bottom: 12px solid transparent !important;
+    border-right: 12px solid var(--bg-color) !important;
+    transform-origin: center !important;
+    transform: translate(-2px, 10px) rotate(-45deg) !important;
 }
 
 .MarkALink_popup__btns-trick_2 {
-    bottom: auto;
-    left: auto;
-    top: 0;
-    right: 0;
+    bottom: auto !important;
+    left: auto !important;
+    top: 0 !important;
+    right: 0 !important;
 
-    transform: translate(2px, -10px) rotate(135deg);
+    transform: translate(2px, -10px) rotate(135deg) !important;
 }
 
 .MarkALink_popup__text {
-    position: absolute;
+    position: absolute !important;
 
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
 }
 
 .MarkALink_popup__save {
-    background-color: var(--active-col);
+    background-color: var(--active-col) !important;
     color: #fff !important;
 }
 
 .MarkALink_popup__save::after,
 .MarkALink_popup__save::before {
-    background-color: var(--active-col);
+    background-color: var(--active-col) !important;
 }
 
 .MarkALink_popup__close,
@@ -368,33 +368,33 @@
 .MarkALink_popup__unmark,
 .MarkALink_popup__unmark::after,
 .MarkALink_popup__unmark::before {
-    background-color: var(--non-active-col);
+    background-color: var(--non-active-col) !important;
 }
 
 .MarkALink_popup__menu {
-    display: inline-block;
-    position: relative;
+    display: inline-block !important;
+    position: relative !important;
 }
 
 .MarkALink_popup__submenu,
 .MarkALink_popup__menu:hover .MarkALink_popup__submenu.MarkALink_popup__submenu-hide {
-    position: absolute;
-    z-index: 10000;
+    position: absolute !important;
+    z-index: 10000 !important;
 
-    left: 0;
-    top: 20px;
-    width: 0;
-    height: 0;
-    transform: translateY(-50%);
-    padding: 0;
-    max-height: 500px;
+    left: 0 !important;
+    top: 20px !important;
+    width: 0 !important;
+    height: 0 !important;
+    transform: translateY(-50%) !important;
+    padding: 0 !important;
+    max-height: 500px !important;
 
-    opacity: 0;
-    overflow: hidden;
-    overflow-y: auto;
-    background-color: yellow;
+    opacity: 0 !important;
+    overflow: hidden !important;
+    overflow-y: auto !important;
+    background-color: yellow !important;
 
-    border: 1px solid var(--logo-col);
+    border: 1px solid var(--logo-col) !important;
     box-shadow:
         0 0 2px var(--logo-shadow),
         0 0 5px var(--logo-shadow),
@@ -407,28 +407,28 @@
         inset 0 0 10px var(--logo-shadow),
         inset 0 0 2px var(--logo-col);
 
-    background-color: var(--bg-color);
+    background-color: var(--bg-color) !important;
 
     transition: all ease .4s;
 }
 
 .MarkALink_popup__menu:hover .MarkALink_popup__submenu,
 .MarkALink_popup__menu:focus-within .MarkALink_popup__submenu {
-    width: auto;
-    height: auto;
-    min-width: 100%;
+    width: auto !important;
+    height: auto !important;
+    min-width: 100% !important;
 
-    opacity: 1;
-    padding: 12px 4px;
+    opacity: 1 !important;
+    padding: 12px 4px !important;
 }
 
 .MarkALink_popup__menu_item,
 .MarkALink_popup__menu_item-add {
-    display: block;
+    display: block !important;
 
-    padding: 5px 10px;
+    padding: 5px 10px !important;
 
-    white-space: nowrap;
+    white-space: nowrap !important;
     font-family: Godsownjunkyard !important;
     text-shadow: 0 0 10px #000, 0 0 5px #000, 0 0 15px #000, 0 0 20px #000, 4px 2px 5px var(--title-color);
     color: var(--non-active-col) !important;
@@ -443,11 +443,11 @@
 }
 
 .MarkALink_popup__types {
-    display: inline-block;
+    display: inline-block !important;
 }
 
 .MarkALink_popup__types_item {
-    margin-right: 5px;
+    margin-right: 5px !important;
 
     font-family: Godsownjunkyard !important;
     text-shadow: 0 0 10px #000, 0 0 5px #000, 0 0 15px #000, 0 0 20px #000, 4px 2px 5px var(--title-color);
@@ -463,13 +463,13 @@
 }
 
 .MarkALink_popup__grp {
-    margin: 16px 0;
+    margin: 16px 0 !important;
 }
 
 .MarkALink_popup__textarea_wrap {
-    position: relative;
+    position: relative !important;
 
-    margin: 0;
+    margin: 0 !important;
 }
 
 .MarkALink_popup__textarea_wrap::after,
@@ -477,39 +477,39 @@
     position: absolute;
     z-index: 1;
     content: "";
-    display: block;
+    display: block !important;
 
-    height: 2px;
-    width: 40px;
-    transform: translate(-5px, -15px) rotate(45deg);
-    border-radius: 5px;
-    left: 0;
-    bottom: 0;
+    height: 2px !important;
+    width: 40px !important;
+    transform: translate(-5px, -15px) rotate(45deg) !important;
+    border-radius: 5px !important;
+    left: 0 !important;
+    bottom: 0 !important;
 
     background: var(--active-col);
     transform-origin: center;
 }
 
 .MarkALink_popup__textarea_wrap::before {
-    left: auto;
-    bottom: auto;
-    top: 0;
-    right: 0;
-    transform: translate(5px, 15px) rotate(45deg);
+    left: auto !important;
+    bottom: auto !important;
+    top: 0 !important;
+    right: 0 !important;
+    transform: translate(5px, 15px) rotate(45deg) !important;
 }
 
 .MarkALink_popup__textarea {
-    display: block;
+    display: block !important;
 
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box !important;
+    box-sizing: border-box !important;
 
-    width: 100%;
-    height: 130px;
-    padding: 10px;
+    width: 100% !important;
+    height: 130px !important;
+    padding: 10px !important;
 
     clip-path: polygon(0% 0%, calc(100% - 30px) 0, 100% 30px, 100% 100%, 95% 100%, calc(0% + 30px) 100%, 0% calc(100% - 30px), 0% calc(100% + 30px));
-    background: var(--bg-color);
+    background: var(--bg-color) !important;
     border: 2px solid var(--active-col) !important;
 
     text-shadow: 4px 2px 5px var(--active-col);
@@ -530,42 +530,42 @@
 }
 
 .MarkALink_popup__menu_default-hide {
-    display: none;
+    display: none !important;
 }
 
 .MarkALink_popup__menu_default-input {
-    width: 360px;
+    width: 360px !important;
 
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box !important;
+    box-sizing: border-box !important;
 
     font-size: calc(var(--font-size) - 4px) !important;
     color: white !important;
 
     background: transparent !important;
     border: none !important;
-    border-bottom: 2px solid white;
+    border-bottom: 2px solid white !important;
 }
 
 .MarkALink_popup__calendar {
-    max-height: 0;
-    overflow: hidden;
+    max-height: 0 !important;
+    overflow: hidden !important;
 
     transition: all ease .3s;
 }
 
 .MarkALink_popup__calendar-show {
-    max-height: 50px;
-    overflow: initial;
+    max-height: 50px !important;
+    overflow: initial !important;
     animation: overflowUp .3s ease;
 }
 
 @keyframes overflowUp {
     0%, 90% {
-        overflow: hidden;
+        overflow: hidden !important;
     }
     100% {
-        overflow: initial;
+        overflow: initial !important;
     }
 }
 
@@ -591,5 +591,5 @@
 .MarkALink_popup__btns *::selection,
 .MarkALink_popup__textarea::selection,
 .MarkALink_popup__grp *::selection {
-    background: #ff00cb;
+    background: #ff00cb !important;
 }

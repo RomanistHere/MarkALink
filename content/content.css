@@ -20,12 +20,12 @@
 }
 
 .MarkALink_logo_wrap {
-    position: absolute;
-    transform-origin: left top;
+    position: absolute !important;
+    transform-origin: left top !important;
 
-    transform: scale(0.5);
-    top: 0;
-    left: 0;
+    transform: scale(0.5) !important;
+    top: 0 !important;
+    left: 0 !important;
 }
 
 .MarkALink__tooltip {
@@ -36,25 +36,25 @@
     --logo-shadow: #FA1C16;
     --logo-shadow-2: #806914;
 
-    position: fixed;
-    z-index: 1000000000000;
-    display: none;
+    position: fixed !important;
+    z-index: 1000000000000 !important;
+    display: none !important;
 
-    max-width: 250px;
-    max-height: 200px;
-    padding: 10px;
-    margin: 10px;
-    border-radius: 10px;
+    max-width: 250px !important;
+    max-height: 200px !important;
+    padding: 10px !important;
+    margin: 10px !important;
+    border-radius: 10px !important;
 
-    box-sizing: border-box;
-    overflow: hidden;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
 
     color: #fff !important;
     font-family: Verdana !important;
     font-size: 16px !important;
 
-    background-color: var(--bg-color);
-    border: 1px solid var(--logo-col);
+    background-color: var(--bg-color) !important;
+    border: 1px solid var(--logo-col) !important;
     box-shadow:
         0 0 5px var(--logo-shadow),
         0 0 10px var(--logo-shadow),
@@ -69,32 +69,32 @@
 }
 
 .MarkALink__tooltip-hidden {
-    display: none;
+    display: none !important;
 }
 
 .MarkALink__tooltip-show {
-    display: block;
+    display: block !important;
 
     animation: popping .9s ease-out;
 }
 
 @keyframes popping {
     0%, 70% {
-        transform: translateY(-10px);
-        opacity: 0;
+        transform: translateY(-10px) !important;
+        opacity: 0 !important;
     }
     100% {
-        transform: none;
-        opacity: 1;
+        transform: none !important;
+        opacity: 1 !important;
     }
 }
 
 .MarkALink__tooltip_text-mark {
-    display: block;
+    display: block !important;
 }
 
 .MarkALink__tooltip_text-grp {
-    margin-bottom: 10px;
+    margin-bottom: 10px !important;
 
     font-family: Godsownjunkyard !important;
     font-size: 22px !important;
