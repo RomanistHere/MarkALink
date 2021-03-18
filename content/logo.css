@@ -18,10 +18,10 @@
     position: relative;
     display: block;
 
-    font-family: neon;
-    color: #FB4264;
-    font-size: 136px;
-    line-height: 1;
+    font-family: neon !important;
+    color: #FB4264 !important;
+    font-size: 136px !important;
+    line-height: 1 !important;
     text-shadow:
         0 0 1vw var(--logo-shadow),
         0 0 3vw var(--logo-shadow),
@@ -29,7 +29,7 @@
         0 0 10vw var(--logo-shadow),
         0 0 .4vw var(--logo-col),
         .5vw .5vw .1vw var(--logo-shadow-2);
-    color: var(--logo-col);
+    color: var(--logo-col) !important;
 }
 
 .MarkALink_logo::selection,
@@ -42,7 +42,7 @@
 }
 
 .MarkALink_logo__neon-bot {
-    padding-left: 175px;
+    padding-left: 175px !important;
 }
 
 .MarkALink_logo-invis {
@@ -50,30 +50,30 @@
 }
 
 .MarkALink_logo-trick {
-    position: absolute;
+    position: absolute !important;
 
-    left: 26px;
-    bottom: -18px;
+    left: 26px !important;
+    bottom: -18px !important;
 
-    font-size: 306px;
+    font-size: 306px !important;
 }
 
 .MarkALink_logo_wrap {
-    position: relative;
+    position: relative !important;
 
-    width: 584px;
-    height: 272px;
+    width: 584px !important;
+    height: 272px !important;
 
-    background-color: var(--bg-color);
+    background-color: var(--bg-color) !important;
 
-    text-align: left;
+    text-align: left !important;
 }
 
 .MarkALink_logo {
-    position: absolute;
+    position: absolute !important;
 
-    top: 0;
-    left: 0;
+    top: 0 !important;
+    left: 0 !important;
 }
 
 .MarkALink_logo-based {

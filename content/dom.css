@@ -1,33 +1,33 @@
 .MarkALink_aside {
-    position: fixed;
-    z-index: 1000000000000;
+    position: fixed !important;
+    z-index: 1000000000000 !important;
 
-    top: 100px;
-    padding: 20px 0 20px 50px;
-    right: 0;
-    max-height: 450px;
-    transform: none;
+    top: 100px !important;
+    padding: 20px 0 20px 50px !important;
+    right: 0 !important;
+    max-height: 450px !important;
+    transform: none !important;
 
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
     transition: transform ease .6s .3s;
 }
 
 .MarkALink_aside-hidden {
-    transform: translateX(calc(100% - 45px));
+    transform: translateX(calc(100% - 45px)) !important;
 }
 
 .MarkALink_aside__expand {
-    position: absolute;
-    display: none;
+    position: absolute !important;
+    display: none !important;
 
-    top: 25px;
-    left: 25px;
-    width: 50px;
-    height: 70px;
-    border-radius: 50%;
+    top: 25px !important;
+    left: 25px !important;
+    width: 50px !important;
+    height: 70px !important;
+    border-radius: 50% !important;
 
-    border: 1px solid var(--logo-col);
+    border: 1px solid var(--logo-col) !important;
     box-shadow:
         0 0 5px var(--logo-shadow),
         0 0 8px var(--logo-shadow),
@@ -40,18 +40,18 @@
         inset 0 0 10px var(--bg-color),
         inset 0 0 2px var(--logo-col);
 
-    cursor: pointer;
-    transition: all ease .3s;
+    cursor: pointer !important;
+    transition: all ease .3s !important;
 
     animation: expandAppear 1.5s ease;
 }
 
 @keyframes expandAppear {
     0%, 70% {
-        opacity: 0;
+        opacity: 0 !important;
     },
     100% {
-        opacity: 1;
+        opacity: 1 !important;
     }
 }
 
@@ -61,25 +61,25 @@
 }
 
 .MarkALink_aside-hidden .MarkALink_aside__expand {
-    display: block;
+    display: block !important;
 }
 
 .MarkALink_aside__item {
-    width: 400px;
-    max-height: 160px;
-    padding: 10px;
-    margin: 10px;
-    border-radius: 10px;
+    width: 400px !important;
+    max-height: 160px !important;
+    padding: 10px !important;
+    margin: 10px !important;
+    border-radius: 10px !important;
 
-    box-sizing: border-box;
-    overflow: hidden;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
 
     color: #fff !important;
     font-family: Verdana !important;
     font-size: 16px !important;
 
-    background-color: var(--bg-color);
-    border: 1px solid var(--logo-col);
+    background-color: var(--bg-color) !important;
+    border: 1px solid var(--logo-col) !important;
     box-shadow:
         0 0 5px var(--logo-shadow),
         0 0 10px var(--logo-shadow),
@@ -96,61 +96,61 @@
 }
 
 .MarkALink_aside__item-del {
-    max-height: 0;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    box-shadow: none;
-    border: none;
+    max-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    box-shadow: none !important;
+    border: none !important;
 
-    transform: scale(.01, .01);
+    transform: scale(.01, .01) !important;
 }
 
 .MarkALink_aside__item-min {
-    max-height: 0;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    box-shadow: none;
-    border: none;
+    max-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    box-shadow: none !important;
+    border: none !important;
 
-    transform: translateX(110%);
+    transform: translateX(110%) !important;
 }
 
 .MarkALink_aside__list {
-    padding: 0;
-    margin: 0;
+    padding: 0 !important;
+    margin: 0 !important;
 
-    list-style: none;
+    list-style: none !important;
 }
 
 .MarkALink_aside__mark {
-    display: block;
+    display: block !important;
 
-    margin: 0;
-    margin-bottom: 10px;
-    max-height: 76px;
+    margin: 0 !important;
+    margin-bottom: 10px !important;
+    max-height: 76px !important;
 
     color: #fff !important;
     text-decoration: none !important;
 
-    overflow: auto;
+    overflow: auto !important;
     cursor: pointer;
     transition: all ease .3s;
 }
 
 .MarkALink_aside__link {
-    display: block;
+    display: block !important;
 
-    width: 100%;
-    margin-bottom: 10px;
+    width: 100% !important;
+    margin-bottom: 10px !important;
 
     color: #fff !important;
     font-size: 14px !important;
-    word-wrap: break-word;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    word-wrap: break-word !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
 
     transition: all ease .3s;
 }
@@ -169,9 +169,9 @@
 }
 
 .MarkALink_aside__btn {
-    display: inline-block;
+    display: inline-block !important;
 
-    padding-right: 10px;
+    padding-right: 10px !important;
 
     font-family: Godsownjunkyard !important;
     font-size: 20px !important;
@@ -206,27 +206,27 @@
 
 .MarkALink_aside::selection,
 .MarkALink_aside *::selection {
-    background: #ff00cb;
+    background: #ff00cb !important;
 }
 
 .MarkALink__notification {
-    position: fixed;
-    z-index: 1000000000001;
+    position: fixed !important;
+    z-index: 1000000000001 !important;
 
-    top: 20px;
-    right: 20px;
-    padding: 10px;
-    border-radius: 10px;
+    top: 20px !important;
+    right: 20px !important;
+    padding: 10px !important;
+    border-radius: 10px !important;
 
-    box-sizing: border-box;
-    overflow: hidden;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
 
     color: #fff !important;
     font-family: Verdana !important;
     font-size: 17px !important;
 
-    background-color: var(--bg-color);
-    border: 1px solid var(--logo-col);
+    background-color: var(--bg-color) !important;
+    border: 1px solid var(--logo-col) !important;
     box-shadow:
         0 0 5px var(--logo-shadow),
         0 0 10px var(--logo-shadow),
@@ -241,6 +241,6 @@
 }
 
 .MarkALink__notification_text {
-    display: inline-block;
-    padding-bottom: 10px;
+    display: inline-block !important;
+    padding-bottom: 10px !important;
 }
