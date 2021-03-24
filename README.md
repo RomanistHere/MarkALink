@@ -25,8 +25,8 @@ There are no such an option when you right-click? It means the element you click
 
 - Add theme without glitches
 - Add time to notifications
-- Redesign of options page and adding a lot of different settings
+- Redesign options page and add a lot of different settings
 
 ### Current state
 
-It's more like MVP (minimum viable product) right now, some features could work poorly, there could be lack of settings or some bugs, I'm sorry if there are. Let me know, I want to improve it. Still yours, RomanistHere@pm.me
+It's more like MVP (minimum viable product) right now, some features could work poorly, there could be lack of settings or some bugs, I'm sorry if there are. Let me know, we'll fix it. Always yours, RomanistHere@pm.me
