@@ -93,35 +93,39 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 const setContMenu = () => {
 	chrome.contextMenus.removeAll()
 	chrome.contextMenus.create({
+		id: 'mark-page',
 		title: 'Mark',
 		contexts: ['link'],
 		documentUrlPatterns: ["http://*/*", "https://*/*", "http://*/", "https://*/"],
-		onclick: ({ linkUrl }, tabs) => {
-			const tabID = tabs.id
+	})
+	chrome.contextMenus.create({
+		id: 'hide-page',
+		title: '"Hide" the page',
+		contexts: ['link'],
+		documentUrlPatterns: ["http://*/*", "https://*/*", "http://*/", "https://*/"],
+	})
+	chrome.contextMenus.create({
+		id: 'hide-site',
+		title: '"Hide" whole website',
+		contexts: ['link'],
+		documentUrlPatterns: ["http://*/*", "https://*/*", "http://*/", "https://*/"],
+	})
+
+	chrome.contextMenus.onClicked.addListener((info, tab) => {
+		const tabID = tab.id;
+		const { linkUrl, menuItemId } = info;
+
+		if (menuItemId === "mark-page") {
 			chrome.tabs.sendMessage(tabID, {
 				linkUrl: linkUrl,
 				openPopUp: true,
 			})
-		}
-	})
-	chrome.contextMenus.create({
-		title: '"Hide" the page',
-		contexts: ['link'],
-		documentUrlPatterns: ["http://*/*", "https://*/*", "http://*/", "https://*/"],
-		onclick: ({ linkUrl }, tabs) => {
-			const tabID = tabs.id
+		} else if (menuItemId === "hide-page") {
 			chrome.tabs.sendMessage(tabID, {
 				linkUrl: linkUrl,
 				addToHide: true,
 			})
-		}
-	})
-	chrome.contextMenus.create({
-		title: '"Hide" whole website',
-		contexts: ['link'],
-		documentUrlPatterns: ["http://*/*", "https://*/*", "http://*/", "https://*/"],
-		onclick: ({ linkUrl }, tabs) => {
-			const tabID = tabs.id
+		} else if (menuItemId === "hide-site") {
 			const pureUrl = linkUrl.substring(linkUrl.lastIndexOf("//") + 2, linkUrl.indexOf("/", 8))
 			chrome.tabs.sendMessage(tabID, {
 				linkUrl: pureUrl,

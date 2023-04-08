@@ -3,6 +3,11 @@
     src: url('chrome-extension://__MSG_@@extension_id__/fonts/Godsownjunkyard-Regular.otf');
 }
 
+@font-face {
+    font-family: neon;
+    src: url('chrome-extension://__MSG_@@extension_id__/fonts/NEON.TTF');
+}
+
 html,
 body {
     position: relative;
@@ -46,6 +51,10 @@ body {
     filter: saturate(60%);
 
     transition: all ease .3s;
+}
+
+.title__small {
+    font-size: 24px;
 }
 
 .title__remove {
@@ -254,6 +263,7 @@ body {
 .list__text {
     margin: 0;
     padding: 5px;
+    min-height: 20px;
 }
 
 .settings__toggle {
